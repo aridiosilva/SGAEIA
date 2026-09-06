@@ -37,7 +37,7 @@ jobs:
           ! grep -RInE '(BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|api[_-]?key[[:space:]]*=[[:space:]]*[^$])' . --exclude-dir=.git
       - name: Upload generated assurance evidence
         if: always() && matrix.python-version == '3.12'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: sgaeia-assurance-evidence
           path: |
