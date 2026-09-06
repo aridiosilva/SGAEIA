@@ -3,8 +3,9 @@
 **SGAEIA — Secure Governed Autonomous Edge Intelligence Architecture**  
 **Aridio Silva — @aridiosilva — Setembro de 2026**
 
-**Release preparada:** `v0.3.2 — GitHub Release Candidate 1 (RC1)`  
-**Licença:** Apache-2.0
+**Current public release:** `v0.3.2 — Public Research Preview`  
+**Next metadata release:** `v0.3.3 — Research Artifact Metadata Release`  
+**License:** Apache-2.0
 
 Projeto de referência **Spec-Driven Development (SDD)** para arquiteturas **Edge-AI multiagente** com **Zero Trust, GRC distribuído, Security-by-Design, Security-First, Shift Left/Right/Everywhere e autonomia governada**.
 
@@ -2093,7 +2094,7 @@ Além disso, ações críticas devem possuir **Runtime Admission** via PDP/PEP.
 ## 67. Estrutura do repositório
 
 ```text
-secure-governed-edge-ai-sdd-reference/
+SGAEIA/
 ├── MASTER-SPEC.md
 ├── README.md
 ├── SECURITY.md
@@ -3776,16 +3777,16 @@ Antes de produção, devem ser implementados e validados, conforme o caso:
 10. mapeamento regulatório de jurisdição/setor;
 11. qualificação IPS-C2/C3 em ambientes reais para cada adapter selecionado;
 12. medição real de revogação, failover, partição e version-skew dos produtos implantados;
-11. BCP/DR;
-12. testes de isolamento e desconexão;
-13. assinatura/provenance de artefatos;
-14. secrets management real;
-15. data plane encryption;
-16. service-mesh ou enforcement equivalente;
-17. immutable evidence storage;
-18. incident-response runbooks;
-19. model supply-chain controls;
-20. validação independente de security e safety.
+12. BCP/DR;
+13. testes de isolamento e desconexão;
+14. assinatura/provenance de artefatos;
+15. secrets management real;
+16. data plane encryption;
+17. service-mesh ou enforcement equivalente;
+18. immutable evidence storage;
+19. incident-response runbooks;
+20. model supply-chain controls;
+21. validação independente de security e safety.
 
 ---
 
@@ -3934,10 +3935,41 @@ No manuscript may present local contract tests as production certification, clai
 
 Canonical public repository: `https://github.com/aridiosilva/SGAEIA`.
 
-## 72E. GitHub Release Candidate 1 — v0.3.2
+## 72E. First Public Research Preview — v0.3.2
 
-Canonical repository: `https://github.com/aridiosilva/SGAEIA`.
+Version `v0.3.2` established the first public SGAEIA research
+preview at:
 
-The v0.3.2 package is the audited first-publication candidate. Before tagging it, create the empty repository, push `main`, allow GitHub-hosted CI and CodeQL to execute, review the public tree, enable repository security settings, and only then create tag `v0.3.2`. The recommended first GitHub release title is **SGAEIA v0.3.2 — Public Research Preview**, marked as **Pre-release**.
+https://github.com/aridiosilva/SGAEIA
 
-The public repository and the academic publication track are linked but distinct artifacts: GitHub is the living software/specification source; arXiv is the scientific preprint record; a later Zenodo archive may provide a persistent DOI for a tagged software snapshot.
+The public repository was validated through GitHub-hosted
+security CI and CodeQL before the versioned release was published.
+
+The `main` branch is governed through GitHub branch protection/rulesets,
+and dependency maintenance is supported by Dependabot.
+
+The release remains a research reference artifact and does not
+constitute production certification.
+
+## Research Artifact Archival and Persistent Identification
+
+SGAEIA uses GitHub as the canonical living source repository and
+Zenodo for persistent archival of selected versioned research releases.
+
+Canonical source repository:
+
+https://github.com/aridiosilva/SGAEIA
+
+Research artifact metadata is maintained through:
+
+- `CITATION.cff` — software citation metadata;
+- `.zenodo.json` — Zenodo archival metadata;
+- ORCID — persistent creator identification.
+
+Creator:
+
+Aridio Silva  
+ORCID: https://orcid.org/0009-0008-2411-6995
+
+A Zenodo DOI SHALL NOT be documented as an assigned identifier until
+the corresponding Zenodo record has actually been created and published.
