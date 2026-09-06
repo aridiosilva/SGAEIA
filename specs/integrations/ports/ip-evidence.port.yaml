@@ -1,0 +1,52 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-EVIDENCE
+  name: Evidence Service
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: critical
+spec:
+  purpose: Collect, seal, correlate and export security/compliance evidence.
+  protocolStyle: hybrid
+  contracts:
+    functional:
+    - record event
+    - seal evidence
+    - query by trace/control/entity
+    - export evidence package
+    security:
+    - integrity protection
+    - authenticated producers
+    - retention policy
+    - access control
+    - tamper-evident or immutable storage for critical evidence
+    audit:
+    - evidence is the audit record; include provenance, timestamp and correlation
+      identifiers
+    failure:
+    - buffer locally when central store is unavailable; never silently discard critical
+      evidence
+    revocation:
+    - support revocation of producer credentials without deleting retained evidence
+  failureMode: buffer-and-retry
+  revocation:
+    supported: true
+    maxPropagationSeconds: 300
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - JSON/file reference evidence service
+  alternatives:
+  - SIEM
+  - WORM object store
+  - ledger
+  - governed data lake

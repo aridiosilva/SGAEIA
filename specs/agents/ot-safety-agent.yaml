@@ -1,0 +1,27 @@
+apiVersion: sgaeia.io/v1
+kind: Agent
+metadata:
+  id: ot-safety-agent-01
+  owner: industrial-safety
+spec:
+  purpose:
+    - monitor_process_state
+    - recommend_safe_action
+  class: L4
+  autonomy: A1
+  trustZone: ATZ-5
+  identity:
+    spiffeId: spiffe://plant.example/agents/ot/safety-agent/prod
+  capabilities:
+    allow:
+      - telemetry.read
+      - safety.recommend
+    deny:
+      - actuator.direct_write
+      - internet.egress
+      - delegation.unbounded
+  delegation:
+    allowed: false
+    maxDepth: 0
+  killSwitch:
+    required: true

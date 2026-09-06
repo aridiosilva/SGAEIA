@@ -1,0 +1,48 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-OBS
+  name: Observability / Telemetry
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: high
+spec:
+  purpose: Export correlated traces, metrics, logs and agent-specific decision telemetry.
+  protocolStyle: event
+  contracts:
+    functional:
+    - emit traceable telemetry
+    - propagate trace context
+    - correlate agent, intent, tool, policy and result
+    security:
+    - protect sensitive prompts/data
+    - authenticated exporters
+    - integrity and tenant separation
+    - sampling must not remove mandatory security events
+    audit:
+    - retain correlation identifiers and security-relevant fields
+    failure:
+    - buffer/retry during network partition; local security enforcement cannot depend
+      on telemetry availability
+    revocation:
+    - support revoking exporters/collectors and rotating credentials
+  failureMode: buffer-and-retry
+  revocation:
+    supported: true
+    maxPropagationSeconds: 120
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - OpenTelemetry
+  alternatives:
+  - vendor APM
+  - SIEM-native telemetry
+  - custom structured event pipeline

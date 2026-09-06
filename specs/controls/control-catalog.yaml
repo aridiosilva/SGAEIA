@@ -1,0 +1,214 @@
+controls:
+- id: CTL-IAM-001
+  name: Cryptographic workload identity
+  family: IAM
+  requirement: Every production agent MUST present a verifiable workload identity
+    before authorization.
+  threats:
+  - THR-AI-003
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - identity_decision_log
+- id: CTL-IAM-002
+  name: Short-lived scoped capability
+  family: IAM
+  requirement: Critical capabilities MUST be scoped, time-bound and non-transitively
+    delegated by default.
+  threats:
+  - THR-AI-002
+  verification: automated
+  evidence:
+  - capability_token_log
+- id: CTL-AGT-001
+  name: Governed Agent Registration
+  family: AGT
+  requirement: Agents MUST be registered with owner, purpose, class, autonomy, capabilities
+    and kill switch.
+  threats:
+  - THR-AI-003
+  verification: automated
+  evidence:
+  - agent_registry_snapshot
+- id: CTL-AGT-002
+  name: Delegation envelope
+  family: AGT
+  requirement: Delegation MUST NOT increase authority and MUST obey max depth.
+  threats:
+  - THR-AI-002
+  verification: automated
+  evidence:
+  - delegation_decision_log
+- id: CTL-AGT-003
+  name: Risk-based human approval
+  family: AGT
+  requirement: Critical or irreversible actions MUST require independent approval
+    according to policy.
+  threats:
+  - THR-AI-004
+  verification: hybrid
+  evidence:
+  - approval_log
+- id: CTL-AGT-004
+  name: Security interposition before tool execution
+  family: AGT
+  requirement: All sensitive tool calls MUST pass through PEP/PDP before execution.
+  threats:
+  - THR-AI-001
+  - THR-AI-005
+  verification: automated
+  evidence:
+  - policy_decision_log
+- id: CTL-TOL-002
+  name: Governed Tool Gateway
+  family: TOL
+  requirement: Tools MUST enforce operation allow-lists, schema validation, egress
+    restrictions and logging.
+  threats:
+  - THR-AI-001
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - tool_gateway_log
+- id: CTL-DAT-001
+  name: RAG and memory provenance
+  family: DAT
+  requirement: Retrieved/persistent context MUST retain provenance, classification,
+    trust and expiry metadata.
+  threats:
+  - THR-AI-005
+  verification: hybrid
+  evidence:
+  - rag_provenance_record
+- id: CTL-NET-001
+  name: Zero-trust agentic mesh
+  family: NET
+  requirement: East-west and egress communications MUST be mutually authenticated,
+    authorized and observable.
+  threats:
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - mesh_trace
+  - egress_decision_log
+- id: CTL-EDG-001
+  name: Fail-secure Edge offline mode
+  family: EDG
+  requirement: Network partition MUST NOT increase authority; critical unknown operations
+    are denied.
+  threats:
+  - THR-AI-004
+  verification: automated
+  evidence:
+  - offline_policy_test
+- id: CTL-PHY-001
+  name: Independent safety barrier
+  family: PHY
+  requirement: L4 physical actions MUST be bounded by non-LLM safety constraints and
+    emergency stop capability.
+  threats:
+  - THR-AI-004
+  verification: hybrid
+  evidence:
+  - safety_controller_test
+  - emergency_stop_test
+- id: CTL-MON-001
+  name: Decision provenance and traceability
+  family: MON
+  requirement: Critical actions MUST emit trace_id, evidence_id, policy decision and
+    risk score.
+  threats:
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - decision_provenance
+- id: CTL-INT-001
+  name: Integration Port semantic conformance
+  family: INT
+  requirement: Replaceable adapters MUST preserve functional, security, audit, failure
+    and revocation contracts of the declared Integration Port.
+  threats:
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - ips_conformance_report
+- id: CTL-INT-002
+  name: Fail-safe integration dependency behavior
+  family: INT
+  requirement: Failure of critical integration dependencies MUST NOT increase authority
+    or bypass governance controls.
+  threats:
+  - THR-AI-004
+  verification: automated
+  evidence:
+  - ips_failure_semantics_test
+- id: CTL-INT-003
+  name: Adapter evidence and implementation identity
+  family: INT
+  requirement: Critical adapters MUST emit evidence identifying port, implementation/version,
+    subject, trace and result.
+  threats:
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - adapter_evidence_record
+- id: CTL-INT-004
+  name: Bounded revocation propagation
+  family: INT
+  requirement: Revocation-capable critical ports MUST declare and verify bounded revocation
+    propagation.
+  threats:
+  - THR-AI-003
+  verification: hybrid
+  evidence:
+  - revocation_propagation_test
+- id: CTL-INT-005
+  name: Versioned adapter profile
+  family: INT
+  requirement: Every production adapter MUST declare a versioned AdapterProfile bound
+    to a known Integration Port.
+  threats:
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - adapter_profile_validation
+- id: CTL-INT-006
+  name: Vendor-neutral adapter contract harness
+  family: INT
+  requirement: Substitute technologies for the same port MUST be evaluated by the
+    same semantic contract harness.
+  threats:
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - adapter_conformance_report
+- id: CTL-INT-007
+  name: Assurance-level truthfulness
+  family: INT
+  requirement: Contract-harness results MUST NOT be represented as live-environment
+    or independent production assurance.
+  threats:
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - adapter_profile_verification_scope
+- id: CTL-INT-008
+  name: Adapter outage and partition testing
+  family: INT
+  requirement: Critical adapters MUST demonstrate safe failure behavior under timeout,
+    dependency loss and partition conditions.
+  threats:
+  - THR-AI-004
+  verification: automated
+  evidence:
+  - adapter_failure_test
+- id: CTL-INT-009
+  name: Adapter evidence attribution
+  family: INT
+  requirement: Adapter evidence MUST identify concrete adapter and implementation/version
+    in addition to port and trace context.
+  threats:
+  - THR-AI-006
+  verification: automated
+  evidence:
+  - adapter_evidence_record

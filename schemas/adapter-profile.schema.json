@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/sgaeia/schemas/adapter-profile.schema.json",
+  "title": "SGAEIA Adapter Profile",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "spec"],
+  "properties": {
+    "apiVersion": {"const": "sgaeia.io/v1alpha1"},
+    "kind": {"const": "AdapterProfile"},
+    "metadata": {
+      "type": "object",
+      "required": ["id", "portId", "adapterVersion", "owner"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^ADP-[A-Z0-9-]+$"},
+        "portId": {"type": "string", "pattern": "^IP-[A-Z0-9-]+$"},
+        "adapterVersion": {"type": "string"},
+        "owner": {"type": "string"}
+      }
+    },
+    "spec": {
+      "type": "object",
+      "required": ["implementation", "baseline", "targetConformance", "verification", "failureMode", "evidence"],
+      "properties": {
+        "implementation": {"type": "string"},
+        "baseline": {"type": "string"},
+        "targetConformance": {"enum": ["IPS-C1", "IPS-C2", "IPS-C3"]},
+        "verification": {"enum": ["contract-harness", "live-environment", "independent-assurance"]},
+        "failureMode": {"type": "string"},
+        "evidence": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "alternatives": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}

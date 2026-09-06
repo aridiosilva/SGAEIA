@@ -1,0 +1,73 @@
+asyncapi: 3.1.0
+id: urn:sgaeia:evidence-events
+info:
+  title: SGAEIA Evidence Events
+  version: 1.0.0
+  description: Machine-readable event contract for replaceable SGAEIA integrations.
+defaultContentType: application/json
+channels:
+  evidenceRecorded:
+    address: sgaeia/evidence/recorded
+    messages:
+      EvidenceRecorded:
+        $ref: '#/components/messages/EvidenceRecorded'
+  evidenceSealFailed:
+    address: sgaeia/evidence/seal-failed
+    messages:
+      EvidenceSealFailed:
+        $ref: '#/components/messages/EvidenceSealFailed'
+operations:
+  sendEvidenceRecorded:
+    action: send
+    channel:
+      $ref: '#/channels/evidenceRecorded'
+  sendEvidenceSealFailed:
+    action: send
+    channel:
+      $ref: '#/channels/evidenceSealFailed'
+components:
+  messages:
+    EvidenceRecorded:
+      name: EvidenceRecorded
+      payload:
+        type: object
+        required:
+        - event_id
+        - trace_id
+        - timestamp
+        - source_identity
+        properties:
+          event_id:
+            type: string
+          trace_id:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+          source_identity:
+            type: string
+          payload:
+            type: object
+            additionalProperties: true
+    EvidenceSealFailed:
+      name: EvidenceSealFailed
+      payload:
+        type: object
+        required:
+        - event_id
+        - trace_id
+        - timestamp
+        - source_identity
+        properties:
+          event_id:
+            type: string
+          trace_id:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+          source_identity:
+            type: string
+          payload:
+            type: object
+            additionalProperties: true

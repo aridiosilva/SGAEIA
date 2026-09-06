@@ -1,0 +1,12 @@
+model:
+  id: enterprise-model-x
+  version: "7"
+  provider: example
+  provenance: internal-approved-registry
+  digest: sha256:REPLACE_WITH_REAL_DIGEST
+  allowedClasses: [L0, L1, L2]
+  approvalStatus: reference-only
+  securityTests:
+    promptInjection: required
+    dataLeakage: required
+    toolUse: required

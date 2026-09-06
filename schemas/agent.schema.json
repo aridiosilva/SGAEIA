@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SGAEIA Agent Manifest",
+  "type": "object",
+  "required": [
+    "apiVersion",
+    "kind",
+    "metadata",
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "const": "sgaeia.io/v1"
+    },
+    "kind": {
+      "const": "Agent"
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "id",
+        "owner"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "owner": {
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "purpose",
+        "class",
+        "autonomy",
+        "trustZone",
+        "identity",
+        "capabilities",
+        "delegation",
+        "killSwitch"
+      ],
+      "properties": {
+        "purpose": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "class": {
+          "enum": [
+            "L0",
+            "L1",
+            "L2",
+            "L3",
+            "L4"
+          ]
+        },
+        "autonomy": {
+          "enum": [
+            "A0",
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5"
+          ]
+        },
+        "trustZone": {
+          "enum": [
+            "ATZ-0",
+            "ATZ-1",
+            "ATZ-2",
+            "ATZ-3",
+            "ATZ-4",
+            "ATZ-5"
+          ]
+        },
+        "identity": {
+          "type": "object",
+          "required": [
+            "spiffeId"
+          ],
+          "properties": {
+            "spiffeId": {
+              "type": "string",
+              "pattern": "^spiffe://"
+            }
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "required": [
+            "allow",
+            "deny"
+          ],
+          "properties": {
+            "allow": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "deny": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "delegation": {
+          "type": "object",
+          "required": [
+            "allowed",
+            "maxDepth"
+          ],
+          "properties": {
+            "allowed": {
+              "type": "boolean"
+            },
+            "maxDepth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10
+            }
+          }
+        },
+        "killSwitch": {
+          "type": "object",
+          "required": [
+            "required"
+          ],
+          "properties": {
+            "required": {
+              "const": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

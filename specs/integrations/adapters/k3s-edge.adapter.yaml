@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-K3S-EDGE
+  portId: IP-EDGE
+  adapterVersion: 0.3.0
+  owner: Edge Platform Engineering
+spec:
+  implementation: K3s
+  baseline: 1.36.x+k3s supported branch
+  targetConformance: IPS-C3
+  verification: contract-harness
+  failureMode: degrade-authority
+  evidence: [admission_decision, attestation_state, quarantine_result, trace_correlation]
+  alternatives: [Kubernetes, MicroK8s, enterprise Kubernetes distribution, purpose-built Edge orchestrator]
+  notes: K3s is a separate Edge profile because lifecycle, packaging and constrained-resource behavior differ from upstream Kubernetes while the IP-EDGE semantics remain identical.

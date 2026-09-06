@@ -1,0 +1,5 @@
+risk_id,asset,scenario,inherent_score,controls,residual_score,owner,status
+RSK-001,invoice-agent,Indirect prompt injection triggers tool abuse,72,CTL-AGT-004;CTL-TOL-002;CTL-MON-001,34,finance-ai-platform,open
+RSK-002,ot-safety-agent,Untrusted input influences physical recommendation,88,CTL-AGT-004;CTL-PHY-001;CTL-IAM-001,45,industrial-safety,open
+RSK-003,agent-mesh,Compromised NHI enables lateral movement,85,CTL-IAM-001;CTL-NET-001;CTL-MON-001,38,ciso,open
+RSK-004,integration-ports,A replacement adapter is API-compatible but weakens failure revocation or evidence semantics,80,CTL-INT-001;CTL-INT-006;CTL-INT-008;CTL-INT-009,32,platform-security-architecture,open

@@ -1,0 +1,18 @@
+{
+  "format": "SGAEIA-Agent-BOM",
+  "version": "0.1",
+  "agents": [
+    {
+      "id": "invoice-agent-prod-01",
+      "class": "L2",
+      "autonomy": "A2",
+      "trustZone": "ATZ-3"
+    },
+    {
+      "id": "ot-safety-agent-01",
+      "class": "L4",
+      "autonomy": "A1",
+      "trustZone": "ATZ-5"
+    }
+  ]
+}

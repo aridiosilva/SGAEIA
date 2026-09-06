@@ -1,0 +1,10 @@
+delegation:
+  parent: invoice-agent-prod-01
+  child: vendor-validation-agent
+  purpose: validate_vendor
+  capabilities: [vendors.read]
+  maxDepth: 1
+  onwardDelegation: false
+  ttlSeconds: 300
+  maxTokens: 15000
+  maxCost: 2.00

@@ -1,0 +1,46 @@
+name: security-ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-test-and-evidence:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e '.[dev]'
+      - name: Validate SDD specifications
+        run: python scripts/validate_specs.py
+      - name: Run automated tests
+        run: python -m pytest -q
+      - name: Adapter conformance harness
+        run: python scripts/run_adapter_conformance.py
+      - name: Generate Agent-BOM
+        run: python scripts/generate_agent_bom.py
+      - name: Reject obvious private-key or inline secret patterns
+        shell: bash
+        run: |
+          ! grep -RInE '(BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|api[_-]?key[[:space:]]*=[[:space:]]*[^$])' . --exclude-dir=.git
+      - name: Upload generated assurance evidence
+        if: always() && matrix.python-version == '3.12'
+        uses: actions/upload-artifact@v6
+        with:
+          name: sgaeia-assurance-evidence
+          path: |
+            evidence/*.json
+            bom/*.json
+          if-no-files-found: warn

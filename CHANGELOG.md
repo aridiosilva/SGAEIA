@@ -1,0 +1,48 @@
+# Changelog
+
+All notable project changes are recorded here. The project follows semantic versioning as a repository convention.
+
+## [0.3.2] - 2026-09-06
+
+### Added
+- Canonical GitHub repository metadata for `https://github.com/aridiosilva/SGAEIA`.
+- CODEOWNERS and security contact link.
+- English arXiv technical paper series and publication guidance.
+- Final GitHub RC1 audit report and exact first-push instructions.
+
+### Changed
+- Project version advanced to 0.3.2.
+- Public-release metadata aligned to the canonical repository URL.
+
+## [0.3.1] - 2026-09-06
+
+### Added
+- Apache-2.0 license and NOTICE.
+- Public governance, Code of Conduct, roadmap, support, citation, and GitHub release documentation.
+- GitHub issue templates and pull request template.
+- Dependabot configuration for Python and GitHub Actions.
+- CI, CodeQL, and release-validation workflows for a public repository.
+- Public-release checklist and explicit disclaimer for research/reference use.
+
+### Changed
+- README and MASTER-SPEC updated for the GitHub Public Release profile.
+- Project version advanced from 0.3.0 to 0.3.1.
+
+## [0.3.0] - 2026-09-05
+
+### Added
+- Adapter Conformance Framework (ACF).
+- Reference adapter profiles for SPIRE, OPA, Istio/Envoy, OpenTelemetry, NATS, Kafka, PostgreSQL, Kubernetes, and K3s.
+- Contract-level conformance harness and generated evidence.
+- Deployment composition profiles and semantic replacement drift threat modeling.
+
+## [0.2.0] - 2026-09-05
+
+### Added
+- Formal Integration Port Specifications (IPS).
+- OpenAPI/AsyncAPI contracts, failure semantics, revocation semantics, and replacement qualification rules.
+
+## [0.1.0] - 2026-09-05
+
+### Added
+- Initial SDD reference architecture, control plane services, threat/risk artifacts, policies, tests, BOMs, TLA+/Alloy models, and reference deployment assets.

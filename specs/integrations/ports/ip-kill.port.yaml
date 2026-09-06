@@ -1,0 +1,51 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-KILL
+  name: Kill-Switch / Emergency Control
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: critical
+spec:
+  purpose: Pause, quarantine, revoke or terminate agents, nodes or capabilities.
+  protocolStyle: http
+  contracts:
+    functional:
+    - pause scope
+    - quarantine scope
+    - revoke authority
+    - terminate scope
+    - report completion
+    security:
+    - separate emergency authorization path
+    - strong operator authentication
+    - anti-replay
+    - bounded scope
+    - cannot depend solely on compromised agent
+    audit:
+    - record initiator, scope, reason, action, acknowledgements and completion
+    failure:
+    - prefer local emergency path when cloud control is unavailable
+    - failure must not increase autonomy
+    revocation:
+    - revocation is the core function; support hierarchical scope
+  failureMode: degrade-authority
+  revocation:
+    supported: true
+    maxPropagationSeconds: 5
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - SGAEIA kill-switch service
+  alternatives:
+  - SOAR playbook
+  - mesh isolation controller
+  - orchestrator quarantine controller

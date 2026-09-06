@@ -1,0 +1,51 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-BUS
+  name: Event / Message Bus
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: high
+spec:
+  purpose: Carry asynchronous security, evidence, governance and control events.
+  protocolStyle: event
+  contracts:
+    functional:
+    - publish typed events
+    - subscribe with durable identity
+    - support correlation and ordering where declared
+    security:
+    - authenticated producers/consumers
+    - authorization per channel
+    - integrity
+    - replay controls
+    - partition/tenant isolation
+    audit:
+    - record publisher identity, channel, message id and delivery status for critical
+      events
+    failure:
+    - durable buffering for critical events; bounded retry and dead-letter behavior
+    revocation:
+    - revoke producer/consumer access by identity and channel
+  failureMode: buffer-and-retry
+  revocation:
+    supported: true
+    maxPropagationSeconds: 60
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - NATS/Kafka adapter concept
+  alternatives:
+  - Kafka
+  - NATS
+  - Pulsar
+  - RabbitMQ
+  - cloud pub/sub

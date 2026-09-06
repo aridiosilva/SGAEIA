@@ -1,0 +1,89 @@
+openapi: 3.2.0
+info:
+  title: SGAEIA Emergency Control Port
+  version: 1.0.0
+  description: Vendor-neutral SGAEIA Integration Port contract. Adapter implementations
+    SHALL preserve functional, security, audit, failure and revocation semantics.
+paths:
+  /v1/emergency/pause:
+    post:
+      summary: Pause a governed scope
+      operationId: kill_switch_pause_a_governed_scope
+      responses:
+        '200':
+          description: Operation completed
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Denied
+        '503':
+          description: Dependency unavailable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: &id001
+              type: object
+              additionalProperties: true
+  /v1/emergency/quarantine:
+    post:
+      summary: Quarantine a governed scope
+      operationId: kill_switch_quarantine_a_governed_scope
+      responses:
+        '200':
+          description: Operation completed
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Denied
+        '503':
+          description: Dependency unavailable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: *id001
+  /v1/emergency/revoke:
+    post:
+      summary: Revoke authority for a governed scope
+      operationId: kill_switch_revoke_authority_for_a_governed_scope
+      responses:
+        '200':
+          description: Operation completed
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Denied
+        '503':
+          description: Dependency unavailable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: *id001
+  /v1/emergency/terminate:
+    post:
+      summary: Terminate a governed scope
+      operationId: kill_switch_terminate_a_governed_scope
+      responses:
+        '200':
+          description: Operation completed
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Denied
+        '503':
+          description: Dependency unavailable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: *id001

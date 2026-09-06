@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-OTEL-OBS
+  portId: IP-OBS
+  adapterVersion: 0.3.0
+  owner: Security Observability
+spec:
+  implementation: OpenTelemetry Collector
+  baseline: 0.160.0
+  targetConformance: IPS-C2
+  verification: contract-harness
+  failureMode: buffer-and-retry
+  evidence: [trace_propagation, exporter_result, buffer_state, implementation_version]
+  alternatives: [vendor OTLP collector, Fluent Bit plus trace pipeline, enterprise telemetry gateway]
+  notes: Critical evidence must not be silently discarded when collectors/exporters are unavailable.

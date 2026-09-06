@@ -1,0 +1,52 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-STATE
+  name: Governed State Store
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: high
+spec:
+  purpose: Persist registry, risk, policy cache and runtime state according to domain
+    consistency requirements.
+  protocolStyle: storage
+  contracts:
+    functional:
+    - read/write versioned state
+    - conditional update
+    - retention and backup
+    - scoped query
+    security:
+    - encryption at rest/in transit
+    - least privilege
+    - tenant/zone isolation
+    - integrity checks
+    - backup protection
+    audit:
+    - audit privileged writes and lifecycle changes
+    failure:
+    - degrade to read-only or safe local state according to data class; never invent
+      authority
+    revocation:
+    - revoke access credentials and isolate compromised replicas
+  failureMode: read-only
+  revocation:
+    supported: true
+    maxPropagationSeconds: 120
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - in-memory/file reference
+  alternatives:
+  - PostgreSQL
+  - Redis
+  - distributed KV
+  - cloud database

@@ -1,0 +1,306 @@
+{
+  "format": "SGAEIA-Adapter-Conformance-Report",
+  "version": "0.3.2",
+  "generated_at": "2026-09-06T16:08:43.968731+00:00",
+  "scope": "offline contract harness / IPS-C1; not live-product certification",
+  "passed": true,
+  "adapters": [
+    {
+      "adapter_id": "ADP-SPIRE-IDENTITY",
+      "port_id": "IP-IDENTITY",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-IDENTITY, spec=IP-IDENTITY"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=fail-closed"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    },
+    {
+      "adapter_id": "ADP-OPA-PDP",
+      "port_id": "IP-PDP",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-PDP, spec=IP-PDP"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=fail-closed"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    },
+    {
+      "adapter_id": "ADP-ISTIO-MESH",
+      "port_id": "IP-MESH",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-MESH, spec=IP-MESH"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=fail-closed"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    },
+    {
+      "adapter_id": "ADP-OTEL-OBS",
+      "port_id": "IP-OBS",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-OBS, spec=IP-OBS"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=buffer-and-retry"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    },
+    {
+      "adapter_id": "ADP-NATS-BUS",
+      "port_id": "IP-BUS",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-BUS, spec=IP-BUS"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=buffer-and-retry"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    },
+    {
+      "adapter_id": "ADP-KAFKA-BUS",
+      "port_id": "IP-BUS",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-BUS, spec=IP-BUS"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=buffer-and-retry"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    },
+    {
+      "adapter_id": "ADP-POSTGRES-STATE",
+      "port_id": "IP-STATE",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-STATE, spec=IP-STATE"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=read-only"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    },
+    {
+      "adapter_id": "ADP-K8S-EDGE",
+      "port_id": "IP-EDGE",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-EDGE, spec=IP-EDGE"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=degrade-authority"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    },
+    {
+      "adapter_id": "ADP-K3S-EDGE",
+      "port_id": "IP-EDGE",
+      "target_level": "IPS-C1",
+      "passed": true,
+      "checks": [
+        {
+          "name": "port-id",
+          "passed": true,
+          "detail": "adapter=IP-EDGE, spec=IP-EDGE"
+        },
+        {
+          "name": "implementation-identified",
+          "passed": true,
+          "detail": "implementation and version declared"
+        },
+        {
+          "name": "safe-failure-mode",
+          "passed": true,
+          "detail": "fail_mode=degrade-authority"
+        },
+        {
+          "name": "health-contract",
+          "passed": true,
+          "detail": "health returns structured data"
+        },
+        {
+          "name": "evidence-attribution",
+          "passed": true,
+          "detail": "ok"
+        }
+      ]
+    }
+  ]
+}

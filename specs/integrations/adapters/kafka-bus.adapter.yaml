@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-KAFKA-BUS
+  portId: IP-BUS
+  adapterVersion: 0.3.0
+  owner: Platform Engineering
+spec:
+  implementation: Apache Kafka
+  baseline: 4.3.1
+  targetConformance: IPS-C2
+  verification: contract-harness
+  failureMode: buffer-and-retry
+  evidence: [publisher_identity, topic, durable_result, trace_correlation]
+  alternatives: [NATS/JetStream, cloud event bus, AMQP broker]
+  notes: Kafka and NATS are separate replaceable adapters for the same IP-BUS semantics; topic/subject differences remain adapter-local.

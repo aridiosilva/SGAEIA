@@ -1,0 +1,31 @@
+threats:
+  - id: THR-AI-001
+    name: Indirect Prompt Injection
+    assets: [agent-runtime, rag]
+    categories: [OWASP-Agentic, MITRE-ATLAS]
+    controls: [CTL-AGT-004, CTL-TOL-002]
+  - id: THR-AI-002
+    name: Delegation Escalation
+    assets: [agent-mesh]
+    categories: [STRIDE-Elevation, Agentic]
+    controls: [CTL-AGT-002, CTL-IAM-002]
+  - id: THR-AI-003
+    name: Agent Impersonation
+    assets: [agent-mesh]
+    categories: [STRIDE-Spoofing]
+    controls: [CTL-IAM-001]
+  - id: THR-AI-004
+    name: Unsafe Physical Actuation
+    assets: [ot, actuators]
+    categories: [Safety, Agentic]
+    controls: [CTL-PHY-001, CTL-AGT-003]
+  - id: THR-AI-005
+    name: RAG or Memory Poisoning
+    assets: [rag, memory]
+    categories: [Agentic, GenAI]
+    controls: [CTL-DAT-001, CTL-AGT-004]
+  - id: THR-AI-006
+    name: Autonomous Lateral Movement
+    assets: [agent-mesh, enterprise-systems]
+    categories: [MITRE-ATLAS, MITRE-ATTACK]
+    controls: [CTL-NET-001, CTL-IAM-001, CTL-TOL-002]

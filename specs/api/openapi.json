@@ -1,0 +1,78 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SGAEIA Control API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "healthy"
+          }
+        }
+      }
+    },
+    "/v1/authorize": {
+      "post": {
+        "summary": "Evaluate an agent intent before execution",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorizationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Policy decision and evidence"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AuthorizationRequest": {
+        "type": "object",
+        "required": [
+          "agent_id",
+          "operation",
+          "resource",
+          "trace_id"
+        ],
+        "properties": {
+          "agent_id": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "trace_id": {
+            "type": "string"
+          },
+          "offline": {
+            "type": "boolean"
+          },
+          "critical": {
+            "type": "boolean"
+          },
+          "physical_actuation": {
+            "type": "boolean"
+          },
+          "human_approvals": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

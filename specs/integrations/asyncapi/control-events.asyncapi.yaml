@@ -1,0 +1,104 @@
+asyncapi: 3.1.0
+id: urn:sgaeia:control-events
+info:
+  title: SGAEIA Emergency and Governance Control Events
+  version: 1.0.0
+  description: Machine-readable event contract for replaceable SGAEIA integrations.
+defaultContentType: application/json
+channels:
+  scopeQuarantined:
+    address: sgaeia/control/quarantined
+    messages:
+      ScopeQuarantined:
+        $ref: '#/components/messages/ScopeQuarantined'
+  authorityRevoked:
+    address: sgaeia/control/revoked
+    messages:
+      AuthorityRevoked:
+        $ref: '#/components/messages/AuthorityRevoked'
+  policyEmergencyDeny:
+    address: sgaeia/policy/emergency-deny
+    messages:
+      PolicyEmergencyDeny:
+        $ref: '#/components/messages/PolicyEmergencyDeny'
+operations:
+  sendScopeQuarantined:
+    action: send
+    channel:
+      $ref: '#/channels/scopeQuarantined'
+  sendAuthorityRevoked:
+    action: send
+    channel:
+      $ref: '#/channels/authorityRevoked'
+  sendPolicyEmergencyDeny:
+    action: send
+    channel:
+      $ref: '#/channels/policyEmergencyDeny'
+components:
+  messages:
+    ScopeQuarantined:
+      name: ScopeQuarantined
+      payload:
+        type: object
+        required:
+        - event_id
+        - trace_id
+        - timestamp
+        - source_identity
+        properties:
+          event_id:
+            type: string
+          trace_id:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+          source_identity:
+            type: string
+          payload:
+            type: object
+            additionalProperties: true
+    AuthorityRevoked:
+      name: AuthorityRevoked
+      payload:
+        type: object
+        required:
+        - event_id
+        - trace_id
+        - timestamp
+        - source_identity
+        properties:
+          event_id:
+            type: string
+          trace_id:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+          source_identity:
+            type: string
+          payload:
+            type: object
+            additionalProperties: true
+    PolicyEmergencyDeny:
+      name: PolicyEmergencyDeny
+      payload:
+        type: object
+        required:
+        - event_id
+        - trace_id
+        - timestamp
+        - source_identity
+        properties:
+          event_id:
+            type: string
+          trace_id:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+          source_identity:
+            type: string
+          payload:
+            type: object
+            additionalProperties: true

@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use SGAEIA in research or engineering work, please cite this repository and the relevant release."
+title: "SGAEIA — Secure Governed Autonomous Edge Intelligence Architecture"
+type: software
+authors:
+  - family-names: Silva
+    given-names: Aridio
+    alias: aridiosilva
+version: 0.3.2
+date-released: 2026-09-06
+license: Apache-2.0
+abstract: >-
+  An open reference architecture and Spec-Driven Development framework for secure,
+  governed, zero-trust, multi-agent Edge AI systems with executable GRC, policy
+  enforcement, formal security invariants, evidence-as-code, and replaceable
+  integration ports.
+keywords:
+  - edge-ai
+  - agentic-ai
+  - multi-agent-systems
+  - zero-trust
+  - grc
+  - security-by-design
+  - spec-driven-development
+
+repository-code: "https://github.com/aridiosilva/SGAEIA"

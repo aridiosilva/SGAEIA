@@ -1,0 +1,12 @@
+tool:
+  id: erp-query
+  risk: medium
+  operations: [invoice.read, vendor.read]
+  dataClassification: confidential
+  externalEgress: false
+  requires:
+    - authenticated_agent
+    - valid_capability
+  logging:
+    required: true
+  rateLimitPerMinute: 60

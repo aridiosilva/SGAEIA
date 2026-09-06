@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sgaeia-reference"
+version = "0.3.2"
+description = "Secure Governed Autonomous Edge Intelligence Architecture reference implementation"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.110",
+  "pydantic>=2.0",
+  "PyYAML>=6.0",
+  "uvicorn>=0.27"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[project.urls]
+Homepage = "https://github.com/aridiosilva/SGAEIA"
+Repository = "https://github.com/aridiosilva/SGAEIA"
+Issues = "https://github.com/aridiosilva/SGAEIA/issues"
+Security = "https://github.com/aridiosilva/SGAEIA/security/policy"

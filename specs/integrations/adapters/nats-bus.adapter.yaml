@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-NATS-BUS
+  portId: IP-BUS
+  adapterVersion: 0.3.0
+  owner: Platform Engineering
+spec:
+  implementation: NATS/JetStream
+  baseline: 2.14.5
+  targetConformance: IPS-C2
+  verification: contract-harness
+  failureMode: buffer-and-retry
+  evidence: [publisher_identity, topic, durable_result, trace_correlation]
+  alternatives: [Apache Kafka 4.3.1, cloud event bus, AMQP broker]
+  notes: Kafka is an explicit substitute candidate; it must satisfy identical authorization, replay, durability and evidence contracts.

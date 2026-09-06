@@ -1,0 +1,54 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-EDGE
+  name: Edge/MEC Orchestrator
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: critical
+spec:
+  purpose: Deploy and govern workloads across Edge/MEC nodes with local safety semantics.
+  protocolStyle: control-plane
+  contracts:
+    functional:
+    - schedule workload
+    - bind workload identity
+    - apply isolation/network policy
+    - quarantine workload/node
+    - report node state
+    security:
+    - signed workloads
+    - admission control
+    - node identity
+    - attestation integration
+    - least privilege
+    - offline policy support
+    audit:
+    - record deployment, policy, attestation, quarantine and lifecycle events
+    failure:
+    - network partition must reduce or preserve authority, never broaden it
+    - critical workloads require safe degradation
+    revocation:
+    - support workload/node quarantine and credential revocation
+  failureMode: degrade-authority
+  revocation:
+    supported: true
+    maxPropagationSeconds: 30
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - Kubernetes/K3s reference
+  alternatives:
+  - KubeEdge
+  - OpenShift
+  - Nomad
+  - ETSI-aligned MEC orchestrator
+  - vendor edge stack

@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-SPIRE-IDENTITY
+  portId: IP-IDENTITY
+  adapterVersion: 0.3.0
+  owner: Platform Security Architecture
+spec:
+  implementation: SPIFFE/SPIRE
+  baseline: 1.15.2
+  targetConformance: IPS-C3
+  verification: contract-harness
+  failureMode: fail-closed
+  evidence: [identity_verification, identity_revocation, implementation_version, trace_correlation]
+  alternatives: [enterprise workload PKI, cloud workload identity, service account federation]
+  notes: Contract harness baseline; production IPS-C3 requires live SPIRE Workload API/facade, attestation and measured revocation testing.

@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype,booktabs,longtable,array,amsmath,amssymb,url,graphicx}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\sgaeia}{\textsc{SGAEIA}}
+\newcommand{\repo}{\url{https://github.com/aridiosilva/SGAEIA}}
+\author{Aridio Silva\\\texttt{@aridiosilva}\\Independent Researcher\\\url{https://github.com/aridiosilva/SGAEIA}}
+\date{September 2026}
+\title{Governed Autonomy for Distributed Agentic Edge AI: Identity, Delegation, Zero Trust, Continuous GRC, and Formal Security Invariants}
+\begin{document}\maketitle
+\begin{abstract}
+Distributed agentic AI creates authority-bearing non-human actors that can plan, invoke tools, delegate, use persistent memory, and operate under partial connectivity. This paper formalizes SGAEIA's governed-autonomy security model: workload identity, capability-based authorization, bounded delegation, criticality/autonomy classes, Agent Trust Zones, risk-adaptive authority, policy decision/enforcement separation, revocation, evidence-as-code, and fail-secure edge operation. The model is an executable reference specification, not a production certification.
+\end{abstract}
+\noindent\textbf{Project:} SGAEIA --- Secure Governed Autonomous Edge Intelligence Architecture.\\
+
+\section{Motivation}
+Edge intelligence places AI close to data and physical processes \cite{zhou2019edge}; agentic systems add tool use, memory, planning, and collaboration \cite{tran2025}. Security must therefore govern the authority-bearing agent, not only the model endpoint. Emerging agentic threat research highlights tool misuse, memory poisoning, autonomy, and coordination risks \cite{datta2025,owasp,mitreatlas}.
+
+\section{Security Objective}
+The objective is
+\[
+UsefulAutonomy\land BoundedAuthority\land ExplicitTrust\land Revocability\land Auditability.
+\]
+No model-generated semantic judgment alone is sufficient to authorize a critical action.
+
+\section{Identity and Capability}
+Every governed agent receives a non-human identity bound to its workload/execution context. SPIFFE demonstrates a standard model for verifiable workload identity \cite{spiffe}. Identity is necessary but insufficient: authorization also depends on capability, policy, risk, context, and delegation.
+
+\section{Delegation}
+For parent $p$ and child $c$,
+\[
+C(c)\subseteq C_{delegated}(p),\quad depth(c)\leq MaxDepth.
+\]
+Delegation also carries expiry, resource, purpose, and context constraints. Authority cannot be created merely by an agent claiming it.
+
+\section{Criticality, Autonomy, and Trust Zones}
+Criticality $L0\ldots L4$ and autonomy $A0\ldots A5$ are independent dimensions. The reference invariant is $L4\land A5\Rightarrow DENY$. Effective autonomy is the minimum permitted by configured, risk, context, trust, and policy bounds. ATZ-0 through ATZ-5 classify control requirements without granting transitive trust.
+
+\section{Authorization and Zero Trust}
+For agent $a$, request $r$, object $o$, context $c$, and time $t$:
+\[
+Authorize=I(a)\land Cap(a,o)\land P(a,r,o,c)\land R(a,r,o,c,t)<\theta\land T(a)>\tau.
+\]
+The PDP/PEP is external to the LLM. NIST Zero Trust supports identity-centric, explicit policy enforcement rather than network-location trust \cite{nist207,nist207a}.
+
+\section{Fail-Secure Edge Operation}
+Edge disconnection must not increase authority:
+\[
+OfflineMode\Rightarrow Authority_{offline}\leq Authority_{online}.
+\]
+Critical operations may require cached bounded policy, short-lived identity, human approval, independent safety interlocks, or denial.
+
+\section{Revocation}
+Revocation is temporal:
+\[
+RevocationRequested(t_0)\Rightarrow AuthorityUnavailable(t\leq t_0+\Delta_{max}).
+\]
+The bound is deployment-specific and must be measured across identity, policy, mesh, caches, tools, and edge nodes.
+
+\section{Continuous GRC}
+NIST AI RMF and its GenAI Profile motivate lifecycle governance \cite{nistrmf,nistgenai}. SGAEIA turns the governance chain into runtime evidence:
+\[
+Requirement\rightarrow Risk\rightarrow Control\rightarrow Policy\rightarrow Enforcement\rightarrow Evidence.
+\]
+
+\section{Threat-to-Control Mapping}
+\begin{longtable}{p{.28\linewidth}p{.62\linewidth}}\toprule Threat&Representative controls\\\midrule
+Agent impersonation&workload identity, attestation, short-lived credentials, revocation\\
+Delegation escalation&subset/depth/expiry/context checks\\
+Prompt/tool injection&untrusted-input zone, tool mediation, capability checks\\
+Memory/RAG poisoning&provenance, source policy, isolation, retrieval authorization\\
+Autonomous lateral movement&mesh identity, egress control, least privilege\\
+Unsafe actuation&criticality limits, approval, independent safety barrier\\
+Evidence suppression&buffering/sealing/correlation/monitoring\\\bottomrule\end{longtable}
+
+\section{Security Invariants}
+\begin{align*}
+AgentWithoutIdentity&\Rightarrow DENY\\
+RevokedAgent&\Rightarrow DENY\\
+DelegationDepth>MaxDepth&\Rightarrow DENY\\
+ChildCapabilities\nsubseteq ParentDelegatedCapabilities&\Rightarrow DENY\\
+AttestationFailed\land CriticalAgent&\Rightarrow STOP\lor QUARANTINE.
+\end{align*}
+
+\section{Formalization and Limits}
+TLA+ and Alloy artifacts are included as specifications; selected equivalent finite-state properties are tested in Python. No claim is made that TLA+/Alloy model checking has been executed. Risk scoring, safety constraints, and revocation bounds require domain-specific and live validation.
+
+\section{Conclusion}
+Agentic Edge AI requires security to govern authority rather than connectivity alone. SGAEIA makes identity, capability, delegation, risk, enforcement, evidence, and revocation explicit and testable.
+\section*{Availability}
+Open reference implementation and specifications: \repo.
+\begin{thebibliography}{99}
+\bibitem{shi2016edge} W. Shi et al., ``Edge Computing: Vision and Challenges,'' IEEE Internet of Things Journal, 3(5), 637--646, 2016. doi:10.1109/JIOT.2016.2579198.
+\bibitem{zhou2019edge} Z. Zhou et al., ``Edge Intelligence: Paving the Last Mile of Artificial Intelligence With Edge Computing,'' Proceedings of the IEEE, 107(8), 1738--1762, 2019. doi:10.1109/JPROC.2019.2918951.
+\bibitem{li2018} E. Li, Z. Zhou, X. Chen, ``Edge Intelligence: On-Demand Deep Learning Model Co-Inference with Device-Edge Synergy,'' MECOMM, 2018. doi:10.1145/3229556.3229562.
+\bibitem{nist207} NIST, Zero Trust Architecture, SP 800-207, 2020. doi:10.6028/NIST.SP.800-207.
+\bibitem{nist207a} NIST, A Zero Trust Architecture Model for Access Control in Cloud-Native Applications in Multi-Cloud Environments, SP 800-207A, 2023. doi:10.6028/NIST.SP.800-207A.
+\bibitem{nistrmf} NIST, Artificial Intelligence Risk Management Framework (AI RMF 1.0), AI 100-1, 2023. doi:10.6028/NIST.AI.100-1.
+\bibitem{nistgenai} C. Autio et al., Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, NIST AI 600-1, 2024. doi:10.6028/NIST.AI.600-1.
+\bibitem{nistssdf} NIST, Secure Software Development Practices for Generative AI and Dual-Use Foundation Models, SP 800-218A, 2024.
+\bibitem{mitreatlas} MITRE, ATLAS: Adversarial Threat Landscape for Artificial-Intelligence Systems, \url{https://atlas.mitre.org/}, accessed Sep. 2026.
+\bibitem{owasp} OWASP GenAI Security Project, Agentic Security Initiative and Agent Control Standard, \url{https://genai.owasp.org/}, accessed Sep. 2026.
+\bibitem{spiffe} SPIFFE Project, The SPIFFE Standard, \url{https://spiffe.io/docs/latest/spiffe-specs/}, accessed Sep. 2026.
+\bibitem{etsi} ETSI, Multi-access Edge Computing (MEC), \url{https://www.etsi.org/technical-groups/mec/}, accessed Sep. 2026.
+\bibitem{openapi} OpenAPI Initiative, OpenAPI Specification 3.2.0, 2025.
+\bibitem{asyncapi} AsyncAPI Initiative, AsyncAPI Specification 3.1.0, 2026.
+\bibitem{tran2025} K.-T. Tran et al., ``Multi-Agent Collaboration Mechanisms: A Survey of LLMs,'' arXiv:2501.06322, 2025.
+\bibitem{datta2025} S. Datta et al., ``Agentic AI Security: Threats, Defenses, Evaluation, and Open Challenges,'' arXiv:2510.23883, 2025.
+\end{thebibliography}
+\end{document}

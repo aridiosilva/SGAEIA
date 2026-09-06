@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-ISTIO-MESH
+  portId: IP-MESH
+  adapterVersion: 0.3.0
+  owner: Platform Security Architecture
+spec:
+  implementation: Istio/Envoy
+  baseline: 1.31.0
+  targetConformance: IPS-C3
+  verification: contract-harness
+  failureMode: fail-closed
+  evidence: [mutual_identity, mtls_state, egress_decision, trace_correlation]
+  alternatives: [Linkerd, Cilium service mesh, Envoy-based enterprise mesh]
+  notes: Istio 1.31 is the documented reference baseline; deployment compatibility must also respect supported Kubernetes version skew.

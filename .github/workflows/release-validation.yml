@@ -1,0 +1,36 @@
+name: release-validation
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e '.[dev]'
+      - name: Full SDD validation
+        run: |
+          python scripts/validate_public_release.py
+          python scripts/validate_specs.py
+          python -m pytest -q
+          python scripts/run_adapter_conformance.py
+          python scripts/generate_agent_bom.py
+      - name: Verify release governance files
+        run: |
+          test -s LICENSE
+          test -s NOTICE
+          test -s SECURITY.md
+          test -s GOVERNANCE.md
+          test -s CHANGELOG.md
+          test -s CITATION.cff
+          test -s PROJECT-MANIFEST.md

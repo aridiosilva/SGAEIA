@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationDeploymentProfile
+metadata:
+  id: edge-k3s
+  version: 0.3.0
+spec:
+  adapters:
+    IP-IDENTITY: ADP-SPIRE-IDENTITY
+    IP-PDP: ADP-OPA-PDP
+    IP-MESH: ADP-ISTIO-MESH
+    IP-OBS: ADP-OTEL-OBS
+    IP-BUS: ADP-NATS-BUS
+    IP-STATE: ADP-POSTGRES-STATE
+    IP-EDGE: ADP-K3S-EDGE
+  assuranceTarget: IPS-C3-for-critical-ports
+  notes: Edge-oriented profile using K3s and NATS; offline authority must only preserve or reduce configured privileges.

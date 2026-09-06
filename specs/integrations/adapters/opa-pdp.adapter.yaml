@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-OPA-PDP
+  portId: IP-PDP
+  adapterVersion: 0.3.0
+  owner: Platform Security Architecture
+spec:
+  implementation: Open Policy Agent
+  baseline: 1.16.2
+  targetConformance: IPS-C3
+  verification: contract-harness
+  failureMode: fail-closed
+  evidence: [policy_decision, policy_version, reason_codes, trace_correlation]
+  alternatives: [Cedar, XACML engine, enterprise authorization service]
+  notes: Rego is a reference policy language; equivalent engines must preserve default-deny, deterministic policy versioning and outage semantics.

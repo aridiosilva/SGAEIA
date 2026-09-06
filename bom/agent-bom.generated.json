@@ -1,0 +1,32 @@
+{
+  "format": "SGAEIA-Agent-BOM",
+  "version": "0.1",
+  "agents": [
+    {
+      "id": "invoice-agent-prod-01",
+      "owner": "finance-ai-platform",
+      "class": "L2",
+      "autonomy": "A2",
+      "trustZone": "ATZ-3",
+      "identity": "spiffe://enterprise.example/agents/finance/invoice-agent/prod",
+      "capabilities": [
+        "invoices.read",
+        "vendors.read",
+        "erp.query",
+        "ocr.invoke"
+      ]
+    },
+    {
+      "id": "ot-safety-agent-01",
+      "owner": "industrial-safety",
+      "class": "L4",
+      "autonomy": "A1",
+      "trustZone": "ATZ-5",
+      "identity": "spiffe://plant.example/agents/ot/safety-agent/prod",
+      "capabilities": [
+        "telemetry.read",
+        "safety.recommend"
+      ]
+    }
+  ]
+}

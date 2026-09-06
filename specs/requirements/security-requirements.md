@@ -1,0 +1,26 @@
+# Security Requirements Catalogue
+
+- **SR-001** Every agent SHALL have unique owner and workload identity.
+- **SR-002** Sensitive actions SHALL be intercepted before execution.
+- **SR-003** Authorization SHALL consider identity, capability, context, risk and policy.
+- **SR-004** Agent delegation SHALL be bounded and non-authority-amplifying.
+- **SR-005** L3/L4 agents SHALL support attestation requirements defined by deployment profile.
+- **SR-006** L4 agents SHALL NOT operate at A5.
+- **SR-007** Critical physical actions SHALL have an independent safety barrier.
+- **SR-008** Offline Edge operation SHALL fail secure and not increase authority.
+- **SR-009** Critical actions SHALL emit decision provenance.
+- **SR-010** Every production agent SHALL have independent revocation/kill-switch capability.
+- **SR-011** Tool egress SHALL be default-deny/allow-listed according to policy.
+- **SR-012** RAG/memory entries SHALL retain provenance/trust metadata according to data policy.
+- **SR-013** Architecture drift SHALL trigger risk/threat re-evaluation.
+- **SR-014** New model/tool/agent versions SHALL pass security gates before production admission.
+- **SR-015** High-risk operations SHALL require step-up or human approval according to risk appetite.
+- **SR-016** Replaceable integrations SHALL preserve functional, security, audit, failure and revocation semantics defined by their Integration Port Specification.
+- **SR-017** Critical integration failures SHALL NOT increase agent authority or bypass policy enforcement.
+- **SR-018** Production-critical adapters SHALL emit attributable, correlated evidence identifying the port and concrete implementation/version.
+- **SR-019** Revocation-capable integration ports SHALL define and verify a maximum propagation bound appropriate to their risk profile.
+- **SR-020** Every production integration adapter SHALL have a versioned `AdapterProfile` bound to exactly one declared Integration Port.
+- **SR-021** Multiple technologies implementing the same Integration Port SHALL be evaluated by the same semantic conformance tests, independent of vendor-specific APIs.
+- **SR-022** A contract-harness result SHALL NOT be represented as live-product or production certification; IPS-C2/C3 require representative/live-environment evidence according to the qualification procedure.
+- **SR-023** Critical adapters SHALL preserve the port failure invariant under timeout, dependency loss, stale configuration and network partition.
+- **SR-024** Adapter runtime evidence SHALL identify adapter id, implementation/version, port, subject, operation, trace and outcome.

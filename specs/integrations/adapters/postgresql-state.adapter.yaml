@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-POSTGRES-STATE
+  portId: IP-STATE
+  adapterVersion: 0.3.0
+  owner: Data Platform
+spec:
+  implementation: PostgreSQL
+  baseline: 18.6
+  targetConformance: IPS-C2
+  verification: contract-harness
+  failureMode: read-only
+  evidence: [writer_identity, state_operation, durability_result, trace_correlation]
+  alternatives: [distributed SQL database, embedded Edge store, managed relational database]
+  notes: Production profiles must prove tenant/workload isolation, backup/restore, encryption and safe degraded-mode behavior.

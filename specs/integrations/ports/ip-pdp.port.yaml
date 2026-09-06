@@ -1,0 +1,48 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-PDP
+  name: Policy Decision Point
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: critical
+spec:
+  purpose: Evaluate externalized authorization policy independently from agent reasoning.
+  protocolStyle: http
+  contracts:
+    functional:
+    - evaluate identity, capability, resource, context and risk
+    - return allow/deny/restrict/step-up plus obligations
+    security:
+    - default deny
+    - deterministic policy versioning
+    - policy integrity
+    - separation from LLM reasoning
+    - bounded input schema
+    audit:
+    - record policy id/version, inputs hash, decision, obligations and reason codes
+    failure:
+    - critical actions fail closed if PDP is unavailable
+    - offline mode may only use bounded cached policy
+    revocation:
+    - support policy revocation and emergency deny rules
+  failureMode: fail-closed
+  revocation:
+    supported: true
+    maxPropagationSeconds: 10
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - OPA/Rego adapter
+  alternatives:
+  - Cedar
+  - XACML engine
+  - enterprise authorization service

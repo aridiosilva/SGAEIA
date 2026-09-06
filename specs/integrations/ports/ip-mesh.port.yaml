@@ -1,0 +1,51 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-MESH
+  name: Zero-Trust Agentic Mesh
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: critical
+spec:
+  purpose: Provide authenticated, authorized and observable agent-to-agent/service
+    communication.
+  protocolStyle: sidecar
+  contracts:
+    functional:
+    - mutual authentication
+    - encrypted transport
+    - identity propagation
+    - egress control
+    - policy hook
+    - distributed trace propagation
+    security:
+    - mTLS or equivalent
+    - no implicit network trust
+    - service/agent identity binding
+    - rate limiting and segmentation
+    audit:
+    - record source/destination identity, policy result, connection/action metadata
+    failure:
+    - fail closed for privileged cross-zone communication when identity/policy unavailable
+    revocation:
+    - support rapid identity/policy revocation and connection drain
+  failureMode: fail-closed
+  revocation:
+    supported: true
+    maxPropagationSeconds: 15
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - Envoy/Istio/Linkerd adapter concept
+  alternatives:
+  - API gateway fabric
+  - custom mTLS proxy
+  - cloud service mesh

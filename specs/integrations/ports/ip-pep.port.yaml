@@ -1,0 +1,46 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-PEP
+  name: Policy Enforcement Point
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: critical
+spec:
+  purpose: Enforce PDP decisions before protected actions execute.
+  protocolStyle: sidecar
+  contracts:
+    functional:
+    - intercept protected action
+    - enforce decision and obligations
+    - block unauthorized execution
+    security:
+    - cannot be bypassed by agent code for governed actions
+    - bind decision to subject, action and freshness
+    - tamper-resistant enforcement boundary
+    audit:
+    - record enforcement result and policy decision reference
+    failure:
+    - if decision is absent, stale or unverifiable, deny critical action
+    revocation:
+    - support emergency deny and scoped isolation
+  failureMode: fail-closed
+  revocation:
+    supported: true
+    maxPropagationSeconds: 5
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - reference middleware/sidecar
+  alternatives:
+  - API gateway plugin
+  - service mesh ext-authz
+  - application enforcement SDK

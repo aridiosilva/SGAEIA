@@ -1,0 +1,49 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-REGISTRY
+  name: Governed Entity Registry
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: high
+spec:
+  purpose: Register and retrieve governed agents, models, tools and relationships.
+  protocolStyle: http
+  contracts:
+    functional:
+    - register versioned entity
+    - get entity
+    - list relationships
+    - mark lifecycle state
+    - revoke entity
+    security:
+    - strong authorization on writes
+    - immutable version history or equivalent
+    - owner and provenance required
+    audit:
+    - record who changed what, previous/new version and reason
+    failure:
+    - read-only degraded mode allowed; unverified new registrations denied
+    revocation:
+    - support entity revocation and lifecycle termination
+  failureMode: read-only
+  revocation:
+    supported: true
+    maxPropagationSeconds: 60
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - file-backed reference registry
+  alternatives:
+  - PostgreSQL registry
+  - service catalog
+  - graph database
+  - CMDB

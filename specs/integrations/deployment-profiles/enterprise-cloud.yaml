@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationDeploymentProfile
+metadata:
+  id: enterprise-cloud
+  version: 0.3.0
+spec:
+  adapters:
+    IP-IDENTITY: ADP-SPIRE-IDENTITY
+    IP-PDP: ADP-OPA-PDP
+    IP-MESH: ADP-ISTIO-MESH
+    IP-OBS: ADP-OTEL-OBS
+    IP-BUS: ADP-KAFKA-BUS
+    IP-STATE: ADP-POSTGRES-STATE
+    IP-EDGE: ADP-K8S-EDGE
+  assuranceTarget: IPS-C3-for-critical-ports
+  notes: Enterprise profile prioritizing durable event streaming and upstream Kubernetes.

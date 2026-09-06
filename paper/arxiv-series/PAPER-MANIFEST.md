@@ -1,0 +1,25 @@
+# Paper Package Manifest
+
+- `paper/arxiv-series/ARXIV-SUBMISSION-GUIDE.md`
+- `paper/arxiv-series/PUBLICATION-STRATEGY.md`
+- `paper/arxiv-series/README.md`
+- `paper/arxiv-series/paper-01-reference-architecture/ARXIV-METADATA.md`
+- `paper/arxiv-series/paper-01-reference-architecture/arxiv-source.zip`
+- `paper/arxiv-series/paper-01-reference-architecture/main.pdf`
+- `paper/arxiv-series/paper-01-reference-architecture/main.tex`
+- `paper/arxiv-series/paper-01-reference-architecture/references.bib`
+- `paper/arxiv-series/paper-02-governed-autonomy-security/ARXIV-METADATA.md`
+- `paper/arxiv-series/paper-02-governed-autonomy-security/arxiv-source.zip`
+- `paper/arxiv-series/paper-02-governed-autonomy-security/main.pdf`
+- `paper/arxiv-series/paper-02-governed-autonomy-security/main.tex`
+- `paper/arxiv-series/paper-02-governed-autonomy-security/references.bib`
+- `paper/arxiv-series/paper-03-integration-conformance/ARXIV-METADATA.md`
+- `paper/arxiv-series/paper-03-integration-conformance/arxiv-source.zip`
+- `paper/arxiv-series/paper-03-integration-conformance/main.pdf`
+- `paper/arxiv-series/paper-03-integration-conformance/main.tex`
+- `paper/arxiv-series/paper-03-integration-conformance/references.bib`
+- `paper/arxiv-series/paper-04-cyber-range-evaluation-protocol/ARXIV-METADATA.md`
+- `paper/arxiv-series/paper-04-cyber-range-evaluation-protocol/arxiv-source.zip`
+- `paper/arxiv-series/paper-04-cyber-range-evaluation-protocol/main.pdf`
+- `paper/arxiv-series/paper-04-cyber-range-evaluation-protocol/main.tex`
+- `paper/arxiv-series/paper-04-cyber-range-evaluation-protocol/references.bib`

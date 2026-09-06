@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype,booktabs,longtable,array,amsmath,amssymb,url,graphicx}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\sgaeia}{\textsc{SGAEIA}}
+\newcommand{\repo}{\url{https://github.com/aridiosilva/SGAEIA}}
+\author{Aridio Silva\\\texttt{@aridiosilva}\\Independent Researcher\\\url{https://github.com/aridiosilva/SGAEIA}}
+\date{September 2026}
+\title{Security-Preserving Technology Substitution in Agentic Edge AI: Integration Port Specifications and Adapter Conformance in SGAEIA}
+\begin{document}\maketitle
+\begin{abstract}
+Vendor-neutral architecture is often asserted but rarely made testable. In agentic Edge AI, replacing identity, policy, mesh, event-bus, telemetry, state, or orchestration technology can silently alter failure, revocation, or audit semantics even when functional APIs remain compatible. This paper presents SGAEIA's Integration Port Specification and Adapter Conformance Framework, defining substitution as preservation of functional, security, audit, failure, and revocation contracts.
+\end{abstract}
+\noindent\textbf{Project:} SGAEIA --- Secure Governed Autonomous Edge Intelligence Architecture.\\
+
+\section{Problem}
+A replacement can preserve endpoint syntax while weakening security. We call this \emph{semantic replacement drift}: a substitution that appears functionally compatible but violates an architectural invariant.
+
+\section{Conformance Principle}
+SGAEIA separates security semantics from implementation:
+\[
+Semantics\rightarrow PortContract\rightarrow ReplaceableTechnology.
+\]
+A conformant replacement satisfies
+\[
+Functional\land Security\land Audit\land Failure\land Revocation.
+\]
+
+\section{Ports}
+Reference ports include identity, PDP, PEP, risk, registry, evidence, kill switch, observability, event bus, mesh, state, and edge orchestration. Synchronous contracts can use OpenAPI and event contracts AsyncAPI \cite{openapi,asyncapi}.
+
+\section{Five Contract Dimensions}
+The functional contract defines operations and semantic outcomes; the security contract defines authentication, authorization, isolation, and prohibited bypasses; the audit contract defines reconstructable evidence; the failure contract defines timeout/partition/dependency-loss behavior; the revocation contract defines authority removal and propagation expectations.
+
+\section{Identity Example}
+SPIFFE provides workload identity concepts via IDs, SVIDs, and Workload API \cite{spiffe}. SGAEIA does not require SPIFFE, but a substitute must preserve workload-bound, verifiable, rotatable, and revocable identity. A shared static API key is not semantically equivalent.
+
+\section{Policy Example}
+A PDP substitute must preserve externalized, versioned, auditable, default-deny decisions with explicit failure handling. An LLM alone cannot serve as the sole PDP for critical actions. This is consistent with NIST Zero Trust principles \cite{nist207,nist207a}.
+
+\section{Adapter Conformance}
+Adapters expose implementation identity, version, supported capabilities, failure semantics, and evidence hooks. Transport injection permits deterministic simulation of success, timeout, malformed response, partition, and revocation without requiring every product locally.
+
+\section{Assurance Ladder}
+Q0 is declared mapping; Q1/IPS-C1 is local contract-harness evidence; Q2/IPS-C2 is representative integration evidence; Q3/IPS-C3 is live or production-representative evidence. Passing Q1 does not certify an upstream product.
+
+\section{Formal Admission}
+For adapter $a$ and port $p$:
+\[
+Admit(a,p)=F\land S\land A\land Fail\land Rev\land Inv,
+\]
+where $Inv$ means no architecture security invariant is violated.
+
+\section{Failure and Revocation Semantics}
+\begin{align*}
+PDPUnavailable\land CriticalAction&\Rightarrow DENY\\
+IdentityUnverifiable\land PrivilegedOperation&\Rightarrow DENY\\
+EdgeDisconnected&\Rightarrow Authority_{new}\leq Authority_{prior}.
+\end{align*}
+Revocation must satisfy a deployment-specific propagation bound.
+
+\section{Evidence-as-Code}
+Conformance runs emit machine-readable evidence linking requirement, port, adapter, test, result, and admission. This creates a continuous GRC path from architecture to deployment.
+
+\section{Current Evidence and Evaluation}
+The repository includes nine reference adapter profiles and a shared local harness; the broader local suite reports 31 passing tests. These are repository-state facts, not product benchmarks. Future cyber-range work should compare alternative adapters under partition, revocation, replay, load, and failure.
+
+\section{Conclusion}
+Technology substitution is security-preserving only when security semantics survive the substitution. IPS and ACF make those semantics explicit, testable, and evidence-producing.
+\section*{Availability}
+Open reference implementation and specifications: \repo.
+\begin{thebibliography}{99}
+\bibitem{shi2016edge} W. Shi et al., ``Edge Computing: Vision and Challenges,'' IEEE Internet of Things Journal, 3(5), 637--646, 2016. doi:10.1109/JIOT.2016.2579198.
+\bibitem{zhou2019edge} Z. Zhou et al., ``Edge Intelligence: Paving the Last Mile of Artificial Intelligence With Edge Computing,'' Proceedings of the IEEE, 107(8), 1738--1762, 2019. doi:10.1109/JPROC.2019.2918951.
+\bibitem{li2018} E. Li, Z. Zhou, X. Chen, ``Edge Intelligence: On-Demand Deep Learning Model Co-Inference with Device-Edge Synergy,'' MECOMM, 2018. doi:10.1145/3229556.3229562.
+\bibitem{nist207} NIST, Zero Trust Architecture, SP 800-207, 2020. doi:10.6028/NIST.SP.800-207.
+\bibitem{nist207a} NIST, A Zero Trust Architecture Model for Access Control in Cloud-Native Applications in Multi-Cloud Environments, SP 800-207A, 2023. doi:10.6028/NIST.SP.800-207A.
+\bibitem{nistrmf} NIST, Artificial Intelligence Risk Management Framework (AI RMF 1.0), AI 100-1, 2023. doi:10.6028/NIST.AI.100-1.
+\bibitem{nistgenai} C. Autio et al., Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, NIST AI 600-1, 2024. doi:10.6028/NIST.AI.600-1.
+\bibitem{nistssdf} NIST, Secure Software Development Practices for Generative AI and Dual-Use Foundation Models, SP 800-218A, 2024.
+\bibitem{mitreatlas} MITRE, ATLAS: Adversarial Threat Landscape for Artificial-Intelligence Systems, \url{https://atlas.mitre.org/}, accessed Sep. 2026.
+\bibitem{owasp} OWASP GenAI Security Project, Agentic Security Initiative and Agent Control Standard, \url{https://genai.owasp.org/}, accessed Sep. 2026.
+\bibitem{spiffe} SPIFFE Project, The SPIFFE Standard, \url{https://spiffe.io/docs/latest/spiffe-specs/}, accessed Sep. 2026.
+\bibitem{etsi} ETSI, Multi-access Edge Computing (MEC), \url{https://www.etsi.org/technical-groups/mec/}, accessed Sep. 2026.
+\bibitem{openapi} OpenAPI Initiative, OpenAPI Specification 3.2.0, 2025.
+\bibitem{asyncapi} AsyncAPI Initiative, AsyncAPI Specification 3.1.0, 2026.
+\bibitem{tran2025} K.-T. Tran et al., ``Multi-Agent Collaboration Mechanisms: A Survey of LLMs,'' arXiv:2501.06322, 2025.
+\bibitem{datta2025} S. Datta et al., ``Agentic AI Security: Threats, Defenses, Evaluation, and Open Challenges,'' arXiv:2510.23883, 2025.
+\end{thebibliography}
+\end{document}

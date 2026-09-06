@@ -1,0 +1,46 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-RISK
+  name: Dynamic Risk Engine
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: high
+spec:
+  purpose: Produce explainable runtime risk scores and factors for agent actions.
+  protocolStyle: http
+  contracts:
+    functional:
+    - score agent, intent, context and behavior
+    - return normalized score, factors and risk tier
+    security:
+    - bounded input schema
+    - versioned model/rules
+    - explainability for critical decisions
+    - resist missing/manipulated inputs
+    audit:
+    - record score, factors, engine version and input hash
+    failure:
+    - on engine failure, use conservative fallback risk for critical actions
+    revocation:
+    - support disabling a compromised risk model/ruleset
+  failureMode: degrade-authority
+  revocation:
+    supported: true
+    maxPropagationSeconds: 60
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - SGAEIA ARS engine
+  alternatives:
+  - Bayesian risk engine
+  - graph risk engine
+  - enterprise fraud/risk analytics

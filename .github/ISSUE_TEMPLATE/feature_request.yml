@@ -1,0 +1,30 @@
+name: Architecture / feature proposal
+description: Propose an architectural capability, adapter, control, threat model, or documentation improvement.
+title: "[Proposal]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or requirement
+      description: Describe the problem before proposing a technology.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: textarea
+    id: invariants
+    attributes:
+      label: Security / governance invariants affected
+      description: Identify impacts on authority, identity, revocation, evidence, fail-secure behavior, trust boundaries, or risk.
+    validations:
+      required: true
+  - type: textarea
+    id: traceability
+    attributes:
+      label: SDD traceability
+      description: Suggested requirements, controls, tests, evidence, ADRs, or conformance profiles.

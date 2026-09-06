@@ -1,0 +1,13 @@
+port_id,machine_contract,verification_focus,criticality,minimum_production_level
+IP-IDENTITY,openapi/identity-provider.openapi.yaml,identity lifecycle tests,critical,IPS-C3
+IP-PDP,openapi/policy-decision.openapi.yaml,policy decision and outage tests,critical,IPS-C3
+IP-PEP,openapi/policy-enforcement.openapi.yaml,bypass and stale-decision tests,critical,IPS-C3
+IP-RISK,openapi/risk-engine.openapi.yaml,score/explainability/fallback tests,high,IPS-C2
+IP-REGISTRY,openapi/registry.openapi.yaml,version/authZ/revocation tests,high,IPS-C2
+IP-EVIDENCE,openapi/evidence.openapi.yaml;asyncapi/evidence-events.asyncapi.yaml,integrity/buffering/correlation tests,critical,IPS-C3
+IP-KILL,openapi/kill-switch.openapi.yaml;asyncapi/control-events.asyncapi.yaml,revocation propagation/emergency tests,critical,IPS-C3
+IP-OBS,asyncapi/evidence-events.asyncapi.yaml,trace propagation/data handling tests,high,IPS-C2
+IP-BUS,asyncapi/control-events.asyncapi.yaml,authZ/replay/durability tests,high,IPS-C2
+IP-MESH,,mTLS/identity/egress/failure tests,critical,IPS-C3
+IP-STATE,,isolation/durability/degraded-mode tests,high,IPS-C2
+IP-EDGE,,admission/attestation/offline/quarantine tests,critical,IPS-C3

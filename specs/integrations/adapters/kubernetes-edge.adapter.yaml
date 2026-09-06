@@ -1,0 +1,16 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: AdapterProfile
+metadata:
+  id: ADP-K8S-EDGE
+  portId: IP-EDGE
+  adapterVersion: 0.3.0
+  owner: Edge Platform Engineering
+spec:
+  implementation: Kubernetes/K3s
+  baseline: Kubernetes 1.37.0; K3s compatible supported branch
+  targetConformance: IPS-C3
+  verification: contract-harness
+  failureMode: degrade-authority
+  evidence: [admission_decision, attestation_state, quarantine_result, trace_correlation]
+  alternatives: [K3s, MicroK8s, enterprise Kubernetes distribution, purpose-built Edge orchestrator]
+  notes: Critical offline operation may only preserve or reduce authority. Production qualification must test control-plane loss, partition and quarantine.

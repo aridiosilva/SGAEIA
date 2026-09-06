@@ -1,0 +1,29 @@
+apiVersion: sgaeia.io/v1
+kind: Agent
+metadata:
+  id: invoice-agent-prod-01
+  owner: finance-ai-platform
+spec:
+  purpose:
+    - analyze_invoice
+    - reconcile_vendor
+  class: L2
+  autonomy: A2
+  trustZone: ATZ-3
+  identity:
+    spiffeId: spiffe://enterprise.example/agents/finance/invoice-agent/prod
+  capabilities:
+    allow:
+      - invoices.read
+      - vendors.read
+      - erp.query
+      - ocr.invoke
+    deny:
+      - payments.execute
+      - external.network.write
+      - code.execute
+  delegation:
+    allowed: true
+    maxDepth: 1
+  killSwitch:
+    required: true

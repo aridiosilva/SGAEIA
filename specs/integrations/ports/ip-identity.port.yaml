@@ -1,0 +1,53 @@
+apiVersion: sgaeia.io/v1alpha1
+kind: IntegrationPort
+metadata:
+  id: IP-IDENTITY
+  name: Workload Identity Provider
+  version: 1.0.0
+  owner: Platform Security Architecture
+  criticality: critical
+spec:
+  purpose: Issue, verify, rotate, attest and revoke non-human workload identities.
+  protocolStyle: hybrid
+  contracts:
+    functional:
+    - verify workload identity
+    - issue short-lived identity
+    - revoke identity
+    - return trust domain and attestation status
+    security:
+    - cryptographically verifiable identity
+    - short-lived credentials
+    - rotation
+    - explicit trust domain
+    - attestation hook for critical workloads
+    - no shared static credential as equivalent
+    audit:
+    - record issuance, verification and revocation
+    - correlate subject to workload and trust domain
+    failure:
+    - deny privileged authorization when identity cannot be verified
+    - cached identity material must honor expiry
+    revocation:
+    - support immediate revocation signal
+    - propagate revocation to relying parties
+  failureMode: fail-closed
+  revocation:
+    supported: true
+    maxPropagationSeconds: 30
+  evidence:
+    required: true
+    fields:
+    - trace_id
+    - port_id
+    - subject_id
+    - decision_or_result
+    - timestamp
+    - implementation_id
+  interfaces: []
+  referenceAdapters:
+  - SPIFFE/SPIRE adapter
+  alternatives:
+  - enterprise workload PKI
+  - cloud workload identity
+  - service account federation

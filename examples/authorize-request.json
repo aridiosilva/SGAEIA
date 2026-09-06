@@ -1,0 +1,17 @@
+{
+  "agent_id":"invoice-agent-prod-01",
+  "operation":"invoices.read",
+  "resource":"invoice:89383",
+  "trace_id":"trace-example-001",
+  "delegation_depth":0,
+  "offline":false,
+  "critical":false,
+  "human_approvals":0,
+  "privilege":1,
+  "data_sensitivity":2,
+  "tool_power":1,
+  "network_reach":1,
+  "delegation":0,
+  "impact":1,
+  "behavior_anomaly":0
+}

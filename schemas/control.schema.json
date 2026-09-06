@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Security Control",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "family",
+    "requirement",
+    "verification"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "requirement": {
+      "type": "string"
+    },
+    "verification": {
+      "enum": [
+        "automated",
+        "manual",
+        "hybrid"
+      ]
+    },
+    "threats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
