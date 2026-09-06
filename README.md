@@ -1,10 +1,16 @@
 # Secure Governed Multi-Agent Edge AI — SDD Reference Project
 
+# Secure Governed Multi-Agent Edge AI — SDD Reference Project
+
 **SGAEIA — Secure Governed Autonomous Edge Intelligence Architecture**  
 **Aridio Silva — @aridiosilva — Setembro de 2026**
 
-**Current public release:** `v0.3.2 — Public Research Preview`  
-**Next metadata release:** `v0.3.3 — Research Artifact Metadata Release`  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22557795.svg)](https://doi.org/10.5281/zenodo.22557795)
+
+**Current public release:** `v0.3.4 — Citation and Zenodo Metadata Fix`  
+**Research status:** `Public Research Preview`  
+**Concept DOI:** `10.5281/zenodo.22557795`  
+**Version DOI (v0.3.4):** `10.5281/zenodo.22557796`  
 **License:** Apache-2.0
 
 Projeto de referência **Spec-Driven Development (SDD)** para arquiteturas **Edge-AI multiagente** com **Zero Trust, GRC distribuído, Security-by-Design, Security-First, Shift Left/Right/Everywhere e autonomia governada**.
@@ -3954,22 +3960,66 @@ constitute production certification.
 ## Research Artifact Archival and Persistent Identification
 
 SGAEIA uses GitHub as the canonical living source repository and
-Zenodo for persistent archival of selected versioned research releases.
+Zenodo for persistent archival, versioned citation, and long-term
+identification of selected research releases.
 
-Canonical source repository:
+### Canonical Source Repository
 
 https://github.com/aridiosilva/SGAEIA
 
+### Persistent Identifiers
+
+SGAEIA is archived in Zenodo and has persistent Digital Object
+Identifiers (DOIs) for both the evolving research artifact and
+individual archived releases.
+
+**SGAEIA — All Versions / Concept DOI**
+
+DOI: `10.5281/zenodo.22557795`
+
+https://doi.org/10.5281/zenodo.22557795
+
+The Concept DOI identifies SGAEIA across releases and resolves to the
+latest archived version. It SHOULD be used when referring to the SGAEIA
+project as an evolving research artifact.
+
+**SGAEIA v0.3.4 — Version DOI**
+
+DOI: `10.5281/zenodo.22557796`
+
+https://doi.org/10.5281/zenodo.22557796
+
+The version DOI identifies the immutable Zenodo archive of SGAEIA
+version `v0.3.4`. It SHOULD be used when reproducibility requires
+citation of the exact software artifact used in research, evaluation,
+or experimentation.
+
+### Research Artifact Metadata
+
 Research artifact metadata is maintained through:
 
-- `CITATION.cff` — software citation metadata;
+- `CITATION.cff` — standardized software citation metadata;
 - `.zenodo.json` — Zenodo archival metadata;
-- ORCID — persistent creator identification.
+- ORCID — persistent creator identification;
+- GitHub Releases — versioned source releases;
+- Zenodo — immutable archival records and persistent DOI assignment.
 
-Creator:
+### Creator
 
 Aridio Silva  
+GitHub: `@aridiosilva`  
 ORCID: https://orcid.org/0009-0008-2411-6995
 
-A Zenodo DOI SHALL NOT be documented as an assigned identifier until
-the corresponding Zenodo record has actually been created and published.
+### Citation Policy
+
+When citing SGAEIA generally, use the Concept DOI:
+
+`10.5281/zenodo.22557795`
+
+When citing the exact `v0.3.4` research artifact, use the version-specific DOI:
+
+`10.5281/zenodo.22557796`
+
+Future SGAEIA releases archived by Zenodo may receive their own
+version-specific DOI while remaining associated with the SGAEIA
+Concept DOI.
