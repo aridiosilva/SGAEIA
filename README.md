@@ -1,7 +1,5 @@
 # Secure Governed Multi-Agent Edge AI — SDD Reference Project
 
-# Secure Governed Multi-Agent Edge AI — SDD Reference Project
-
 **SGAEIA — Secure Governed Autonomous Edge Intelligence Architecture**  
 **Aridio Silva — @aridiosilva — Setembro de 2026**
 
