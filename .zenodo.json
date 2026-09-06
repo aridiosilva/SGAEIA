@@ -1,0 +1,36 @@
+{
+  "title": "SGAEIA — Secure Governed Autonomous Edge Intelligence Architecture",
+  "version": "0.3.3",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "Apache-2.0",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Silva, Aridio"
+      "orcid": "0009-0008-2411-6995"
+    }
+  ],
+  "keywords": [
+    "Artificial Intelligence",
+    "Agentic AI",
+    "Multi-Agent Systems",
+    "Edge AI",
+    "Edge Computing",
+    "Cybersecurity",
+    "Security by Design",
+    "Zero Trust",
+    "AI Governance",
+    "GRC",
+    "Spec-Driven Development",
+    "Continuous Compliance"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/aridiosilva/SGAEIA",
+      "relation": "isSupplementTo",
+      "scheme": "url",
+      "resource_type": "software"
+    }
+  ]
+}
