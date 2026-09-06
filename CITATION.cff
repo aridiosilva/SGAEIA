@@ -14,9 +14,9 @@ abstract: >-
 authors:
   - family-names: "Silva"
     given-names: "Aridio"
-    alias: "aridiosilva"
-version: "0.3.4"
     orcid: "https://orcid.org/0009-0008-2411-6995"
+version: "0.3.4"
+doi: "10.5281/zenodo.22557796"
 date-released: "2026-09-06"
 repository-code: "https://github.com/aridiosilva/SGAEIA"
 url: "https://github.com/aridiosilva/SGAEIA"
