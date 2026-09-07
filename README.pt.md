@@ -1,7 +1,7 @@
 # Secure Governed Multi-Agent Edge AI — SDD Reference Project
 
 **SGAEIA — Secure Governed Autonomous Edge Intelligence Architecture**  
-**Aridio Silva — @aridiosilva — September 2026**
+**Aridio Silva — @aridiosilva — Setembro de 2026**
 
 **Languages:** English | [Português](README.pt.md)
 
@@ -13,17 +13,17 @@
 **Version DOI (v0.3.4):** `10.5281/zenodo.22557796`  
 **License:** Apache-2.0
 
-A **Spec-Driven Development (SDD)** reference project for **multi-agent Edge AI** architectures with **Zero Trust, distributed GRC, Security-by-Design, Security-First, Shift Left/Right/Everywhere, and governed autonomy**.
+Projeto de referência **Spec-Driven Development (SDD)** para arquiteturas **Edge-AI multiagente** com **Zero Trust, GRC distribuído, Security-by-Design, Security-First, Shift Left/Right/Everywhere e autonomia governada**.
 
-> **Status:** architectural reference and minimal demonstrative implementation. It is not a production-ready product and does not replace legal analysis, safety engineering, domain-specific threat modeling, regulatory validation, operational hardening, or independent certification.
+> **Status:** referência arquitetural e implementação mínima demonstrativa. Não é um produto pronto para produção e não substitui análise jurídica, safety engineering, threat modeling específico do domínio, validação regulatória, hardening operacional ou certificação independente.
 
 ---
 
-## 1. Executive Summary
+## 1. Resumo executivo
 
-This repository transforms a conceptual multi-agent Edge AI architecture into a **formal, versionable, testable, and partially executable SDD Project**.
+Este repositório transforma uma arquitetura conceitual de Edge AI multiagente em um **Projeto SDD formal, versionável, testável e parcialmente executável**.
 
-The problem addressed is simple to formulate, but complex to solve:
+O problema tratado é simples de formular, mas complexo de resolver:
 
 ```text
 Distributed Intelligence
@@ -31,23 +31,23 @@ Distributed Intelligence
 Uncontrolled Distributed Authority
 ```
 
-Modern systems may simultaneously combine:
+Sistemas modernos podem combinar simultaneamente:
 
-- local and remote AI agents;
-- LLMs and other models;
-- Edge, Far Edge, MEC, and Cloud;
+- agentes de IA locais e remotos;
+- LLMs e outros modelos;
+- Edge, Far Edge, MEC e Cloud;
 - IoT/IIoT;
 - OT/ICS;
-- sensors and actuators;
-- RAG and vector databases;
-- agentic memory;
-- APIs, tools, and MCP servers;
-- SaaS and third-party services;
-- multiple organizations and trust domains.
+- sensores e atuadores;
+- RAG e bancos vetoriais;
+- memória agentiva;
+- APIs, ferramentas e MCP servers;
+- serviços SaaS e terceiros;
+- múltiplas organizações e trust domains.
 
-Therefore, the goal of this architecture is to enable **distributed intelligence** without granting **ungoverned distributed authority**.
+Por isso, o objetivo desta arquitetura é permitir **inteligência distribuída** sem conceder **autoridade distribuída não governada**.
 
-The central thesis is:
+A tese central é:
 
 ```text
 Intelligence != Trust
@@ -56,17 +56,17 @@ Authority    != Unlimited Autonomy
 Autonomy     => Governance + Evidence + Revocability
 ```
 
-The AI model may propose an action. The architecture must decide whether that action may be executed.
+O modelo de IA pode propor uma ação. A arquitetura deve decidir se essa ação pode ser executada.
 
 ---
 
-## 2. What This Project Formalizes
+## 2. O que este projeto formaliza
 
-The project defines and implements a reference for:
+O projeto define e implementa uma referência para:
 
-- non-human identity (**NHI**) for agents and workloads;
-- **L0–L4** criticality classification;
-- **A0–A5** autonomy levels;
+- identidade não humana (**NHI**) de agentes e workloads;
+- classificação de criticidade **L0–L4**;
+- níveis de autonomia **A0–A5**;
 - **Agent Trust Zones — ATZ-0…ATZ-5**;
 - **Agent Registry**;
 - **Model Registry**;
@@ -87,22 +87,22 @@ The project defines and implements a reference for:
 - **Architecture Drift Detection**;
 - **AI-BOM**;
 - **Agent-BOM**;
-- integration with **SBOM**;
+- integração com **SBOM**;
 - **Integration Port Specifications — IPS**;
-- **Adapter Conformance Framework — ACF** with concrete profiles and progressive assurance;
-- control catalog;
-- risk register and threat register;
-- invariant tests;
-- adversarial tests;
-- security gates in CI/CD;
-- formal models in **TLA+** and **Alloy**;
-- SDD traceability across requirement, risk, control, implementation, test, and evidence.
+- **Adapter Conformance Framework — ACF** com perfis concretos e assurance progressivo;
+- catálogo de controles;
+- risk register e threat register;
+- testes de invariantes;
+- testes adversariais;
+- security gates no CI/CD;
+- modelos formais em **TLA+** e **Alloy**;
+- rastreabilidade SDD entre requisito, risco, controle, implementação, teste e evidência.
 
 ---
 
-## 3. Fundamental Architectural Assumption
+## 3. Hipótese arquitetural fundamental
 
-The architecture assumes from the outset:
+A arquitetura assume desde o início:
 
 ```text
 Agent may fail.
@@ -116,38 +116,38 @@ Models may be replaced or corrupted.
 Edge connectivity may fail.
 ```
 
-Therefore:
+Logo:
 
 ```text
 System Safety != Agent Correctness
 ```
 
-System security **cannot depend on the agent behaving correctly**.
+A segurança do sistema **não pode depender de o agente se comportar corretamente**.
 
-It must result from controls external to the agent's reasoning that limit what it can do even when it is wrong, compromised, or under malicious influence.
+Ela deve resultar de controles externos ao raciocínio do agente, que limitem o que ele pode fazer mesmo quando estiver errado, comprometido ou sob influência maliciosa.
 
-This principle guides the entire implementation.
+Esse princípio orienta toda a implementação.
 
 ---
 
-## 4. Normative Principles
+## 4. Princípios normativos
 
-The architecture adopts the following principles.
+A arquitetura adota os seguintes princípios.
 
 ### P-01 — Zero Implicit Trust
 
-No agent, workload, user, model, tool, device, or service receives trust solely because of:
+Nenhum agente, workload, usuário, modelo, ferramenta, dispositivo ou serviço recebe confiança apenas por:
 
-- location;
-- network;
-- organization;
-- ownership;
-- declared origin;
-- relationship with a parent agent.
+- localização;
+- rede;
+- organização;
+- propriedade;
+- origem declarada;
+- relacionamento com um agente pai.
 
 ### P-02 — Every Agent Has an Identity
 
-Every agent must have its own verifiable identity.
+Todo agente deve possuir uma identidade verificável própria.
 
 ```text
 Agent => Non-Human Identity
@@ -159,7 +159,7 @@ Agent => Non-Human Identity
 Intent -> Authorization -> Execution
 ```
 
-Never:
+Nunca:
 
 ```text
 Intent -> Execution -> Audit
@@ -167,19 +167,19 @@ Intent -> Execution -> Audit
 
 ### P-04 — Principle of Least Agency — PoLA
 
-An agent must have only the autonomy required for its purpose.
+O agente deve possuir somente a autonomia necessária para sua finalidade.
 
-Least Privilege is insufficient when the system can also:
+Least Privilege é insuficiente quando o sistema também pode:
 
-- plan;
-- delegate;
-- execute tools;
-- initiate new workflows;
-- reach the physical world.
+- planejar;
+- delegar;
+- executar ferramentas;
+- iniciar novos fluxos;
+- alcançar o mundo físico.
 
 ### P-05 — Delegation Cannot Increase Authority
 
-Delegation cannot create authority that the delegating agent does not possess in the context of the operation.
+Uma delegação não pode criar autoridade que o agente delegante não possua no contexto da operação.
 
 ```text
 Capabilities(child) <= DelegatedCapabilities(parent)
@@ -187,13 +187,13 @@ Capabilities(child) <= DelegatedCapabilities(parent)
 
 ### P-06 — Autonomy Must Be Revocable
 
-All relevant autonomy must be capable of being:
+Toda autonomia relevante deve poder ser:
 
-- paused;
-- reduced;
-- revoked;
-- isolated;
-- terminated.
+- pausada;
+- reduzida;
+- revogada;
+- isolada;
+- encerrada.
 
 ```text
 Autonomy => Revocability
@@ -201,15 +201,15 @@ Autonomy => Revocability
 
 ### P-07 — Model Is Never the Security Authority
 
-The LLM may recommend or plan an action. The LLM is not the authority that grants permission for its own execution.
+O LLM pode recomendar ou planejar uma ação. O LLM não é a autoridade que concede permissão para sua própria execução.
 
 ### P-08 — Policy Before Action
 
-Every relevant action must pass through a **PEP** before reaching a resource, tool, or actuator.
+Toda ação relevante deve atravessar um **PEP** antes de alcançar recurso, ferramenta ou atuador.
 
 ### P-09 — Evidence by Default
 
-Every relevant action must produce verifiable evidence.
+Toda ação relevante deve produzir evidência verificável.
 
 ```text
 Action -> Evidence
@@ -217,13 +217,13 @@ Action -> Evidence
 
 ### P-10 — Assume Agent Compromise
 
-The system must remain constrained even when a valid agent is compromised.
+O sistema deve permanecer limitado mesmo quando um agente válido for comprometido.
 
 ---
 
-## 5. Security Invariants
+## 5. Invariantes de segurança
 
-The project transforms principles into verifiable properties.
+O projeto transforma princípios em propriedades verificáveis.
 
 1. `AgentWithoutIdentity => DENY`
 2. `UnknownAgent => DENY`
@@ -231,70 +231,70 @@ The project transforms principles into verifiable properties.
 4. `DelegationDepth > MaxDepth => DENY`
 5. `ChildCapabilities ⊄ ParentDelegatedCapabilities => DENY`
 6. `PaymentCreator == PaymentApprover => DENY`
-7. `UntrustedInput -> PhysicalActuation` cannot exist without explicit mediation and authorization.
+7. `UntrustedInput -> PhysicalActuation` não pode existir sem mediação e autorização explícitas.
 8. `AttestationFailed AND CriticalAgent => STOP/QUARANTINE`
-9. `OfflineMode => ReducedAuthority`, never increased authority.
-10. Every critical action must produce evidence and decision provenance.
-11. An agent cannot independently increase its own autonomy.
-12. A model cannot grant authorization to itself.
-13. A trust boundary cannot be crossed solely by an LLM semantic decision.
-14. Critical credentials must have limited validity and be revocable.
-15. A critical action without an owner, policy, or traceability must be denied.
+9. `OfflineMode => ReducedAuthority`, nunca autoridade ampliada.
+10. Toda ação crítica deve produzir evidence e decision provenance.
+11. Um agente não pode elevar sozinho sua própria autonomia.
+12. Um modelo não pode conceder autorização a si próprio.
+13. Uma trust boundary não pode ser atravessada apenas por decisão semântica do LLM.
+14. Credenciais críticas devem possuir validade limitada e ser revogáveis.
+15. Ação crítica sem owner, policy ou traceability deve ser negada.
 
-The objective is not merely to detect bad behavior. It is to build an architecture in which certain classes of behavior are **impossible or strongly constrained by construction**.
+O objetivo não é apenas detectar comportamento ruim. É construir uma arquitetura onde determinadas classes de comportamento sejam **impossíveis ou fortemente limitadas por construção**.
 
 ---
 
-## 6. General Formal Model
+## 6. Modelo formal geral
 
-The system can be represented as:
+O sistema pode ser representado como:
 
 ```text
 S = (V, E, Z, P, I, C, R, T, L)
 ```
 
-where:
+onde:
 
-- `V` = entities;
-- `E` = relationships;
+- `V` = entidades;
+- `E` = relações;
 - `Z` = trust zones;
-- `P` = policies;
-- `I` = identities;
+- `P` = políticas;
+- `I` = identidades;
 - `C` = capabilities;
-- `R` = risks;
-- `T` = telemetry/evidence;
-- `L` = lifecycle state.
+- `R` = riscos;
+- `T` = telemetria/evidência;
+- `L` = estado de lifecycle.
 
-Entities can be decomposed as:
+As entidades podem ser decompostas em:
 
 ```text
 V = H ∪ A ∪ M ∪ D ∪ W ∪ F ∪ N ∪ X
 ```
 
-where:
+onde:
 
-- `H` = humans;
-- `A` = agents;
-- `M` = models;
-- `D` = data;
+- `H` = humanos;
+- `A` = agentes;
+- `M` = modelos;
+- `D` = dados;
 - `W` = workloads;
-- `F` = tools;
-- `N` = infrastructure nodes;
-- `X` = external entities.
+- `F` = ferramentas;
+- `N` = nós de infraestrutura;
+- `X` = entidades externas.
 
-Trust is dynamic:
+A confiança é dinâmica:
 
 ```text
 Trust = f(identity, context, device, attestation, behavior, history, policy, risk)
 ```
 
-It is not a permanent property of an entity.
+Ela não é uma propriedade permanente de uma entidade.
 
 ---
 
-## 7. Authorization Model
+## 7. Modelo de autorização
 
-The authorization decision can be represented as:
+A decisão de autorização pode ser representada como:
 
 ```text
 Authorize(a, r, o, c, t) =
@@ -305,15 +305,15 @@ Authorize(a, r, o, c, t) =
     AND Trust(a) > MinTrust
 ```
 
-where:
+onde:
 
 - `a` = agent/workload;
-- `r` = resource;
-- `o` = operation;
-- `c` = context;
-- `t` = temporal state.
+- `r` = recurso;
+- `o` = operação;
+- `c` = contexto;
+- `t` = estado temporal.
 
-Therefore:
+Logo:
 
 ```text
 Execute iff Authorize == true
@@ -323,17 +323,17 @@ Execute iff Authorize == true
 
 ## 8. Governed Autonomy
 
-The project uses the concept of **Governed Autonomy**.
+O projeto usa o conceito de **Governed Autonomy — Autonomia Governada**.
 
-The question is not merely:
+A pergunta não é apenas:
 
-> Can the agent execute this action?
+> O agente consegue executar esta ação?
 
-The correct question is:
+A pergunta correta é:
 
-> May this agent execute this action, on this resource, in this context, at this time, under this risk, with this evidence, and with this possibility of revocation?
+> Este agente pode executar esta ação, neste recurso, neste contexto, neste momento, sob este risco, com estas evidências e com esta possibilidade de revogação?
 
-Effective autonomy must be dynamic:
+A autonomia efetiva deve ser dinâmica:
 
 ```text
 A_effective = min(
@@ -345,33 +345,33 @@ A_effective = min(
 )
 ```
 
-An agent configured as `A4` may be automatically downgraded to `A1` during an anomaly or loss of trust.
+Um agente configurado como `A4` pode ser rebaixado automaticamente para `A1` durante uma anomalia ou perda de confiança.
 
 ---
 
-## 9. Agent Classification L0–L4
+## 9. Classificação de agentes L0–L4
 
-| Class | Description | Examples | Normal maximum autonomy |
+| Classe | Descrição | Exemplos | Autonomia normal máxima |
 |---|---|---|---:|
-| L0 | Informational | summarization, public queries | A4 |
-| L1 | Limited operational | low-impact internal tasks | A3 |
-| L2 | Privileged corporate | sensitive data, ERP, business workflows | A3 |
-| L3 | Critical | financial, administrative, regulated | A2 |
-| L4 | Cyber-physical / safety critical | OT, robots, PLCs, actuators | A1/A2 |
+| L0 | Informacional | sumarização, consulta pública | A4 |
+| L1 | Operacional limitado | tarefas internas de baixo impacto | A3 |
+| L2 | Corporativo privilegiado | dados sensíveis, ERP, workflows de negócio | A3 |
+| L3 | Crítico | financeiro, administrativo, regulado | A2 |
+| L4 | Cyber-physical / safety critical | OT, robôs, PLC, atuadores | A1/A2 |
 
-The combination:
+A combinação:
 
 ```text
 L4 + A5
 ```
 
-is explicitly prohibited by the reference architecture.
+é explicitamente proibida na referência.
 
 ---
 
-## 10. Autonomy Levels A0–A5
+## 10. Níveis de autonomia A0–A5
 
-| Level | Meaning |
+| Nível | Significado |
 |---|---|
 | A0 | Observe |
 | A1 | Recommend |
@@ -380,36 +380,36 @@ is explicitly prohibited by the reference architecture.
 | A4 | Autonomous planning and execution |
 | A5 | Autonomous orchestration/delegation |
 
-Autonomy is not treated as a Boolean. It is a risk and governance variable.
+Autonomia não é tratada como um booleano. Ela é uma variável de risco e governança.
 
 ---
 
 ## 11. Agent Trust Zones — ATZ
 
-| Zone | Meaning | Posture |
+| Zona | Significado | Postura |
 |---|---|---|
-| ATZ-0 | External / Unknown | no implicit trust |
-| ATZ-1 | Untrusted Inputs | untrusted input |
-| ATZ-2 | Sandboxed Agents | low authority |
-| ATZ-3 | Enterprise Agents | conditional trust |
-| ATZ-4 | Privileged Agents | strengthened controls |
-| ATZ-5 | Cyber-Physical Critical | maximum criticality, never implicit trust |
+| ATZ-0 | External / Unknown | nenhuma confiança implícita |
+| ATZ-1 | Untrusted Inputs | entrada não confiável |
+| ATZ-2 | Sandboxed Agents | baixa autoridade |
+| ATZ-3 | Enterprise Agents | confiança condicionada |
+| ATZ-4 | Privileged Agents | controles reforçados |
+| ATZ-5 | Cyber-Physical Critical | criticidade máxima, nunca confiança implícita |
 
-ATZ-5 **does not** mean “fully trusted.” It means **maximum criticality and maximum control rigor**.
+ATZ-5 **não** significa “totalmente confiável”. Significa **máxima criticidade e máximo rigor de controle**.
 
-A transition between zones must satisfy:
+Uma transição entre zonas deve satisfazer:
 
 ```text
 AuthN AND AuthZ AND Policy AND Risk AND Context AND Trust == ALLOW
 ```
 
-Otherwise:
+Caso contrário:
 
 ```text
 DENY
 ```
 
-The default posture is **Default Deny**.
+A postura padrão é **Default Deny**.
 
 ---
 
@@ -479,9 +479,9 @@ The default posture is **Default Deny**.
 
 ---
 
-## 14. Secure Agent Runtime
+## 14. Agent Runtime seguro
 
-Each agent runtime must interpose controls between reasoning and execution:
+Cada runtime agentivo deve interpor controles entre raciocínio e execução:
 
 ```text
 Input Gateway
@@ -526,7 +526,7 @@ Proposed Action
       Evidence
 ```
 
-The essential point is that the agent **does not have direct, unrestricted access to the tool**.
+O ponto essencial é que o agente **não possui acesso direto e irrestrito à ferramenta**.
 
 ---
 
@@ -570,7 +570,7 @@ The essential point is that the agent **does not have direct, unrestricted acces
                     SIEM / GRC
 ```
 
-Relevant trust boundaries include:
+Trust boundaries relevantes incluem:
 
 ```text
 TB-01 Human -> Agent
@@ -587,15 +587,15 @@ TB-11 Enterprise -> Third Party
 TB-12 Digital -> Physical
 ```
 
-Each boundary must have its own threat model.
+Cada boundary deve possuir threat model próprio.
 
 ---
 
-## 16. Agent and Workload Identity
+## 16. Identidade de agentes e workloads
 
-One of the most dangerous architectural mistakes is allowing agents to operate generically using the credential of a user, server, or application.
+Um dos erros arquiteturais mais perigosos é permitir que agentes operem genericamente com a credencial de um usuário, servidor ou aplicação.
 
-Each agent must have its own record:
+Cada agente deve possuir registro próprio:
 
 ```text
 AgentIdentity = {
@@ -614,19 +614,19 @@ AgentIdentity = {
 }
 ```
 
-Conceptual workload identity example:
+Exemplo conceitual de workload identity:
 
 ```text
 spiffe://enterprise.ai/agents/finance/invoice-agent/production/instance-8834
 ```
 
-The use of SPIFFE/SPIRE in this project is **referential**, not mandatory. See the **Replaceable Integration Points** section.
+O uso de SPIFFE/SPIRE no projeto é **referencial**, não obrigatório. Consulte a seção **Pontos de integração substituíveis**.
 
 ---
 
 ## 17. Agent Identity Record — AIR
 
-Example:
+Exemplo:
 
 ```yaml
 agent:
@@ -671,26 +671,26 @@ agent:
     immutable: true
 ```
 
-The Agent Registry must make it possible to answer:
+O Agent Registry deve permitir responder:
 
-- Who is this agent?
-- Who is its owner?
-- What is its purpose?
-- Which model does it use?
-- In which runtime does it execute?
-- What data can it access?
-- Which tools can it use?
-- Can it delegate?
-- To whom?
-- What is its autonomy level?
-- What is its risk?
-- Who can stop it?
+- Quem é este agente?
+- Quem é seu owner?
+- Qual sua finalidade?
+- Que modelo utiliza?
+- Em qual runtime executa?
+- Que dados pode acessar?
+- Que ferramentas pode usar?
+- Pode delegar?
+- Para quem?
+- Qual sua autonomia?
+- Qual seu risco?
+- Quem pode interrompê-lo?
 
 ---
 
 ## 18. Capability Graph
 
-The project does not treat authorization only as broad roles.
+O projeto não trata autorização apenas como papéis amplos.
 
 ```text
 Agent.Invoice
@@ -701,19 +701,19 @@ Agent.Invoice
     └── CALL -> ERP.Query
 ```
 
-Formally:
+Formalmente:
 
 ```text
 G_C = (A, C, E_C)
 ```
 
-where:
+onde:
 
-- `A` = agents;
+- `A` = agentes;
 - `C` = capabilities;
-- `E_C` = grant relationships.
+- `E_C` = relações de concessão.
 
-Capabilities should be specific and temporary where appropriate:
+Capabilities devem poder ser específicas e temporárias:
 
 ```text
 resource: invoice/89383
@@ -726,9 +726,9 @@ delegate: false
 
 ## 19. Toxic Capability Combinations
 
-Risk does not arise only from an isolated capability.
+O risco não decorre apenas de uma capability isolada.
 
-Example:
+Exemplo:
 
 ```text
 SensitiveRead
@@ -740,13 +740,13 @@ CodeExecution
 HighExfiltrationRisk
 ```
 
-Another example:
+Outro exemplo:
 
 ```text
 PaymentCreate + PaymentApprove = SegregationOfDutiesViolation
 ```
 
-Therefore, the Policy Engine must evaluate **capability combinations**, not only individual permissions.
+Logo, o Policy Engine deve avaliar **combinações de capacidades**, não apenas permissões individuais.
 
 ---
 
@@ -756,25 +756,25 @@ Therefore, the Policy Engine must evaluate **capability combinations**, not only
 G_D = (A, E_D)
 ```
 
-An edge:
+Uma aresta:
 
 ```text
 Agent-A -> Agent-B
 ```
 
-means that A may delegate a specific task to B.
+significa que A pode delegar uma tarefa específica a B.
 
-Delegation must be constrained by:
+A delegação deve ser limitada por:
 
-- depth;
-- duration;
+- profundidade;
+- duração;
 - capabilities;
 - data scope;
-- cost;
+- custo;
 - runtime;
 - onward delegation.
 
-Example:
+Exemplo:
 
 ```yaml
 delegation:
@@ -793,22 +793,22 @@ delegation:
   max_cost: 2.00
 ```
 
-Agent B **does not automatically inherit** all of A's permissions.
+O agente B **não herda automaticamente** todas as permissões de A.
 
 ---
 
 ## 21. Agent-to-Agent Security
 
-All relevant A2A communication must provide for:
+Toda comunicação A2A relevante deve prever:
 
-1. mutual identity;
-2. authentication;
-3. authorization;
-4. confidentiality;
-5. integrity;
+1. identidade mútua;
+2. autenticação;
+3. autorização;
+4. confidencialidade;
+5. integridade;
 6. freshness;
 7. anti-replay;
-8. non-repudiation when required;
+8. non-repudiation quando necessária;
 9. schema validation;
 10. intent validation;
 11. correlation/trace ID;
@@ -818,7 +818,7 @@ All relevant A2A communication must provide for:
 
 ## 22. Agent Intent Manifest
 
-Before a critical operation, the agent must declare its intent:
+Antes de uma operação crítica, o agente deve declarar a intenção:
 
 ```json
 {
@@ -836,7 +836,7 @@ Before a critical operation, the agent must declare its intent:
 }
 ```
 
-The PEP does not authorize merely “a connection.” It must be able to authorize the **action and the intent in context**.
+O PEP não autoriza somente “uma conexão”. Ele deve poder autorizar a **ação e o intent no contexto**.
 
 ---
 
@@ -860,25 +860,25 @@ Policy Enforcement Point — PEP
             Action
 ```
 
-### Primary Rule
+### Regra principal
 
 ```text
 Decision -> PolicyCheck -> Action
 ```
 
-Not:
+Não:
 
 ```text
 Decision -> Action -> Audit
 ```
 
-Post-event auditing detects harm. Security-by-Design should prevent harm before execution whenever possible.
+Auditoria posterior detecta dano. Security-by-Design deve impedir o dano antes da execução sempre que possível.
 
 ---
 
-## 24. Hierarchical and Distributed PDP
+## 24. PDP hierárquico e distribuído
 
-Edge AI should not depend exclusively on a cloud PDP.
+Edge AI não deve depender exclusivamente de um PDP em cloud.
 
 ```text
 Global PDP
@@ -892,7 +892,7 @@ Global PDP
     └── Emergency Policy Cache
 ```
 
-Principle:
+Princípio:
 
 ```text
 Global Governance
@@ -904,21 +904,21 @@ Central Evidence
 
 ---
 
-## 25. Disconnected Operation and Fail Secure
+## 25. Operação desconectada e Fail Secure
 
-Loss of cloud connectivity or network access must not increase privileges.
+A perda de cloud ou conectividade não deve aumentar privilégios.
 
 ```text
 OfflineMode => ReducedAuthority
 ```
 
-Never:
+Nunca:
 
 ```text
 OfflineMode => UnlimitedAuthority
 ```
 
-Example of safe behavior:
+Exemplo de comportamento seguro:
 
 ```text
 ALLOW cached low-risk operation
@@ -931,33 +931,33 @@ DENY new external delegation
 
 ## 26. Sovereign Edge Mode
 
-Critical environments may operate in **Sovereign Edge Mode**, retaining locally:
+Ambientes críticos podem operar em **Sovereign Edge Mode**, mantendo localmente:
 
 - identity verification;
 - policy enforcement;
-- the minimum required models;
-- the minimum required RAG;
+- modelos mínimos necessários;
+- RAG mínimo necessário;
 - logging;
 - risk scoring;
 - kill switch;
 - safe operating mode.
 
-The objective is not to permanently isolate the Edge, but to preserve a safe condition during degraded connectivity.
+O objetivo não é isolar permanentemente o Edge, mas preservar uma condição segura em degradação de conectividade.
 
 ---
 
 ## 27. Safe Degradation
 
-When trust decreases, authority must decrease.
+Quando a confiança diminui, a autoridade deve diminuir.
 
 ```text
-Normal             -> A3
-Network degraded   -> A2
+Normal           -> A3
+Network degraded -> A2
 Identity uncertain -> A1
 Attestation failed -> A0 / STOP
 ```
 
-Principle:
+Princípio:
 
 ```text
 Trust down => Capability down
@@ -967,7 +967,7 @@ Trust down => Capability down
 
 ## 28. Agent Risk Score — ARS
 
-The conceptual model uses:
+O modelo conceitual usa:
 
 ```text
 ARS =
@@ -981,11 +981,11 @@ ARS =
 + wB*BehaviorAnomaly
 ```
 
-The reference implementation uses a simplified, auditable version normalized between 0 and 100.
+A implementação de referência usa uma versão simplificada, auditável e normalizada entre 0 e 100.
 
-Example response:
+Exemplo de resposta:
 
-| ARS | Reference treatment |
+| ARS | Tratamento de referência |
 |---:|---|
 | 0–20 | allow |
 | 21–40 | allow + telemetry |
@@ -994,17 +994,17 @@ Example response:
 | 81–90 | quarantine |
 | 91–100 | revoke / kill |
 
-These thresholds are **not universal** and must be calibrated by domain, impact, functional safety, regulatory risk, and risk appetite.
+Esses thresholds **não são universais** e devem ser calibrados por domínio, impacto, segurança funcional, risco regulatório e apetite de risco.
 
 ---
 
 ## 29. Blast Radius
 
-For each agent, it should be possible to answer:
+Para cada agente deve ser possível responder:
 
-> If this agent is compromised now, what is the maximum possible damage?
+> Se este agente for comprometido agora, qual é o dano máximo possível?
 
-Conceptually:
+Conceitualmente:
 
 ```text
 BlastRadius(A) = f(
@@ -1018,7 +1018,7 @@ BlastRadius(A) = f(
 )
 ```
 
-Blast radius should be reduced using:
+O blast radius deve ser reduzido usando:
 
 - microsegmentation;
 - short-lived credentials;
@@ -1034,9 +1034,9 @@ Blast radius should be reduced using:
 
 ## 30. Agent Risk Register
 
-Each agent must have a risk record.
+Cada agente deve possuir um risk record.
 
-| Field | Example |
+| Campo | Exemplo |
 |---|---|
 | Agent ID | invoice-agent |
 | Owner | Finance |
@@ -1052,13 +1052,13 @@ Each agent must have a risk record.
 | Accepted by | Risk Committee |
 | Review | quarterly |
 
-The repository includes an example in `specs/risks/risk-register.csv`.
+O repositório inclui um exemplo em `specs/risks/risk-register.csv`.
 
 ---
 
-## 31. Expanded Attack Surface
+## 31. Superfície de ataque ampliada
 
-In Edge AI, the surface can be represented as:
+Em Edge-AI, a superfície pode ser representada como:
 
 ```text
 AttackSurface =
@@ -1075,13 +1075,13 @@ AttackSurface =
 + Physical
 ```
 
-AI does not replace previous attack surfaces. It **adds new surfaces**.
+IA não substitui as superfícies anteriores. Ela **adiciona novas superfícies**.
 
 ---
 
-## 32. Integrated Threat Modeling
+## 32. Threat modeling integrado
 
-The project combines:
+O projeto combina:
 
 ```text
 ThreatModel =
@@ -1095,7 +1095,7 @@ ThreatModel =
   + DomainSpecificThreats
 ```
 
-STRIDE remains useful, but by itself it does not cover:
+STRIDE continua útil, mas não cobre sozinho:
 
 - goal hijacking;
 - prompt injection;
@@ -1111,9 +1111,9 @@ STRIDE remains useful, but by itself it does not cover:
 
 ---
 
-## 33. Initial Threat Catalog
+## 33. Catálogo inicial de ameaças
 
-The project considers, among others:
+O projeto considera, entre outras:
 
 - **T-001** Prompt Injection;
 - **T-002** Indirect Prompt Injection;
@@ -1134,13 +1134,13 @@ The project considers, among others:
 - **T-017** Excessive Agency;
 - **T-018** Resource Exhaustion.
 
-Files under `specs/threat-model/` contain detailed descriptions and crosswalks.
+Os arquivos em `specs/threat-model/` contêm o detalhamento e crosswalks.
 
 ---
 
 ## 34. Attack Path Analysis
 
-An attack path may emerge only through composition:
+Uma rota de ataque pode surgir apenas pela composição:
 
 ```text
 Untrusted Document
@@ -1156,22 +1156,22 @@ Internal Database
 External API
 ```
 
-Therefore:
+Logo:
 
 ```text
 Risk(System) != Sum(Risk(Component_i))
 ```
 
-Emergent risks arise from relationships, chains, and collective behavior.
+Existem riscos emergentes de relação, cadeia e comportamento coletivo.
 
 ---
 
 ## 35. RAG Security
 
-A production implementation should provide for:
+Uma implementação de produção deve prever:
 
 - source provenance;
-- document signing when applicable;
+- document signing quando aplicável;
 - classification;
 - ingestion validation;
 - malware/content scanning;
@@ -1181,7 +1181,7 @@ A production implementation should provide for:
 - embedding integrity;
 - retrieval authorization.
 
-Principle:
+Princípio:
 
 ```text
 CanRetrieve(Document) != CanDisclose(Document)
@@ -1191,7 +1191,7 @@ CanRetrieve(Document) != CanDisclose(Document)
 
 ## 36. Agent Memory Security
 
-Persistent memory should include metadata such as:
+Memória persistente deve ter metadados como:
 
 ```text
 origin
@@ -1203,7 +1203,7 @@ expiry
 integrity
 ```
 
-Information stored by an agent must not automatically become “trusted truth.”
+Informação armazenada por um agente não deve tornar-se automaticamente “verdade confiável”.
 
 ---
 
@@ -1211,7 +1211,7 @@ Information stored by an agent must not automatically become “trusted truth.�
 
 ### Agent Registry
 
-Source of truth for:
+Fonte de verdade para:
 
 - identity;
 - owner;
@@ -1229,7 +1229,7 @@ Source of truth for:
 
 ### Model Registry
 
-Should record, as required:
+Deve registrar, conforme necessidade:
 
 - model ID;
 - version;
@@ -1243,11 +1243,11 @@ Should record, as required:
 
 ### Tool Registry
 
-Tools should have:
+Ferramentas devem possuir:
 
-- identity;
-- allowed operations;
-- risk;
+- identidade;
+- operações permitidas;
+- risco;
 - network scope;
 - authentication requirements;
 - logging requirements;
@@ -1255,9 +1255,9 @@ Tools should have:
 
 ---
 
-## 38. AI-BOM, Agent-BOM, and SBOM
+## 38. AI-BOM, Agent-BOM e SBOM
 
-The complete composition can be represented as:
+A composição completa pode ser representada como:
 
 ```text
 SystemBOM = SBOM + AI-BOM + Agent-BOM
@@ -1265,7 +1265,7 @@ SystemBOM = SBOM + AI-BOM + Agent-BOM
 
 ### AI-BOM
 
-May include:
+Pode incluir:
 
 - models;
 - prompts;
@@ -1283,7 +1283,7 @@ May include:
 
 ### Agent-BOM
 
-Specifically records:
+Registra especificamente:
 
 - agents;
 - roles;
@@ -1294,13 +1294,13 @@ Specifically records:
 - models;
 - trust zones.
 
-The repository contains examples under `bom/`.
+O repositório contém exemplos em `bom/`.
 
 ---
 
 ## 39. Supply Chain Security
 
-No critical artifact should reach production without proportional mechanisms for:
+Nenhum artefato crítico deveria alcançar produção sem mecanismos proporcionais de:
 
 - signature verification;
 - provenance;
@@ -1314,11 +1314,11 @@ No critical artifact should reach production without proportional mechanisms for
 
 ## 40. Edge Node Security
 
-According to criticality, Edge nodes should consider:
+Conforme criticidade, Edge nodes devem considerar:
 
 - Secure Boot;
 - Measured Boot;
-- TPM or hardware root of trust;
+- TPM ou hardware root of trust;
 - disk encryption;
 - workload isolation;
 - container sandbox;
@@ -1329,7 +1329,7 @@ According to criticality, Edge nodes should consider:
 - secure update;
 - tamper detection.
 
-The trust decision for a node can be represented as:
+A trust decision sobre o node pode ser representada como:
 
 ```text
 Trust(node) = Identity + IntegrityState + Attestation
@@ -1339,7 +1339,7 @@ Trust(node) = Identity + IntegrityState + Attestation
 
 ## 41. Zero-Trust Agentic Mesh — ZTAM
 
-ZTAM extends the service-mesh concept to agentic interactions.
+O ZTAM estende o conceito de service mesh para interações agentivas.
 
 ```text
 Agent A
@@ -1355,7 +1355,7 @@ Agent Proxy
 Agent B
 ```
 
-It may contain:
+Pode conter:
 
 - Agent Proxy;
 - Identity Proxy;
@@ -1366,28 +1366,28 @@ It may contain:
 - Telemetry Sidecar;
 - Evidence Collector.
 
-The architecture is vendor-neutral.
+A arquitetura é independente de vendor.
 
 ---
 
 ## 42. Egress Governance
 
-Agents should not have unrestricted Internet access by default.
+Agentes não devem possuir Internet access irrestrito por padrão.
 
-All relevant egress must be:
+Todo egress relevante deve ser:
 
-- identified;
-- authorized;
-- classified;
-- logged;
+- identificado;
+- autorizado;
+- classificado;
+- logado;
 - rate-limited;
 - policy-controlled.
 
 ---
 
-## 43. Risk-Based Human-in-the-Loop
+## 43. Human-in-the-Loop baseado em risco
 
-The architecture does not require human approval for everything.
+A arquitetura não exige aprovação humana para tudo.
 
 ```text
 LOW RISK     -> autonomous
@@ -1396,15 +1396,15 @@ HIGH RISK    -> step-up / human approval
 CRITICAL     -> multi-party authorization / deny
 ```
 
-The goal is to preserve automation without sacrificing accountability for irreversible or high-impact actions.
+O objetivo é preservar automação sem abrir mão de accountability em ações irreversíveis ou de alto impacto.
 
 ---
 
 ## 44. Segregation of Duties — SoD
 
-No critical agent should independently accumulate all incompatible stages of a transaction.
+Nenhum agente crítico deve, sozinho, acumular todas as etapas incompatíveis de uma transação.
 
-Example:
+Exemplo:
 
 ```text
 Agent A -> proposes payment
@@ -1414,21 +1414,21 @@ Human C -> authorizes
 Bank API -> executes
 ```
 
-In particular:
+Em especial:
 
 ```text
 create + approve + execute
 ```
 
-must not exist under the same authority when the domain requires SoD.
+não deve existir na mesma autoridade quando o domínio exigir SoD.
 
 ---
 
-## 45. Agentic Observability
+## 45. Observabilidade agentiva
 
-Traditional logs are insufficient.
+Logs tradicionais são insuficientes.
 
-Depending on criticality, capture:
+Devem ser capturados, conforme criticidade:
 
 - Agent ID;
 - Session ID;
@@ -1436,7 +1436,7 @@ Depending on criticality, capture:
 - Model;
 - Model version;
 - Intent;
-- prompt hash or secure reference;
+- prompt hash ou referência segura;
 - context sources;
 - RAG sources;
 - memory references;
@@ -1454,9 +1454,9 @@ Depending on criticality, capture:
 
 ---
 
-## 46. Distributed Trace and Decision Provenance
+## 46. Distributed Trace e Decision Provenance
 
-A multi-agent task must be reconstructable:
+Uma tarefa multiagente deve poder ser reconstruída:
 
 ```text
 Human
@@ -1467,7 +1467,7 @@ Human
             └── Database
 ```
 
-For critical actions, provenance must answer:
+Para ações críticas, a provenance deve responder:
 
 ```text
 who
@@ -1486,9 +1486,9 @@ result
 
 ## 47. Evidence-as-Code
 
-The objective is for controls to produce evidence automatically.
+O objetivo é que controles produzam evidência automaticamente.
 
-Example:
+Exemplo:
 
 ```yaml
 evidence:
@@ -1507,13 +1507,13 @@ evidence:
     2026-09-05T22:00:00-03:00
 ```
 
-This supports **Continuous Compliance** instead of purely periodic auditing.
+Isso suporta **Continuous Compliance** em vez de auditoria puramente periódica.
 
 ---
 
 ## 48. Continuous GRC
 
-The intended transformation is:
+A transformação buscada é:
 
 ```text
 Regulation
@@ -1535,13 +1535,13 @@ Evidence
 Compliance Status
 ```
 
-Thus, GRC ceases to be only documentation and becomes part of runtime operation.
+Assim, GRC deixa de ser apenas documentação e passa a participar do runtime.
 
 ---
 
 ## 49. Governance Knowledge Graph
 
-Conceptually:
+Conceitualmente:
 
 ```text
 Regulation
@@ -1565,12 +1565,12 @@ Data
 Evidence
 ```
 
-This model enables bidirectional traceability:
+Esse modelo permite rastreabilidade bidirecional:
 
-- from regulation to evidence;
-- from evidence to requirement;
-- from agent to risks and controls;
-- from control to implementation and test.
+- da norma até a evidência;
+- da evidência até o requisito;
+- do agente até riscos e controles;
+- do controle até implementação e teste.
 
 ---
 
@@ -1600,11 +1600,11 @@ Deployment
 Runtime Evidence
 ```
 
-The project materializes this concept through specifications, the control catalog, tests, and the traceability matrix.
+O projeto materializa esse conceito por meio de specs, catálogo de controles, testes e matriz de rastreabilidade.
 
 ---
 
-## 51. Hierarchical and Distributed GRC
+## 51. GRC hierárquico e distribuído
 
 ```text
 Enterprise GRC
@@ -1625,13 +1625,13 @@ Edge Governance
 Agent Enforcement
 ```
 
-If intelligence and execution are distributed, security and governance must also be distributed.
+Se a inteligência e a execução são distribuídas, segurança e governança também precisam ser distribuídas.
 
 ---
 
 ## 52. SDD — Spec-Driven Development
 
-The adopted precedence is:
+A precedência adotada é:
 
 ```text
 Business / Regulatory Requirement
@@ -1657,20 +1657,20 @@ Tests
 Runtime Evidence
 ```
 
-Code is **not the only source of truth**.
+O código **não é a única fonte de verdade**.
 
-An implementation change that contradicts a specification must:
+Uma alteração de implementação que contrarie uma spec deve:
 
-1. fail in the pipeline; or
-2. require a formal specification change;
-3. require an ADR when architectural;
-4. require a new risk analysis when applicable.
+1. falhar no pipeline; ou
+2. exigir alteração formal da spec;
+3. exigir ADR quando arquitetural;
+4. exigir nova análise de risco quando pertinente.
 
 ---
 
-## 53. SDD Traceability
+## 53. Rastreabilidade SDD
 
-The chain used by the project is:
+A cadeia usada pelo projeto é:
 
 ```text
 Requirement
@@ -1688,29 +1688,29 @@ Test
 Evidence
 ```
 
-The file:
+O arquivo:
 
 ```text
 specs/traceability/requirements-controls-tests.csv
 ```
 
-links requirements to controls, tests, and expected evidence.
+liga requisitos a controles, testes e evidências esperadas.
 
 ---
 
 ## 54. MASTER-SPEC
 
-`MASTER-SPEC.md` defines the project's highest-level normative contract.
+`MASTER-SPEC.md` define o contrato normativo superior do projeto.
 
-It should be consulted before significant architectural changes.
+Ele deve ser consultado antes de alterações arquiteturais significativas.
 
-More specific artifacts must remain consistent with it unless an ADR documents a deliberate change in decision.
+Artefatos mais específicos devem permanecer coerentes com ele, salvo quando um ADR documentar mudança deliberada de decisão.
 
 ---
 
 ## 55. Architecture Decision Records — ADR
 
-Important decisions should have an ADR containing, at minimum:
+Decisões importantes devem possuir ADR com, no mínimo:
 
 ```text
 Title
@@ -1723,13 +1723,13 @@ Compliance mapping
 Rollback strategy
 ```
 
-The repository includes initial ADRs under `specs/adrs/`.
+O repositório inclui ADRs iniciais em `specs/adrs/`.
 
 ---
 
 ## 56. Security Control Catalog
 
-Each control should contain:
+Cada controle deve possuir:
 
 ```yaml
 control:
@@ -1746,7 +1746,7 @@ control:
   evidence: identity-attestation-log
 ```
 
-Suggested families:
+Famílias sugeridas:
 
 ```text
 AGT — Agent
@@ -1772,40 +1772,40 @@ BCP — Resilience
 
 ## 57. Formal Methods
 
-The “formal” character of the project is not limited to documentation.
+O caráter “formal” do projeto não se limita à documentação.
 
-The repository contains:
+O repositório contém:
 
 ```text
 formal/tla/SGAEIA.tla
 formal/alloy/sgaeia.als
 ```
 
-These models express properties such as:
+Esses modelos expressam propriedades como:
 
-- an agent without identity does not execute;
-- L4+A5 is not authorized;
-- delegation does not increase authority;
-- invalid states must not reach RUNNING;
-- critical operations depend on authorization.
+- agente sem identidade não executa;
+- L4+A5 não é autorizado;
+- delegação não aumenta autoridade;
+- estados inválidos não devem alcançar RUNNING;
+- operações críticas dependem de autorização.
 
-In addition, Python state-space exploration exists in:
+Além disso, existe exploração de espaço de estados em Python em:
 
 ```text
 tests/formal/test_invariants_state_space.py
 ```
 
-### Important
+### Importante
 
-The TLA+ and Alloy files are **formal specifications provided as a basis for model checking**, but this repository version does not assume that the TLA+/Alloy model checkers are installed in the local environment.
+Os arquivos TLA+ e Alloy são **especificações formais fornecidas como base de model checking**, mas esta versão do repositório não pressupõe que os model checkers TLA+/Alloy estejam instalados no ambiente local.
 
-Equivalent invariants are also exercised by the Python test suite.
+As invariantes equivalentes são exercitadas também pela suíte Python.
 
 ---
 
 ## 58. Lifecycle Governance
 
-Expected states:
+Estados esperados:
 
 ```text
 REGISTERED
@@ -1828,15 +1828,15 @@ PAUSED QUARANTINED REVOKED
 RUNNING           TERMINATED
 ```
 
-Transitions such as:
+Transições como:
 
 ```text
 UNKNOWN -> RUNNING
 ```
 
-must be prohibited.
+devem ser proibidas.
 
-Complete lifecycle:
+Lifecycle completo:
 
 ```text
 Design
@@ -1851,9 +1851,9 @@ Design
 
 ---
 
-## 59. Kill Switch and Reversible Autonomy
+## 59. Kill Switch e autonomia reversível
 
-Every agent with relevant risk must support, as required:
+Todo agente de risco relevante deve suportar, conforme necessidade:
 
 ```text
 pause
@@ -1866,7 +1866,7 @@ rollback
 terminate
 ```
 
-Hierarchical architecture:
+Arquitetura hierárquica:
 
 ```text
 SOC / GRC
@@ -1882,22 +1882,22 @@ Emergency Control Plane
    └── stop actuation
 ```
 
-It must be possible to act on:
+Deve ser possível atuar sobre:
 
-- a single execution;
-- an agent;
-- a group of agents;
-- an Edge node;
-- a MEC region;
-- a model version;
-- a tool;
-- the entire agent mesh.
+- uma execução;
+- um agente;
+- um grupo de agentes;
+- um Edge node;
+- uma região MEC;
+- uma versão de modelo;
+- uma ferramenta;
+- todo o agent mesh.
 
 ---
 
 ## 60. Emergency Policy
 
-Conceptual example:
+Exemplo conceitual:
 
 ```text
 IF systemic_attack == true
@@ -1910,9 +1910,9 @@ THEN
 
 ---
 
-## 61. Security-by-Design, Security-First, and Shift Everywhere
+## 61. Security-by-Design, Security-First e Shift Everywhere
 
-Security starts with requirements.
+A segurança começa nos requisitos.
 
 ```text
 Requirements
@@ -1928,7 +1928,7 @@ Testing
 Deployment
 ```
 
-But agentic systems change at runtime. Therefore:
+Mas sistemas agentivos mudam em runtime. Portanto:
 
 ```text
 Shift Left
@@ -1944,7 +1944,7 @@ Shift Everywhere
 
 ## 62. Security Gates
 
-The pipeline is designed to incorporate:
+O pipeline é desenhado para incorporar:
 
 ```text
 SPEC
@@ -1978,13 +1978,13 @@ Runtime Validation
 Continuous Monitoring
 ```
 
-The current implementation contains stubs and gates compatible with enterprise extension.
+A implementação atual contém stubs e gates compatíveis com extensão corporativa.
 
 ---
 
-## 63. Planned Tests
+## 63. Testes previstos
 
-### Traditional
+### Tradicionais
 
 - SAST;
 - DAST;
@@ -1994,7 +1994,7 @@ The current implementation contains stubs and gates compatible with enterprise e
 - container scanning;
 - API security testing.
 
-### AI
+### IA
 
 - prompt injection;
 - indirect prompt injection;
@@ -2003,7 +2003,7 @@ The current implementation contains stubs and gates compatible with enterprise e
 - model abuse;
 - data leakage.
 
-### Agentic
+### Agentivos
 
 - tool abuse;
 - delegation abuse;
@@ -2034,7 +2034,7 @@ The current implementation contains stubs and gates compatible with enterprise e
 
 ## 64. Chaos Security Engineering
 
-Recommended scenarios:
+Cenários recomendados:
 
 ```text
 PDP unavailable
@@ -2049,13 +2049,13 @@ Certificate expiry
 RAG poisoned
 ```
 
-The system must degrade safely.
+O sistema deve degradar com segurança.
 
 ---
 
 ## 65. Definition of Done — DoD
 
-An agent should be considered production-ready only when:
+Um agente só deve ser considerado production-ready quando:
 
 ```text
 DoD =
@@ -2093,11 +2093,11 @@ Admission Controller
       Deploy   Reject
 ```
 
-In addition, critical actions must have **Runtime Admission** via PDP/PEP.
+Além disso, ações críticas devem possuir **Runtime Admission** via PDP/PEP.
 
 ---
 
-## 67. Repository Structure
+## 67. Estrutura do repositório
 
 ```text
 SGAEIA/
@@ -2145,74 +2145,74 @@ SGAEIA/
 └── scripts/
 ```
 
-The complete list is maintained in `PROJECT-MANIFEST.md`.
+A lista completa é mantida em `PROJECT-MANIFEST.md`.
 
 ---
 
-## 68. Current Reference Implementation
+## 68. Implementação de referência atual
 
-The Python implementation demonstrates minimal capabilities for:
+A implementação Python demonstra capacidades mínimas para:
 
-- agent registration and validation;
-- risk calculation;
-- policy decision;
-- delegation validation;
-- basic enforcement;
-- evidence generation;
+- registro e validação de agentes;
+- cálculo de risco;
+- decisão de política;
+- validação de delegação;
+- enforcement básico;
+- geração de evidência;
 - kill switch.
 
-The endpoint:
+O endpoint:
 
 ```text
 POST /v1/authorize
 ```
 
-evaluates a proposed action based on:
+avalia uma ação proposta com base em:
 
-- identity;
-- classification;
-- autonomy;
+- identidade;
+- classificação;
+- autonomia;
 - capabilities;
-- context;
-- risk;
-- agent state;
-- critical rules.
+- contexto;
+- risco;
+- estado do agente;
+- regras críticas.
 
 ---
 
-## 69. How to Run
+## 69. Como executar
 
-### Basic Requirements
+### Requisitos básicos
 
-- Python compatible with `pyproject.toml`;
-- installed dependencies;
-- local development environment.
+- Python compatível com `pyproject.toml`;
+- dependências instaladas;
+- ambiente local de desenvolvimento.
 
-### Tests
+### Testes
 
 ```bash
 python -m pytest -q
 ```
 
-### Specification Validation
+### Validação das especificações
 
 ```bash
 python scripts/validate_specs.py
 ```
 
-### Generate Agent-BOM
+### Gerar Agent-BOM
 
 ```bash
 python scripts/generate_agent_bom.py
 ```
 
-### Local API
+### API local
 
 ```bash
 uvicorn sgaeia.api:app --app-dir src --host 0.0.0.0 --port 8080
 ```
 
-### Health Check
+### Health check
 
 ```bash
 curl http://localhost:8080/health
@@ -2220,7 +2220,7 @@ curl http://localhost:8080/health
 
 ---
 
-## 70. Authorization Flow Example
+## 70. Exemplo de fluxo de autorização
 
 ```text
 Agent Intent
@@ -2244,15 +2244,15 @@ Execution
 Telemetry + Evidence + Trace
 ```
 
-The agent **proposes**. The architecture **authorizes or denies**.
+O agente **propõe**. A arquitetura **autoriza ou nega**.
 
 ---
 
-# 71. Replaceable Integration Points
+# 71. Pontos de integração substituíveis
 
-## 71.1 Technology-Neutrality Principle
+## 71.1 Princípio de neutralidade tecnológica
 
-This project was designed to separate:
+Este projeto foi desenhado para separar:
 
 ```text
 Security / Governance Semantics
@@ -2264,41 +2264,41 @@ Reference Interface / Contract
 Replaceable Technology
 ```
 
-In other words, security should not depend on a specific brand or product.
+Ou seja, a segurança não deve depender de uma marca ou produto específico.
 
-SPIFFE/SPIRE, OPA/Rego, OpenTelemetry, Envoy/Istio, and other cited components are **reference implementations or integration examples**.
+SPIFFE/SPIRE, OPA/Rego, OpenTelemetry, Envoy/Istio e outros componentes citados são **implementações de referência ou exemplos de integração**.
 
-They may be replaced as long as the new solution preserves the **semantic contract and architectural invariants**.
+Eles podem ser substituídos desde que a nova solução preserve o **contrato semântico e as invariantes arquiteturais**.
 
 ---
 
-## 71.2 Replacement Matrix
+## 71.2 Matriz de substituição
 
-| Domain | Project reference | May be replaced by | Minimum contract that must remain |
+| Domínio | Referência no projeto | Pode ser substituído por | Contrato mínimo que deve permanecer |
 |---|---|---|---|
-| Workload / Agent Identity | SPIFFE/SPIRE | cloud workload identity, custom PKI, service identity platform, NHI platform | unique and verifiable identity, rotation, short lifetime where possible, revocation, workload binding |
-| PKI / Certificates | X.509/mTLS | enterprise CA, cloud CA, HSM-backed PKI | strong authentication, integrity, rotation, revocation, explicit trust domain |
-| Policy Engine | OPA/Rego | Cedar, Zanzibar-style engine, cloud IAM policy engine, custom PDP | externalized decision, deterministically auditable behavior, default deny, policy versioning |
-| PEP | middleware/API enforcement | Envoy filter, API gateway, service mesh, sidecar, library interceptors | no protected action bypasses enforcement |
+| Workload / Agent Identity | SPIFFE/SPIRE | cloud workload identity, PKI própria, service identity platform, NHI platform | identidade única, verificável, rotacionável, curta duração quando possível, revogação, binding ao workload |
+| PKI / Certificates | X.509/mTLS | enterprise CA, cloud CA, HSM-backed PKI | autenticação forte, integridade, rotação, revogação, trust domain explícito |
+| Policy Engine | OPA/Rego | Cedar, Zanzibar-style engine, cloud IAM policy engine, custom PDP | decisão externalizada, deterministicamente auditável, default deny, versionamento de policy |
+| PEP | middleware/API enforcement | Envoy filter, API gateway, service mesh, sidecar, library interceptors | nenhuma ação protegida bypassa enforcement |
 | Service / Agent Mesh | Istio/Envoy/Linkerd model | Cilium service mesh, cloud mesh, custom proxy fabric | mTLS, identity propagation, policy hooks, telemetry, egress control |
-| Observability | OpenTelemetry | vendor APM, cloud-native telemetry, custom event bus | trace ID, logs, metrics, correlation, exportability, adequate clock consistency |
-| Evidence Store | reference JSON/files | WORM storage, object storage, immutable log, ledger, GRC evidence platform | integrity, retention, provenance, access control, timestamp, queryability |
-| SIEM/SOC | conceptual integration | any SIEM/SOAR/SOC platform | event ingestion, correlation, alerting, investigation, response hooks |
-| GRC | specifications and evidence mapping | GRC platform, control-monitoring platform, knowledge graph | requirement→control→evidence traceability and ownership |
-| Risk Engine | Python reference | rules engine, Bayesian model, graph risk engine, ML-assisted risk engine | explainable score, bounds, versioned inputs, policy-safe behavior |
+| Observability | OpenTelemetry | vendor APM, cloud-native telemetry, custom event bus | trace ID, logs, metrics, correlation, exportabilidade, clock consistency adequada |
+| Evidence Store | JSON/files em referência | WORM storage, object storage, immutable log, ledger, GRC evidence platform | integridade, retenção, provenance, access control, timestamp, queryability |
+| SIEM/SOC | integração conceitual | qualquer SIEM/SOAR/SOC platform | ingestão de eventos, correlação, alerting, investigação, response hooks |
+| GRC | especificações e evidence mapping | GRC platform, control monitoring platform, knowledge graph | requirement→control→evidence traceability e ownership |
+| Risk Engine | Python reference | rules engine, Bayesian model, graph risk engine, ML-assisted risk engine | score explicável, limites, inputs versionados, policy-safe behavior |
 | Registry | YAML/files + Python | PostgreSQL, service catalog, CMDB, graph DB, cloud registry | source of truth, owner, version, lifecycle, auditability |
-| Agent Registry | manifests | dedicated agent registry/platform | identity, owner, purpose, capabilities, autonomy, risk, lifecycle |
+| Agent Registry | manifests | dedicated agent registry/platform | identidade, owner, purpose, capabilities, autonomy, risk, lifecycle |
 | Model Registry | manifests | MLflow, cloud model registry, enterprise AI catalog | model ID/version, provenance, approval, deployment status |
 | Tool Registry | manifests | API catalog, service catalog, MCP registry | tool identity, operations, risk, authentication, scopes, audit |
-| RAG / Vector Store | conceptual interface | pgvector, Milvus, Pinecone, Weaviate, Elasticsearch, cloud vector DB | tenant isolation, AuthZ, provenance, classification, retrieval policy |
+| RAG / Vector Store | interface conceitual | pgvector, Milvus, Pinecone, Weaviate, Elasticsearch, cloud vector DB | tenant isolation, authZ, provenance, classification, retrieval policy |
 | Secrets | environment/reference | Vault, KMS, cloud secret manager, HSM | encryption, least privilege, rotation, revocation, audit |
-| Messaging / Event Bus | decoupled | Kafka, NATS, Pulsar, RabbitMQ, cloud pub/sub | authenticated producers/consumers, integrity, partitioning, replay controls |
-| State Store | in-memory/reference | PostgreSQL, Redis, distributed KV | adequate consistency, isolation, durability according to criticality |
-| API Gateway | FastAPI direct/reference | Kong, Apigee, Envoy Gateway, cloud API gateway | AuthN/AuthZ hooks, rate limiting, logging, schema validation |
+| Messaging / Event Bus | não acoplado | Kafka, NATS, Pulsar, RabbitMQ, cloud pub/sub | authenticated producers/consumers, integrity, partitioning, replay controls |
+| State Store | in-memory/reference | PostgreSQL, Redis, distributed KV | consistency adequada, isolation, durability conforme criticidade |
+| API Gateway | FastAPI direct/reference | Kong, Apigee, Envoy Gateway, cloud API gateway | AuthN/AuthZ hooks, rate limit, logging, schema validation |
 | Container Runtime | Docker reference | containerd, CRI-O, microVM, unikernel | isolation, image provenance, runtime controls |
 | Orchestrator | Kubernetes reference | K3s, OpenShift, Nomad, edge orchestrator, cloud container platform | lifecycle, identity binding, isolation, admission, policy integration |
 | Edge Orchestration | Kubernetes manifests | K3s, KubeEdge, Akri, vendor edge stack, ETSI-aligned MEC platform | local policy enforcement, offline safety, telemetry buffering, node identity |
-| Remote Attestation | conceptual hook | TPM attestation, confidential computing attestation, cloud attestation service | signed/measurable platform state, freshness, trust-decision integration |
+| Remote Attestation | conceptual hook | TPM attestation, confidential computing attestation, cloud attestation service | signed/measurable platform state, freshness, trust decision integration |
 | SBOM | CycloneDX example | SPDX or equivalent | component inventory, version, dependency identity, machine readability |
 | AI-BOM / Agent-BOM | project schemas | enterprise AI inventory format | models/agents/tools/dependencies and relationships |
 | Formal Verification | TLA+ / Alloy | PlusCal, Coq, Isabelle, Lean, model checker, state-machine verifier | explicit invariants and mechanically checkable properties where required |
@@ -2309,9 +2309,9 @@ They may be replaced as long as the new solution preserves the **semantic contra
 
 ---
 
-## 71.3 Rule for Component Replacement
+## 71.3 Regra para substituição de componentes
 
-A technology should replace another only when it preserves, at minimum:
+Uma tecnologia só deve substituir outra quando preservar, no mínimo:
 
 ```text
 Functional Contract
@@ -2323,87 +2323,87 @@ AND Revocation Contract
 
 ### Functional Contract
 
-The new solution must fulfill the intended architectural function.
+A nova solução deve cumprir a função arquitetural prevista.
 
 ### Security Contract
 
-It must preserve the relevant security invariants.
+Deve manter as invariantes de segurança relevantes.
 
 ### Audit Contract
 
-It must generate sufficient evidence for investigation and compliance.
+Deve gerar evidência suficiente para investigação e compliance.
 
 ### Failure Contract
 
-It must have defined behavior when unavailable or degraded.
+Deve possuir comportamento definido quando estiver indisponível ou degradada.
 
 ### Revocation Contract
 
-It must allow authority, credentials, sessions, or capabilities to be revoked when required.
+Deve permitir revogar autoridade, credencial, sessão ou capability quando exigido.
 
 ---
 
-## 71.4 Example — Replacing SPIFFE/SPIRE
+## 71.4 Exemplo — substituição de SPIFFE/SPIRE
 
-SPIFFE/SPIRE may be replaced.
+SPIFFE/SPIRE pode ser substituído.
 
-The alternative solution, however, must preserve:
+A solução alternativa, porém, deve preservar:
 
-- workload identity independent of a human user;
-- unique identity;
-- identity binding to the actual workload;
-- credential rotation;
-- revocation;
-- mutual authentication when required;
-- an explicit trust domain;
-- attestation support or an equivalent mechanism for critical agents.
+- workload identity independente de usuário humano;
+- identidade única;
+- binding da identidade ao workload real;
+- rotação de credenciais;
+- revogação;
+- autenticação mútua quando exigida;
+- trust domain explícito;
+- suporte a attestation ou mecanismo equivalente para agentes críticos.
 
-A simple static API key shared by multiple agents is **not semantically equivalent**.
+Uma simples API key estática compartilhada por vários agentes **não é semanticamente equivalente**.
 
 ---
 
-## 71.5 Example — Replacing OPA/Rego
+## 71.5 Exemplo — substituição de OPA/Rego
 
-OPA/Rego is only the Policy-as-Code reference.
+OPA/Rego é apenas a referência de Policy-as-Code.
 
-A replacement solution must provide:
+A solução substituta deve oferecer:
 
-- policy externalized from the agent;
-- versioning;
-- auditable decisions;
-- sufficient determinism for compliance;
+- policy externalizada do agente;
+- versionamento;
+- decisão auditável;
+- deterministicidade suficiente para compliance;
 - default deny;
-- support for automated tests;
-- separation between Policy Decision and Agent Reasoning;
-- support for context, identity, and risk;
-- explicit failure handling.
+- possibilidade de testes automatizados;
+- separação entre Policy Decision e Agent Reasoning;
+- suporte a contexto, identidade e risco;
+- tratamento explícito de falha.
 
-The LLM cannot be used as the sole replacement for the PDP for critical actions.
+O LLM não pode ser usado como substituto único do PDP para ações críticas.
 
 ---
 
-## 71.6 Example — Replacing the Service Mesh
+## 71.6 Exemplo — substituição do service mesh
 
-Istio/Envoy/Linkerd are examples.
+Istio/Envoy/Linkerd são exemplos.
 
-An architecture without a service mesh may still implement ZTAM, provided it can ensure:
+Uma arquitetura sem service mesh ainda pode implementar o ZTAM, desde que consiga assegurar:
 
-- mTLS or equivalent protection;
+- mTLS ou proteção equivalente;
 - identity propagation;
 - policy enforcement;
 - egress control;
-- distributed observability;
+- observabilidade distribuída;
 - rate limiting;
 - isolation;
 - revocation.
 
 ---
 
-## 71.7 Example — Replacing OpenTelemetry
+## 71.7 Exemplo — substituição de OpenTelemetry
 
-OpenTelemetry is an interoperability reference.
+OpenTelemetry é uma referência de interoperabilidade.
 
-The alternative solution must preserve:
+A solução alternativa deve preservar:
 
 ```text
 Trace-ID
@@ -2418,82 +2418,82 @@ Timestamp
 Evidence Link
 ```
 
-Without distributed correlation, multi-agent incident investigation becomes incomplete.
+Sem correlação distribuída, investigação de incidentes multiagente torna-se incompleta.
 
 ---
 
-## 71.8 Example — Replacing the Risk Engine
+## 71.8 Exemplo — substituição do Risk Engine
 
-The provided ARS algorithm is deliberately simple.
+O algoritmo ARS fornecido é deliberadamente simples.
 
-It may be replaced by:
+Ele pode ser substituído por:
 
-- statistical scoring;
+- scoring estatístico;
 - risk graph;
 - attack-path analysis;
 - Bayesian network;
 - rules engine;
-- hybrid model;
-- enterprise risk analytics engine.
+- modelo híbrido;
+- engine corporativo de risk analytics.
 
-However, the solution must be:
+Porém a solução deve ser:
 
-- explainable for critical decisions;
-- versioned;
-- testable;
-- bounded by policy;
-- resilient to missing or manipulated inputs;
-- able to produce evidence explaining the decision.
+- explicável para decisões críticas;
+- versionada;
+- testável;
+- limitada por policy;
+- resistente a inputs ausentes ou manipulados;
+- capaz de produzir evidence do motivo da decisão.
 
 ---
 
-## 71.9 Example — Replacing Kubernetes
+## 71.9 Exemplo — substituição de Kubernetes
 
-Kubernetes is only a reference deployment/orchestration implementation.
+Kubernetes é apenas uma implementação de deployment/orchestration de referência.
 
-It may be replaced by another platform, including one specific to Edge/MEC, provided it preserves:
+Pode ser substituído por outra plataforma, inclusive específica de Edge/MEC, desde que mantenha:
 
 - workload identity;
 - lifecycle management;
 - isolation;
-- network policy or equivalent;
+- network policy ou equivalente;
 - admission controls;
 - secret management;
-- observability;
+- observabilidade;
 - rollback;
-- the ability to execute kill/quarantine actions.
+- capacidade de executar kill/quarantine.
 
 ---
 
-## 71.10 Example — Replacing Evidence Storage
+## 71.10 Exemplo — substituição de armazenamento de evidências
 
-Evidence-as-Code does not depend on local JSON files.
+Evidence-as-Code não depende de JSON local.
 
-In production, an organization may use:
+Em produção, a organização pode usar:
 
-- immutable object storage;
+- object storage imutável;
 - WORM;
 - SIEM;
 - ledger;
-- auditable database;
-- governed data lake;
-- GRC platform.
+- database auditável;
+- data lake governado;
+- plataforma GRC.
 
-The requirement is to preserve:
+O requisito é preservar:
 
-- integrity;
-- origin;
+- integridade;
+- origem;
 - timestamps;
-- retention;
-- access control;
-- correlation;
-- chain of custody when applicable.
+- retenção;
+- controle de acesso;
+- correlação;
+- cadeia de custódia quando aplicável.
 
 ---
 
-## 72. Recommended Integration Contracts
+## 72. Contratos de integração recomendados
 
-When replacing technologies, the project recommends explicit interfaces.
+Ao trocar tecnologias, o projeto recomenda interfaces explícitas.
 
 ### Identity Provider Contract
 
@@ -2551,17 +2551,17 @@ revoke(scope)
 terminate(scope)
 ```
 
-These contracts are more important than the concrete technology used.
+Esses contratos são mais importantes que a tecnologia concreta utilizada.
 
 ---
 
 ## 72A. Formal Integration Port Specification — IPS
 
-This section is **normative** for integration replaceability in SGAEIA.
+Esta seção é **normativa** para a substituibilidade de integrações no SGAEIA.
 
-The architecture does not treat SPIFFE/SPIRE, OPA/Rego, OpenTelemetry, a service mesh, Kubernetes, Kafka, PostgreSQL, or any specific product as an inseparable part of the core. The stable element is the **security and governance semantics of the integration port**.
+A arquitetura não considera SPIFFE/SPIRE, OPA/Rego, OpenTelemetry, um service mesh, Kubernetes, Kafka, PostgreSQL ou qualquer produto específico como parte inseparável do núcleo. O elemento estável é a **semântica de segurança e governança da porta de integração**.
 
-The formal model is:
+O modelo formal é:
 
 ```text
 Security / Governance Semantics
@@ -2575,9 +2575,9 @@ Adapter
 Replaceable Technology
 ```
 
-### 72A.1 IPS Structure
+### 72A.1 Estrutura do IPS
 
-Each port in `specs/integrations/ports/*.port.yaml` SHALL declare:
+Cada porta em `specs/integrations/ports/*.port.yaml` declara obrigatoriamente:
 
 ```text
 Functional Contract
@@ -2587,7 +2587,7 @@ Failure Contract
 Revocation Contract
 ```
 
-Therefore:
+Portanto:
 
 ```text
 ConformantReplacement =
@@ -2599,63 +2599,63 @@ ConformantReplacement =
   AND NoSecurityInvariantViolation
 ```
 
-Protocol or JSON compatibility **is not sufficient** for architectural equivalence.
+Compatibilidade de protocolo ou de JSON **não é suficiente** para equivalência arquitetural.
 
-### 72A.2 Formalized Ports
+### 72A.2 Portas formalizadas
 
-The current version formalizes, among others:
+A versão atual formaliza, entre outras:
 
-| Port | Responsibility |
+| Port | Responsabilidade |
 |---|---|
-| `IP-IDENTITY` | workload/agent identity, attestation, and revocation |
-| `IP-PDP` | external policy decision |
-| `IP-PEP` | enforcement before action |
-| `IP-RISK` | dynamic risk evaluation |
-| `IP-REGISTRY` | inventory and lifecycle of governed entities |
-| `IP-EVIDENCE` | evidence, sealing, correlation, and export |
+| `IP-IDENTITY` | identidade/attestation/revogação de workloads e agentes |
+| `IP-PDP` | decisão externa de policy |
+| `IP-PEP` | enforcement antes da ação |
+| `IP-RISK` | avaliação dinâmica de risco |
+| `IP-REGISTRY` | inventário e lifecycle de entidades governadas |
+| `IP-EVIDENCE` | evidência, sealing, correlação e exportação |
 | `IP-KILL` | pause/quarantine/revoke/terminate |
-| `IP-OBS` | agentic telemetry and tracing |
-| `IP-BUS` | asynchronous control/governance events |
-| `IP-MESH` | Zero Trust agent-to-agent/service communication |
-| `IP-STATE` | governed persistent state |
-| `IP-EDGE` | Edge/MEC orchestration with safe degradation |
+| `IP-OBS` | telemetria e tracing agentivo |
+| `IP-BUS` | eventos assíncronos de controle/governança |
+| `IP-MESH` | comunicação Zero Trust agente-a-agente/serviço |
+| `IP-STATE` | estado persistente governado |
+| `IP-EDGE` | orquestração Edge/MEC com safe degradation |
 
-### 72A.3 Machine-Readable Contracts
+### 72A.3 Contratos machine-readable
 
-Reference HTTP contracts are located in:
+Contratos HTTP de referência ficam em:
 
 ```text
 specs/integrations/openapi/
 ```
 
-using **OpenAPI 3.2.0**.
+usando **OpenAPI 3.2.0**.
 
-Event-driven contracts are located in:
+Contratos orientados a eventos ficam em:
 
 ```text
 specs/integrations/asyncapi/
 ```
 
-using **AsyncAPI 3.1.0**.
+usando **AsyncAPI 3.1.0**.
 
-These formats describe transport and interoperability. The semantic contract of the port remains the normative authority because a valid OpenAPI/AsyncAPI document alone does not prove fail-safe behavior, revocability, or adequate evidence.
+Esses formatos descrevem transporte e interoperabilidade. A autoridade normativa continua sendo o contrato semântico da porta, porque um documento OpenAPI/AsyncAPI válido não prova, sozinho, fail-safe, revogabilidade ou evidência adequada.
 
-### 72A.4 Qualification of a Replacement Technology
+### 72A.4 Qualificação de uma tecnologia substituta
 
-A replacement SHALL provide a dossier containing:
+Uma substituição deverá fornecer um dossier contendo:
 
-1. implementation version and supported port;
-2. functional mapping of all operations;
-3. AuthN/AuthZ, identity, integrity, and isolation analysis;
-4. behavior during timeout, dependency loss, and partition;
-5. measured revocation propagation time;
-6. produced evidence and its correlation;
-7. threat model for newly introduced surfaces;
-8. positive and negative tests;
-9. emergency rollback/disable;
-10. residual risk and owner for any deviation.
+1. versão da implementação e porta suportada;
+2. mapeamento funcional de todas as operações;
+3. análise AuthN/AuthZ, identidade, integridade e isolamento;
+4. comportamento durante timeout, perda de dependência e partição;
+5. tempo medido de propagação de revogação;
+6. evidência produzida e sua correlação;
+7. threat model das novas superfícies introduzidas;
+8. testes positivos e negativos;
+9. rollback/disable de emergência;
+10. risco residual e owner para qualquer desvio.
 
-The methodology is specified in:
+A metodologia está especificada em:
 
 ```text
 specs/integrations/replacement-qualification.md
@@ -2670,13 +2670,13 @@ IPS-C2  Secure
 IPS-C3  Governed
 ```
 
-`IPS-C3` adds auditability, evidence, revocation, traceability, and lifecycle to functional and security properties. Critical ports intended for production SHOULD reach IPS-C3.
+`IPS-C3` acrescenta auditabilidade, evidência, revogação, rastreabilidade e lifecycle às propriedades funcionais e de segurança. Portas críticas destinadas à produção SHOULD atingir IPS-C3.
 
-### 72A.6 Failure Semantics Are Part of the API
+### 72A.6 Failure semantics são parte da API
 
-In this architecture, failure is not merely a technical exception. It changes authority.
+Nesta arquitetura, falha não é apenas uma exceção técnica. Ela altera autoridade.
 
-Examples:
+Exemplos:
 
 ```text
 PDP unavailable + critical action
@@ -2692,24 +2692,24 @@ Evidence backend unavailable
 => buffer critical evidence; never silently discard it
 ```
 
-Thus, two products that execute the same call during normal operation may **not** be equivalent substitutes if one fails open.
+Assim, dois produtos que executam a mesma chamada em operação normal podem **não** ser substitutos equivalentes se um deles falhar aberto.
 
-### 72A.7 Revocation as an Architectural Requirement
+### 72A.7 Revogação como requisito arquitetural
 
-For each relevant port, the project records `maxPropagationSeconds`.
+Para cada porta relevante, o projeto registra `maxPropagationSeconds`.
 
-Qualification must demonstrate that:
+A qualificação deve demonstrar que:
 
 ```text
 RevocationRequested(t0)
 => AuthorityUnavailable(t <= t0 + MaxPropagation)
 ```
 
-The exact value is domain-specific, but the property of revocability is not optional.
+O valor exato é específico por domínio, mas a propriedade de revogabilidade não é opcional.
 
-### 72A.8 Integration with SDD and GRC
+### 72A.8 Integração com SDD e GRC
 
-IPS enters the SDD chain:
+O IPS entra na cadeia SDD:
 
 ```text
 Requirement
@@ -2727,9 +2727,9 @@ Runtime Evidence
 GRC / Audit
 ```
 
-In this way, changing a vendor is no longer merely an operational decision; it becomes a verifiable architectural change with explicit evidence and risk impact.
+Dessa forma, a troca de um fornecedor deixa de ser apenas uma decisão operacional e passa a ser uma mudança arquitetural verificável, com evidência e impacto de risco explícitos.
 
-### 72A.9 Added Normative Files
+### 72A.9 Arquivos normativos adicionados
 
 ```text
 specs/integrations/README.md
@@ -2745,15 +2745,16 @@ specs/adrs/ADR-004-integration-port-contracts.md
 tests/specification/test_integration_port_contracts.py
 ```
 
-The pipeline validates that every port contains the five contractual dimensions and that transport specifications use the declared baselines.
+O pipeline valida que cada porta contenha as cinco dimensões contratuais e que as especificações de transporte usem os baselines declarados.
 
 ---
 
+
 ## 72B. Adapter Conformance Framework — ACF
 
-This section is **normative** for implementing and qualifying the concrete adapters that materialize Integration Ports.
+Esta seção é **normativa** para a implementação e qualificação dos adapters concretos que materializam as Integration Ports.
 
-IPS defines **what must remain true**. The Adapter Conformance Framework defines **how a concrete technology demonstrates that it preserves those properties**.
+O IPS define **o que deve permanecer verdadeiro**. O Adapter Conformance Framework define **como uma tecnologia concreta demonstra que preserva essas propriedades**.
 
 ```text
 Integration Port Specification
@@ -2780,27 +2781,27 @@ Conformance Evidence
 Deployment Admission / GRC
 ```
 
-### 72B.1 Principle: Adapters Implement Ports; They Do Not Redefine the Architecture
+### 72B.1 Princípio: adapters implementam portas, não redefinem arquitetura
 
-A concrete adapter SHALL be bound to exactly one Integration Port in its `AdapterProfile`.
+Um adapter concreto SHALL estar ligado a exatamente uma Integration Port no seu `AdapterProfile`.
 
-The relationship is:
+A relação é:
 
 ```text
 Adapter : Technology → IntegrationPortSemantics
 ```
 
-Not:
+Não:
 
 ```text
 Technology → NewSecuritySemantics
 ```
 
-Thus, SPIRE, OPA, Istio, NATS, Kafka, PostgreSQL, Kubernetes, K3s, and OpenTelemetry are replaceable implementations. None of them, by itself, becomes the normative authority of the architecture.
+Assim, SPIRE, OPA, Istio, NATS, Kafka, PostgreSQL, Kubernetes, K3s e OpenTelemetry são implementações substituíveis. Nenhuma delas se torna, por si só, autoridade normativa da arquitetura.
 
-### 72B.2 Executable Reference Adapters
+### 72B.2 Adapters executáveis de referência
 
-Version 0.3.0 includes code adapters under:
+A versão 0.3.0 inclui adapters no código em:
 
 ```text
 src/sgaeia/integrations/
@@ -2820,27 +2821,27 @@ src/sgaeia/integrations/
     └── edge_k3s.py
 ```
 
-Adapters use **transport injection**. Therefore, they may operate over:
+Os adapters usam **transport injection**. Portanto, podem operar sobre:
 
 - HTTP/JSON facade;
 - sidecar;
 - Unix socket proxy;
 - service gateway;
-- local implementation;
+- implementação local;
 - test double;
-- bridge to gRPC or native APIs.
+- bridge para gRPC ou APIs nativas.
 
-The SGAEIA core does not need to import a vendor SDK to preserve architectural semantics.
+O core SGAEIA não precisa importar um SDK de fornecedor para preservar a semântica arquitetural.
 
-### 72B.3 Concrete Profiles
+### 72B.3 Perfis concretos
 
-Manifests are located in:
+Os manifests ficam em:
 
 ```text
 specs/integrations/adapters/*.adapter.yaml
 ```
 
-Each profile declares:
+Cada perfil declara:
 
 ```text
 adapter id
@@ -2856,9 +2857,9 @@ alternative implementations
 qualification notes
 ```
 
-Current examples:
+Exemplos atuais:
 
-| Adapter | Port | Reference implementation | Target |
+| Adapter | Porta | Implementação de referência | Target |
 |---|---|---|---|
 | `ADP-SPIRE-IDENTITY` | `IP-IDENTITY` | SPIFFE/SPIRE | IPS-C3 |
 | `ADP-OPA-PDP` | `IP-PDP` | Open Policy Agent | IPS-C3 |
@@ -2870,11 +2871,11 @@ Current examples:
 | `ADP-K8S-EDGE` | `IP-EDGE` | Kubernetes | IPS-C3 |
 | `ADP-K3S-EDGE` | `IP-EDGE` | K3s | IPS-C3 |
 
-The coexistence of two adapters for `IP-BUS` and two for `IP-EDGE` is intentional and demonstrates replaceability.
+A coexistência de dois adapters para `IP-BUS` e dois para `IP-EDGE` é intencional e demonstra a propriedade de substituibilidade.
 
-### 72B.4 Progressive Assurance: the Harness Is Not Product Certification
+### 72B.4 Assurance progressivo: harness não é certificação de produto
 
-Qualification is explicitly divided into stages:
+A qualificação é explicitamente dividida em estágios:
 
 ```text
 Q0 Inventory
@@ -2888,47 +2889,47 @@ Q3 Governed Production Qualification / IPS-C3
 
 #### Q1 / IPS-C1
 
-Validates in the repository:
+Valida no repositório:
 
-- adapter ↔ port binding;
-- semantic operations;
-- structured outputs;
-- basic fail-safe behavior;
-- attributable evidence;
-- logical revocation;
-- testable deterministic behavior.
+- binding adapter ↔ port;
+- operações semânticas;
+- outputs estruturados;
+- fail-safe básico;
+- evidência atribuível;
+- revogação lógica;
+- comportamento determinístico testável.
 
 #### Q2 / IPS-C2
 
-Requires a representative or live environment and should test:
+Exige ambiente representativo ou live e deve testar:
 
-- real authentication;
-- real authorization;
+- autenticação real;
+- autorização real;
 - mTLS/identity binding;
 - timeout;
-- dependency loss;
-- network partition;
+- perda de dependência;
+- partição de rede;
 - replay;
 - malformed input;
 - resource exhaustion;
 - downgrade/configuration drift;
-- multi-tenant isolation when applicable.
+- isolamento multi-tenant quando aplicável.
 
 #### Q3 / IPS-C3
 
-Adds:
+Acrescenta:
 
-- revocation propagation measurement;
-- correlated operational evidence;
+- medição de propagação de revogação;
+- evidência operacional correlacionada;
 - rollback;
 - emergency disable;
 - lifecycle/patch policy;
 - architecture drift detection;
 - residual-risk acceptance;
 - GRC approval;
-- continuous observability.
+- observabilidade contínua.
 
-Therefore:
+Portanto:
 
 ```text
 ContractHarnessPassed
@@ -2936,11 +2937,11 @@ ContractHarnessPassed
 ProductCertifiedForProduction
 ```
 
-### 72B.5 Base Contract in Code
+### 72B.5 Contrato base no código
 
-Every adapter inherits from `BaseIntegrationAdapter` and has `AdapterMetadata`.
+Todo adapter herda de `BaseIntegrationAdapter` e possui `AdapterMetadata`.
 
-Minimum evidence includes:
+A evidência mínima inclui:
 
 ```text
 trace_id
@@ -2955,13 +2956,13 @@ operation
 digest
 ```
 
-This makes it possible to prove not only that `IP-PDP` responded, but **which concrete implementation and version responded**.
+Isso permite provar não apenas que `IP-PDP` respondeu, mas **qual implementação e versão concreta respondeu**.
 
 ### 72B.6 Adapter Registry
 
-`AdapterRegistry` resolves ports to concrete implementations.
+`AdapterRegistry` resolve ports para implementações concretas.
 
-Conceptually:
+Conceitualmente:
 
 ```text
 IP-IDENTITY → ADP-SPIRE-IDENTITY
@@ -2971,11 +2972,11 @@ IP-BUS      → ADP-NATS-BUS OR ADP-KAFKA-BUS
 IP-EDGE     → ADP-K8S-EDGE OR ADP-K3S-EDGE
 ```
 
-A deployment profile selects **one active implementation per port** within that deployment context.
+Um deployment profile seleciona **uma implementação ativa por porta** no contexto daquele deployment.
 
 ### 72B.7 Transport Injection
 
-The adapter separates:
+O adapter separa:
 
 ```text
 Semantic Contract
@@ -2987,25 +2988,25 @@ Transport Interface
 Vendor / Platform API
 ```
 
-This makes it possible to replace, for example:
+Isso permite substituir, por exemplo:
 
 ```text
 HTTP facade → gRPC bridge
 ```
 
-without changing the PDP contract, or:
+sem alterar o PDP contract, ou:
 
 ```text
 NATS → Kafka
 ```
 
-without changing the `IP-BUS` contract.
+sem alterar o contrato `IP-BUS`.
 
-Transport does not decide architectural policy; it only materializes the integration.
+O transport não decide política arquitetural; ele apenas materializa a integração.
 
-### 72B.8 Executable Failure Semantics
+### 72B.8 Failure semantics executáveis
 
-Reference adapters encode the expected behavior during failures.
+Os adapters de referência codificam o comportamento esperado durante falhas.
 
 #### Identity
 
@@ -3060,29 +3061,29 @@ control plane unavailable OR attestation missing for critical workload
 → authority does not increase
 ```
 
-### 72B.9 Independent Revocation
+### 72B.9 Revogação independente
 
-Critical adapters maintain a revocation path that does not depend on the controlled agent.
+Adapters críticos mantêm um caminho de revogação que não depende do agente controlado.
 
-The property remains:
+A propriedade continua:
 
 ```text
 Autonomy ⇒ Revocability
 ```
 
-And, for production:
+E, para produção:
 
 ```text
 MeasuredRevocationTime <= Port.maxPropagationSeconds
 ```
 
-The harness demonstrates semantics; Q2/Q3 must measure real propagation for the deployed technology.
+O harness demonstra a semântica; Q2/Q3 devem medir a propagação real da tecnologia implantada.
 
-### 72B.10 NATS ↔ Kafka Replacement
+### 72B.10 Substituição NATS ↔ Kafka
 
-NATS and Kafka have different APIs, operational models, and internal characteristics. The architecture does not require internal equivalence.
+NATS e Kafka têm APIs, modelos operacionais e características internas diferentes. A arquitetura não exige equivalência interna.
 
-It requires equivalence at the port:
+Exige equivalência na porta:
 
 ```text
 IP-BUS =
@@ -3096,17 +3097,17 @@ IP-BUS =
   + Revocation
 ```
 
-Therefore:
+Logo:
 
 ```text
 NATS ≈ Kafka
 ```
 
-only **within the semantic boundary of `IP-BUS`** and only after both satisfy the required assurance level.
+somente **no limite semântico da `IP-BUS`** e somente após ambos satisfazerem o nível de assurance requerido.
 
-### 72B.11 Kubernetes ↔ K3s Replacement
+### 72B.11 Substituição Kubernetes ↔ K3s
 
-Similarly:
+Analogamente:
 
 ```text
 IP-EDGE =
@@ -3119,19 +3120,19 @@ IP-EDGE =
   + Evidence
 ```
 
-K3s may be appropriate for Edge due to its operational profile, while upstream Kubernetes or enterprise distributions may be suitable in other tiers. The choice does not change the invariants.
+K3s pode ser apropriado ao Edge por seu perfil operacional, enquanto Kubernetes upstream ou distribuições empresariais podem ser adequados em outros tiers. A escolha não altera as invariantes.
 
 ### 72B.12 Deployment Profiles
 
-Profiles under:
+Perfis em:
 
 ```text
 specs/integrations/deployment-profiles/
 ```
 
-select concrete adapters for a context.
+selecionam adapters concretos para um contexto.
 
-Edge example:
+Exemplo Edge:
 
 ```text
 Identity  = SPIRE
@@ -3143,7 +3144,7 @@ State     = PostgreSQL
 Edge      = K3s
 ```
 
-Enterprise/cloud example:
+Exemplo enterprise/cloud:
 
 ```text
 Identity  = SPIRE
@@ -3155,15 +3156,15 @@ State     = PostgreSQL
 Edge      = Kubernetes
 ```
 
-These profiles are composition references, not vendor endorsements.
+Esses perfis são referências de composição e não endorsements de fornecedor.
 
-### 72B.13 Reference Baselines and Version Skew
+### 72B.13 Reference baselines e version skew
 
-`specs/integrations/reference-baselines.md` records baselines observed in September 2026.
+`specs/integrations/reference-baselines.md` registra baselines observados em setembro de 2026.
 
-These numbers support documentary reproducibility; they are not a `latest` rule.
+Esses números servem para reprodutibilidade documental, não como regra `latest`.
 
-Production SHOULD define:
+Produção SHOULD definir:
 
 ```text
 minimum supported version
@@ -3175,36 +3176,36 @@ rollback version
 EOL policy
 ```
 
-A technology upgrade is an SDD change when it can alter semantics, attack surface, failure mode, or evidence.
+Um upgrade de tecnologia é uma mudança SDD quando pode alterar semântica, superfície de ataque, failure mode ou evidência.
 
-### 72B.14 Conformance Report as Evidence-as-Code
+### 72B.14 Conformance report como Evidence-as-Code
 
-The command:
+O comando:
 
 ```bash
 python scripts/run_adapter_conformance.py
 ```
 
-produces:
+produz:
 
 ```text
 evidence/adapter-conformance.generated.json
 ```
 
-with:
+com:
 
 - adapter;
 - port;
 - target level;
 - checks;
-- result;
-- assurance scope.
+- resultado;
+- scope de assurance.
 
-The report explicitly states that this is an **offline contract harness / IPS-C1**, avoiding confusion with live certification.
+O relatório declara explicitamente que se trata de **offline contract harness / IPS-C1**, evitando confusão com certificação live.
 
-### 72B.15 CI/CD Gate
+### 72B.15 CI/CD gate
 
-The pipeline now executes:
+O pipeline agora executa:
 
 ```text
 Validate SDD Specs
@@ -3220,13 +3221,13 @@ Run Adapter Conformance Harness
 Generate BOM / Evidence
 ```
 
-An adapter change that breaks port binding, failure semantics, or evidence attribution must block the pipeline.
+Uma alteração de adapter que quebre port binding, failure semantics ou evidence attribution deve bloquear o pipeline.
 
-### 72B.16 SDD Traceability of the ACF
+### 72B.16 SDD traceability do ACF
 
-The ACF adds requirements `SR-020…SR-024` and controls `CTL-INT-005…CTL-INT-009`.
+O ACF acrescenta os requisitos `SR-020…SR-024` e controles `CTL-INT-005…CTL-INT-009`.
 
-The chain becomes:
+A cadeia passa a ser:
 
 ```text
 Security Requirement
@@ -3248,7 +3249,7 @@ Runtime Evidence
 GRC Decision
 ```
 
-### 72B.17 Formal Adapter Admission Criterion
+### 72B.17 Critério formal de admissão de adapter
 
 ```text
 AdapterAdmissible(A,P,E) =
@@ -3262,15 +3263,15 @@ AND VersionSupported(A,E)
 AND ResidualRiskAccepted(A,E)
 ```
 
-where:
+onde:
 
 - `A` = adapter;
 - `P` = Integration Port;
 - `E` = deployment environment.
 
-### 72B.18 Safe Replacement Criterion
+### 72B.18 Critério de substituição segura
 
-Technology `A₂` may replace `A₁` only when:
+A tecnologia `A₂` somente pode substituir `A₁` quando:
 
 ```text
 Implements(A₁,P)
@@ -3279,9 +3280,9 @@ AND Assurance(A₂,E) >= RequiredAssurance(P,E)
 AND SecurityInvariantsPreserved(A₂,E)
 ```
 
-Thus, replaceability ceases to be an architectural opinion and gains a **testable criterion, evidence, and a risk decision**.
+Logo, substituibilidade deixa de ser uma opinião arquitetural e passa a possuir **critério testável, evidência e decisão de risco**.
 
-### 72B.19 Files Added by the Adapter Conformance Framework
+### 72B.19 Arquivos adicionados pelo Adapter Conformance Framework
 
 ```text
 src/sgaeia/integrations/
@@ -3298,15 +3299,16 @@ evidence/adapter-conformance.generated.json
 examples/adapter_stack.py
 ```
 
-The ACF turns the **vendor-neutral** property into a verifiable and continuously testable architectural characteristic.
+O ACF transforma a propriedade **vendor-neutral** em uma característica arquitetural verificável e continuamente testável.
 
 ---
 
+
 ## 72C. GitHub Public Release Profile — v0.3.2
 
-Publishing SGAEIA as a public repository introduces a new governance and supply-chain surface. For this reason, GitHub publication readiness is treated as part of SDD, not merely as code packaging.
+A publicação do SGAEIA como repositório público introduz uma nova superfície de governança e supply chain. Por isso, a preparação para GitHub é tratada como parte do SDD, e não apenas como empacotamento do código.
 
-### 72C.1 Principle
+### 72C.1 Princípio
 
 ```text
 PublicVisibility
@@ -3314,7 +3316,7 @@ PublicVisibility
 ReducedSecuritySemantics
 ```
 
-Opening the repository to external contributions does not change the identity, authorization, revocation, fail-secure, Evidence-as-Code, and governed-autonomy invariants. Every contribution remains subject to the chain:
+Abrir o repositório a contribuições externas não altera os invariantes de identidade, autorização, revogação, fail-secure, evidence-as-code e autonomia governada. Toda contribuição continua sujeita à cadeia:
 
 ```text
 Requirement
@@ -3332,9 +3334,9 @@ Evidence
 Review / Release
 ```
 
-### 72C.2 Public Governance Files
+### 72C.2 Arquivos públicos de governança
 
-The release includes:
+A release inclui:
 
 - `LICENSE` — Apache License 2.0;
 - `NOTICE`;
@@ -3347,23 +3349,23 @@ The release includes:
 - `SUPPORT.md`;
 - `CITATION.cff`;
 - `docs/github-public-release.md`;
-- Issue and Pull Request templates;
+- templates de Issues e Pull Requests;
 - Dependabot;
-- CI for SDD validation/tests/conformance;
+- CI de validação SDD/testes/conformidade;
 - CodeQL;
-- release-validation gate by tag.
+- gate de validação de releases por tag.
 
-### 72C.3 Licensing
+### 72C.3 Licenciamento
 
-The default license for this release is **Apache-2.0**. It was chosen to facilitate use, modification, and redistribution of the reference, with the explicit patent grant provided by the license and preservation of copyright/license conditions. Before publication, the maintainer may replace the license if a different legal or strategic decision is made.
+A licença padrão desta release é **Apache-2.0**. Ela foi escolhida para facilitar uso, modificação e redistribuição da referência, com concessão explícita de patente prevista pela licença e preservação das condições de copyright/licença. Antes da publicação, o mantenedor pode substituir a licença se houver uma decisão jurídica ou estratégica diferente.
 
-The presence of names such as SPIFFE/SPIRE, OPA, Istio, Envoy, OpenTelemetry, NATS, Kafka, PostgreSQL, Kubernetes, or K3s describes reference integration points. It does not imply certification, endorsement, or affiliation with the respective projects.
+A presença de nomes como SPIFFE/SPIRE, OPA, Istio, Envoy, OpenTelemetry, NATS, Kafka, PostgreSQL, Kubernetes ou K3s descreve pontos de integração de referência. Não implica certificação, endosso ou afiliação com os respectivos projetos.
 
-### 72C.4 Public Security Disclosure
+### 72C.4 Public security disclosure
 
-Vulnerabilities should not initially be opened as public Issues. `SECURITY.md` defines coordinated disclosure and recommends enabling **GitHub Private Vulnerability Reporting** when the repository is public.
+Vulnerabilidades não devem ser abertas inicialmente como Issues públicas. `SECURITY.md` define a divulgação coordenada e recomenda habilitar **GitHub Private Vulnerability Reporting** quando o repositório estiver publicado.
 
-Particularly relevant failures include bypass of:
+Falhas particularmente relevantes incluem bypass de:
 
 ```text
 Identity
@@ -3379,9 +3381,9 @@ Edge fail-secure behavior
 Cyber-physical safety barriers
 ```
 
-### 72C.5 Public Repository CI
+### 72C.5 CI de repositório público
 
-The primary workflow runs a supported Python matrix and verifies:
+O workflow principal executa uma matriz de Python suportada e verifica:
 
 ```text
 SDD specification validation
@@ -3397,11 +3399,11 @@ Basic secret-pattern rejection
 Generated assurance evidence
 ```
 
-CodeQL runs separately for static security analysis. Dependabot monitors Python and GitHub Actions dependencies. The configuration uses `dependabot.yml` version 2, according to the current format documented by GitHub.
+CodeQL é executado separadamente para análise estática de segurança. Dependabot monitora dependências Python e GitHub Actions. A configuração usa `dependabot.yml` versão 2, conforme o formato atual documentado pelo GitHub.
 
-### 72C.6 Assurance and Non-Certification
+### 72C.6 Assurance e não-certificação
 
-It is prohibited to infer:
+É proibido inferir:
 
 ```text
 GitHub CI PASS
@@ -3409,7 +3411,7 @@ GitHub CI PASS
 Production Certified
 ```
 
-The correct result is:
+O resultado correto é:
 
 ```text
 GitHub CI PASS
@@ -3417,11 +3419,11 @@ GitHub CI PASS
 Specified repository checks passed
 ```
 
-IPS-C2/C3, L4 environments, OT/ICS, or cyber-physical systems require evidence from the real/representative environment, in addition to independent assessment appropriate to the domain.
+IPS-C2/C3, ambientes L4, OT/ICS ou sistemas cyber-physical exigem evidência do ambiente real/representativo, além de avaliação independente conforme o domínio.
 
-### 72C.7 Branch and Release Governance
+### 72C.7 Branch e release governance
 
-Recommended:
+Recomenda-se:
 
 ```text
 main
@@ -3435,11 +3437,11 @@ release
   └── signed/reviewed tag vMAJOR.MINOR.PATCH
 ```
 
-The complete policy is in `docs/github-public-release.md`.
+A política completa está em `docs/github-public-release.md`.
 
-### 72C.8 Citation
+### 72C.8 Citação
 
-`CITATION.cff` allows GitHub and academic tools to present SGAEIA citation metadata. The release records:
+`CITATION.cff` permite que GitHub e ferramentas acadêmicas apresentem metadados de citação do SGAEIA. A release registra:
 
 ```text
 SGAEIA — Secure Governed Autonomous Edge Intelligence Architecture
@@ -3449,7 +3451,7 @@ September 2026
 Apache-2.0
 ```
 
-### 72C.9 Suggested GitHub Topics
+### 72C.9 Tópicos sugeridos para o GitHub
 
 ```text
 edge-ai
@@ -3468,7 +3470,7 @@ ai-security
 
 ### 72C.10 Definition of Ready for Public Release
 
-The first public publication should be considered ready only when:
+A primeira publicação pública somente deve ser considerada pronta quando:
 
 ```text
 NoKnownSecrets
@@ -3483,35 +3485,35 @@ AND CIConfigured
 AND ReleaseTagReviewed
 ```
 
-The detailed operational checklist is available in `docs/github-public-release.md`.
+O checklist operacional detalhado encontra-se em `docs/github-public-release.md`.
 
-## 73. Supported Deployment Patterns
+## 73. Padrões de implantação suportáveis
 
-The architecture may be adapted for:
+A arquitetura pode ser adaptada para:
 
-### Cloud-Centric
+### Cloud-centric
 
-Cloud concentrates the control plane; Edge executes low-latency local operations.
+Cloud concentra control plane; Edge executa operações locais de baixa latência.
 
 ### Hierarchical Edge/MEC
 
-PDPs and controls are distributed across Cloud, region, MEC, and Edge.
+PDPs e controls são distribuídos entre Cloud, região, MEC e Edge.
 
 ### Sovereign Edge
 
-Edge retains a minimum safe capability even when disconnected.
+Edge mantém capacidade mínima segura mesmo desconectado.
 
 ### OT / Cyber-Physical
 
-Physical actions require safety controls, interlocks, and an emergency-stop capability independent of the LLM.
+Ações físicas exigem controles de safety, interlocks e possibilidade de emergency stop independentes do LLM.
 
-### Multi-Organization / Federated
+### Multi-organization / Federated
 
-Separate trust domains negotiate identity, capabilities, and policies without assuming implicit trust.
+Trust domains separados negociam identidade, capabilities e políticas sem presumir confiança implícita.
 
 ---
 
-## 74. Reference Integration Architecture
+## 74. Arquitetura de integração de referência
 
 ```text
 Enterprise Governance
@@ -3543,13 +3545,13 @@ Observability / Evidence
 SOC / GRC / Audit
 ```
 
-The concrete technology in each block is replaceable. The security semantics are not.
+A tecnologia concreta em cada bloco é substituível. A semântica de segurança não é.
 
 ---
 
-## 75. Framework Integration
+## 75. Integração com frameworks
 
-The project was designed to support crosswalks, as applicable, with:
+O projeto foi desenhado para permitir crosswalk com, conforme aplicabilidade:
 
 - NIST SP 800-207 / SP 800-207A — Zero Trust;
 - NIST Cybersecurity Framework 2.0;
@@ -3566,16 +3568,16 @@ The project was designed to support crosswalks, as applicable, with:
 - OWASP Agent Control Standard;
 - OWASP ASVS;
 - ETSI MEC;
-- IEC 62443 for OT/ICS;
-- SPIFFE/SPIRE or equivalent workload identity.
+- IEC 62443 em OT/ICS;
+- SPIFFE/SPIRE ou workload identity equivalente.
 
-See `docs/references.md` and `specs/compliance/`.
+Consulte `docs/references.md` e `specs/compliance/`.
 
 ---
 
-## 76. GRC and Agentic-Posture Metrics
+## 76. Métricas GRC e de postura agentiva
 
-Recommended KPIs/KRIs:
+KPIs/KRIs recomendados:
 
 ```text
 % agents inventoried
@@ -3595,7 +3597,7 @@ mean time to quarantine
 % controls continuously evidenced
 ```
 
-An organization may derive an **Agent Security Posture Score — ASPS**:
+Uma organização pode derivar um **Agent Security Posture Score — ASPS**:
 
 ```text
 ASPS = 100 - (
@@ -3608,11 +3610,11 @@ ASPS = 100 - (
 
 ---
 
-## 77. Organizational Responsibilities
+## 77. Responsabilidades organizacionais
 
 ### Board / Executive
 
-Defines:
+Define:
 
 - risk appetite;
 - accountability;
@@ -3620,7 +3622,7 @@ Defines:
 
 ### AI Governance Board
 
-Defines:
+Define:
 
 - AI policy;
 - autonomy levels;
@@ -3629,7 +3631,7 @@ Defines:
 
 ### CISO
 
-Responsible for:
+Responsável por:
 
 - security architecture;
 - cyber threat model;
@@ -3637,20 +3639,20 @@ Responsible for:
 
 ### CRO / GRC
 
-Manages:
+Gerencia:
 
 - risk;
 - compliance;
 - exceptions;
-- residual-risk acceptance workflow.
+- residual risk acceptance workflow.
 
 ### Agent Owner
 
-Accountable for the agent and its purpose.
+Responde pelo agente e seu propósito.
 
 ### Platform Engineering
 
-Operates:
+Opera:
 
 - identity;
 - policy;
@@ -3660,14 +3662,14 @@ Operates:
 
 ### SOC
 
-Monitors:
+Monitora:
 
-- anomalies;
+- anomalias;
 - attack paths;
 - policy violations;
 - incidents.
 
-No production agent should have:
+Nenhum agente produtivo deve possuir:
 
 ```text
 Owner = NULL
@@ -3675,9 +3677,9 @@ Owner = NULL
 
 ---
 
-## 78. Governed Agent — Formal Definition
+## 78. Governed Agent — definição formal
 
-An agent is governed when:
+Um agente é governado quando:
 
 ```text
 Governed(A) =
@@ -3692,7 +3694,7 @@ AND Auditability(A)
 AND Revocability(A)
 ```
 
-If a mandatory condition is not satisfied:
+Se uma condição obrigatória não estiver satisfeita:
 
 ```text
 Governed(A) = false
@@ -3700,9 +3702,9 @@ Governed(A) = false
 
 ---
 
-## 79. Secure Agentic System — Formal Definition
+## 79. Secure Agentic System — definição formal
 
-The system seeks the property:
+O sistema busca a propriedade:
 
 ```text
 for every Agent A:
@@ -3717,43 +3719,43 @@ for every CriticalAction:
     AND Auditable
 ```
 
-This is an architectural objective; real assurance levels depend on the implementation and verification performed in each domain.
+Essa é uma meta arquitetural; níveis de assurance reais dependem da implementação e verificação de cada domínio.
 
 ---
 
-## 80. Current Repository State
+## 80. Estado atual do repositório
 
-This version includes:
+Esta versão inclui:
 
-- minimal Python implementation;
+- implementação Python mínima;
 - FastAPI;
 - Agent Registry;
-- reference PDP/PEP;
+- PDP/PEP de referência;
 - Risk Engine;
 - Delegation Controller;
 - Kill Switch;
 - Evidence Service;
-- YAML/JSON manifests;
+- manifests YAML/JSON;
 - schemas;
-- reference OPA/Rego;
-- OpenAPI for the control API and **OpenAPI 3.2.0** for HTTP Integration Ports;
-- **AsyncAPI 3.1.0** for event contracts;
-- **12 machine-readable Integration Port Specifications (IPS)**;
-- conformance matrix and replacement-technology qualification procedure;
-- **Adapter Conformance Framework (ACF)** with 9 concrete reference profiles;
-- executable adapters for SPIRE, OPA, Istio/Envoy, OpenTelemetry, NATS, Kafka, PostgreSQL, Kubernetes, and K3s;
-- `enterprise-cloud` and `edge-k3s` deployment profiles;
-- adapter-conformance `Evidence-as-Code` report;
+- OPA/Rego de referência;
+- OpenAPI da API de controle e **OpenAPI 3.2.0** para Integration Ports HTTP;
+- **AsyncAPI 3.1.0** para contratos de eventos;
+- **12 Integration Port Specifications (IPS)** machine-readable;
+- matriz de conformidade e procedimento de qualificação de tecnologias substitutas;
+- **Adapter Conformance Framework (ACF)** com 9 perfis concretos de referência;
+- adapters executáveis para SPIRE, OPA, Istio/Envoy, OpenTelemetry, NATS, Kafka, PostgreSQL, Kubernetes e K3s;
+- deployment profiles `enterprise-cloud` e `edge-k3s`;
+- relatório `Evidence-as-Code` de conformidade dos adapters;
 - Docker;
 - Kubernetes manifests;
-- OpenTelemetry configuration;
+- OpenTelemetry config;
 - threat-model artifacts;
 - risk/control catalogs;
-- AI-BOM and Agent-BOM;
-- formal models in TLA+ and Alloy;
-- Python unit, integration, security, adversarial, formal, and IPS conformance tests.
+- AI-BOM e Agent-BOM;
+- formal models em TLA+ e Alloy;
+- testes unitários, integração, segurança, adversariais, formais e de conformidade IPS em Python.
 
-Verified state of this revision:
+Estado verificado desta revisão:
 
 ```text
 SPEC VALIDATION PASSED
@@ -3763,40 +3765,40 @@ INTEGRATION PORT VALIDATION PASSED
 
 ---
 
-## 81. Current Limitations
+## 81. Limitações atuais
 
-This reference must not be interpreted as a production-ready product for critical environments.
+Esta referência não deve ser interpretada como produto pronto para ambientes críticos.
 
-Before production, the following must be implemented and validated as applicable:
+Antes de produção, devem ser implementados e validados, conforme o caso:
 
-1. real trust domains and PKI/workload identity;
-2. enterprise PDP/PEP;
-3. real inventory/discovery of agents, models, and tools;
-4. IAM/PAM/NHI integration;
+1. trust domains reais e PKI/workload identity;
+2. PDP/PEP corporativo;
+3. inventário/discovery real de agentes, modelos e tools;
+4. integração IAM/PAM/NHI;
 5. SIEM/SOAR/GRC;
-6. RAG provenance and data classification;
-7. Edge-node attestation;
-8. use-case-specific red teaming;
-9. safety case for L4;
-10. jurisdiction/sector regulatory mapping;
-11. IPS-C2/C3 qualification in real environments for each selected adapter;
-12. real measurement of revocation, failover, partition, and version skew for deployed products;
+6. RAG provenance e data classification;
+7. attestation de Edge nodes;
+8. red team específico do caso de uso;
+9. safety case para L4;
+10. mapeamento regulatório de jurisdição/setor;
+11. qualificação IPS-C2/C3 em ambientes reais para cada adapter selecionado;
+12. medição real de revogação, failover, partição e version-skew dos produtos implantados;
 12. BCP/DR;
-13. isolation and disconnection tests;
-14. artifact signing/provenance;
-15. real secrets management;
-16. data-plane encryption;
-17. service mesh or equivalent enforcement;
+13. testes de isolamento e desconexão;
+14. assinatura/provenance de artefatos;
+15. secrets management real;
+16. data plane encryption;
+17. service-mesh ou enforcement equivalente;
 18. immutable evidence storage;
 19. incident-response runbooks;
 20. model supply-chain controls;
-21. independent security and safety validation.
+21. validação independente de security e safety.
 
 ---
 
-## 82. Recommended Next Evolution
+## 82. Próxima evolução recomendada
 
-The natural evolution of this version is to decompose the minimal implementation into real services:
+A evolução natural desta versão é decompor a implementação mínima em serviços reais:
 
 ```text
 Agent Registry Service
@@ -3813,7 +3815,7 @@ Tool Gateway
 Observability Pipeline
 ```
 
-And integrate replaceable production components for:
+E integrar componentes de produção substituíveis para:
 
 ```text
 Workload Identity
@@ -3829,7 +3831,7 @@ Remote Attestation
 SBOM / AI-BOM / Agent-BOM provenance
 ```
 
-A later stage may transform the repository into a **Multi-Agent Edge AI Cyber Range**, capable of executing controlled scenarios involving:
+Uma etapa posterior pode transformar o repositório em um **Cyber Range Edge-AI Multiagente**, capaz de executar cenários controlados de:
 
 - prompt injection;
 - memory poisoning;
@@ -3845,7 +3847,7 @@ A later stage may transform the repository into a **Multi-Agent Edge AI Cyber Ra
 - PDP failure;
 - compromised agent.
 
-The objective would be to demonstrate not only the threat, but the automated response:
+O objetivo seria demonstrar não apenas a ameaça, mas a resposta automática de:
 
 ```text
 Detect
@@ -3859,9 +3861,9 @@ Detect
 
 ---
 
-## 83. References
+## 83. Referências
 
-See:
+Consulte:
 
 ```text
 docs/references.md
@@ -3869,30 +3871,30 @@ specs/compliance/
 specs/threat-model/
 ```
 
-Core references include NIST, ISO/IEC, OWASP, MITRE, ETSI, SPIFFE, and IEC as applicable to the domain.
+Referências centrais incluem NIST, ISO/IEC, OWASP, MITRE, ETSI, SPIFFE e IEC conforme o domínio.
 
 ---
 
-## 84. Licensing
+## 84. Licenciamento
 
-This repository is provided as technical reference material.
+Este repositório é fornecido como material de referência técnica.
 
-An organization adopting it should:
+A organização que o adotar deve:
 
-- define the licensing of its implementation;
-- review dependency licenses;
-- review requirements of the standards used;
-- perform applicable legal and regulatory analysis.
+- definir o licenciamento de sua implementação;
+- revisar licenças das dependências;
+- revisar requisitos dos padrões utilizados;
+- realizar análise legal e regulatória aplicável.
 
 ---
 
-## 85. Architecture Summary
+## 85. Síntese da arquitetura
 
-The objective of this architecture is to establish a condition in which:
+O objetivo desta arquitetura é estabelecer uma condição na qual:
 
-> **no agent implicitly trusts another agent; no critical action derives exclusively from a model's probabilistic decision; every identity, capability, and delegation is verifiable; every relevant action is observable; every authority has limits; and all relevant autonomy is reversible.**
+> **nenhum agente confia implicitamente em outro agente; nenhuma ação crítica deriva exclusivamente da decisão probabilística de um modelo; toda identidade, capability e delegação é verificável; toda ação relevante é observável; toda autoridade possui limites; e toda autonomia relevante é reversível.**
 
-The final thesis is:
+A tese final é:
 
 ```text
 Distributed Intelligence
@@ -3910,9 +3912,9 @@ Evidence-by-Default
 Secure Governed Edge-AI Architecture
 ```
 
-Intelligence may be distributed.
+Inteligência pode ser distribuída.
 
-**Authority must remain explicitly governed.**
+**Autoridade deve permanecer explicitamente governada.**
 
 
 # 72D. Academic Publication and arXiv Technical Paper Series
