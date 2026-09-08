@@ -11,6 +11,9 @@ class DelegationGrant:
     purpose: str
     expires_at: str
     parent_grant_id: str | None = None
+    issued_at: str = ""
+    issuer: str = ""
+    signature_valid: bool = False
 
 def validate_delegation_chain(agent: Agent, chain: tuple[DelegationGrant, ...],
                               required_capability: str, purpose: str,
@@ -22,6 +25,8 @@ def validate_delegation_chain(agent: Agent, chain: tuple[DelegationGrant, ...],
     effective = set(agent.capabilities)
     expected_parent = agent.id
     for grant in chain:
+        if not grant.signature_valid:
+            return False, "delegation_signature_invalid"
         if grant.grant_id in seen:
             return False, "delegation_cycle_detected"
         seen.add(grant.grant_id)
@@ -29,7 +34,12 @@ def validate_delegation_chain(agent: Agent, chain: tuple[DelegationGrant, ...],
             return False, "delegation_provenance_broken"
         if grant.purpose != purpose:
             return False, "delegation_purpose_mismatch"
-        expires = datetime.fromisoformat(grant.expires_at.replace("Z", "+00:00"))
+        try:
+            expires = datetime.fromisoformat(grant.expires_at.replace("Z", "+00:00"))
+        except (TypeError, ValueError):
+            return False, "delegation_expiry_invalid"
+        if expires.tzinfo is None:
+            return False, "delegation_expiry_timezone_required"
         if expires <= now:
             return False, "delegation_expired"
         if not set(grant.capabilities).issubset(effective):

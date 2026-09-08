@@ -30,14 +30,17 @@ def make_evidence(*, trace_id: str, agent_id: str, operation: str, resource: str
                   monitor_id: str = "", proposed_action: str = "",
                   observed_effect: str = "", previous_digest: str = "",
                   assurance_level: str = "local-reference") -> Evidence:
-    payload = {"trace_id":trace_id,"agent_id":agent_id,"operation":operation,"resource":resource,
+    evidence_id = str(uuid.uuid4())
+    timestamp = datetime.now(timezone.utc).isoformat()
+    payload = {"evidence_id":evidence_id,"timestamp":timestamp,
+               "trace_id":trace_id,"agent_id":agent_id,"operation":operation,"resource":resource,
                "decision":decision,"risk_score":risk_score,"reasons":reasons,
                "model_version":model_version,"policy_version":policy_version,
                "monitor_id":monitor_id,"proposed_action":proposed_action,
                "observed_effect":observed_effect,"previous_digest":previous_digest,
                "assurance_level":assurance_level}
     digest = hashlib.sha256(json.dumps(payload,sort_keys=True).encode()).hexdigest()
-    return Evidence(str(uuid.uuid4()), datetime.now(timezone.utc).isoformat(), trace_id, agent_id,
+    return Evidence(evidence_id, timestamp, trace_id, agent_id,
                     operation, resource, decision, risk_score, tuple(reasons), digest,
                     model_version, policy_version, monitor_id, proposed_action,
                     observed_effect, previous_digest, assurance_level)
