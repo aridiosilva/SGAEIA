@@ -1,22 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://sgaeia.dev/schemas/capability-token.schema.json",
-  "title": "SGAEIA Capability Token",
+  "title": "SGAEIA Delegated Capability Token",
   "type": "object",
   "additionalProperties": false,
-  "required": ["tokenId", "subject", "capabilities", "purpose", "issuedAt", "expiresAt", "issuer", "provenanceDigest"],
+  "required": ["grant_id", "parent_agent_id", "child_agent_id", "capabilities", "purpose", "expires_at", "issued_at", "issuer", "signature_valid"],
   "properties": {
-    "tokenId": {"type": "string", "minLength": 1},
-    "subject": {"type": "string", "minLength": 1},
+    "grant_id": {"type": "string", "minLength": 1},
+    "parent_agent_id": {"type": "string", "minLength": 1},
+    "child_agent_id": {"type": "string", "minLength": 1},
     "capabilities": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "purpose": {"type": "string", "minLength": 1},
-    "resourcePatterns": {"type": "array", "items": {"type": "string"}},
-    "issuedAt": {"type": "string", "format": "date-time"},
-    "expiresAt": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "parent_grant_id": {"type": ["string", "null"]},
+    "issued_at": {"type": "string", "format": "date-time"},
     "issuer": {"type": "string", "minLength": 1},
-    "parentTokenId": {"type": ["string", "null"]},
-    "maxDelegationDepth": {"type": "integer", "minimum": 0},
-    "revocationId": {"type": ["string", "null"]},
-    "provenanceDigest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+    "signature_valid": {"const": true}
   }
 }

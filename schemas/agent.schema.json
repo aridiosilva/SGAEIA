@@ -41,7 +41,9 @@
         "identity",
         "capabilities",
         "delegation",
-        "killSwitch"
+        "killSwitch",
+        "capabilityAssuranceLevel",
+        "executionBudgets"
       ],
       "properties": {
         "purpose": {
@@ -138,6 +140,35 @@
           "properties": {
             "required": {
               "const": true
+            }
+          }
+        },
+        "capabilityAssuranceLevel": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "executionBudgets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "runtimeSeconds",
+            "toolCalls",
+            "networkReach"
+          ],
+          "properties": {
+            "runtimeSeconds": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "toolCalls": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "networkReach": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
             }
           }
         }

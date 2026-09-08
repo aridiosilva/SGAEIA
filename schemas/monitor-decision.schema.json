@@ -4,15 +4,19 @@
   "title": "SGAEIA Independent Monitor Decision",
   "type": "object",
   "additionalProperties": false,
-  "required": ["monitorId", "subjectAgentId", "traceId", "allow", "valid", "policyVersion"],
+  "required": ["monitor_id", "subject_agent_id", "trace_id", "operation", "resource", "allow", "valid", "policy_version", "issued_at", "expires_at", "signature_valid", "trust_domain"],
   "properties": {
-    "monitorId": {"type": "string", "minLength": 1},
-    "subjectAgentId": {"type": "string", "minLength": 1},
-    "traceId": {"type": "string", "minLength": 1},
+    "monitor_id": {"type": "string", "minLength": 1},
+    "subject_agent_id": {"type": "string", "minLength": 1},
+    "trace_id": {"type": "string", "minLength": 1},
+    "operation": {"type": "string", "minLength": 1},
+    "resource": {"type": "string", "minLength": 1},
     "allow": {"type": "boolean"},
     "valid": {"type": "boolean"},
-    "policyVersion": {"type": "string", "minLength": 1},
-    "observedEffect": {"type": "string"},
-    "divergenceDetected": {"type": "boolean"}
+    "policy_version": {"type": "string", "minLength": 1},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "signature_valid": {"const": true},
+    "trust_domain": {"type": "string", "minLength": 1}
   }
 }

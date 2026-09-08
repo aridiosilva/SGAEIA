@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sgaeia.dev/schemas/observed-effect.schema.json",
+  "title": "SGAEIA Observed Effect",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["observer_id", "subject_agent_id", "trace_id", "operation", "resource", "expected_effect", "observed_effect", "signature_valid"],
+  "properties": {
+    "observer_id": {"type": "string", "minLength": 1},
+    "subject_agent_id": {"type": "string", "minLength": 1},
+    "trace_id": {"type": "string", "minLength": 1},
+    "operation": {"type": "string", "minLength": 1},
+    "resource": {"type": "string", "minLength": 1},
+    "expected_effect": {"type": "string"},
+    "observed_effect": {"type": "string"},
+    "signature_valid": {"const": true}
+  }
+}

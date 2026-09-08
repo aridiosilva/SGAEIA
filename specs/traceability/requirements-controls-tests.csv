@@ -28,3 +28,7 @@ SR-029,CTL-AAS-004,tests/security/test_alien_cognition_assurance.py::test_autono
 SR-030,CTL-AAS-005,tests/security/test_alien_cognition_assurance.py::test_execution_budgets_fail_closed,budget_enforcement_record
 SR-032,CTL-AAS-006,tests/security/test_alien_cognition_assurance.py::test_collective_privilege_aggregation_is_denied,collective_authorization_record
 SR-034,CTL-AAS-007,tests/security/test_alien_cognition_assurance.py::test_agent_cannot_modify_protected_monitor,protected_control_denial
+SR-025,CTL-AAS-001,specs/architecture/alien-cognition-assurance.md,architectural_assurance_premise
+SR-031,CTL-AAS-007,tests/security/test_alien_cognition_assurance.py::test_self_affecting_change_requires_registered_approval,independent_approval_record
+SR-033,CTL-AAS-002,tests/security/test_alien_cognition_assurance.py::test_self_affecting_change_requires_registered_approval,verified_human_approval
+SR-035,CTL-AAS-003,tests/security/test_alien_cognition_assurance.py::test_post_effect_divergence_revokes_agent,effect_reconciliation_and_revocation

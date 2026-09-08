@@ -59,3 +59,15 @@ Given a set of individually permissible agent contributions whose combined capab
 
 ## AC-020 Bounded execution
 Given runtime, tool-call or network-reach consumption above an agent budget, the action MUST be denied or quarantined.
+
+## AC-021 Trusted context boundary
+Given a client request containing security classification, monitor, approval, risk, assurance or runtime claims, the API MUST reject those fields and resolve the values from trusted control-plane sources.
+
+## AC-022 Bound and registered authority records
+Given a monitor decision, human approval or delegation grant, authorization MUST reject it unless it is registered, signature-valid, time-valid and bound to the same subject, trace, operation and resource.
+
+## AC-023 Post-effect reconciliation
+Given a signed observer record whose observed effect differs from the authorized expected effect, the system MUST fail closed and revoke or quarantine the responsible agent.
+
+## AC-024 Complete RC2 traceability
+Every requirement from SR-025 through SR-035 MUST map to a control, verification activity and named evidence artifact.
