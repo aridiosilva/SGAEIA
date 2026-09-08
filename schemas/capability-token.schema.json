@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sgaeia.dev/schemas/capability-token.schema.json",
+  "title": "SGAEIA Capability Token",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tokenId", "subject", "capabilities", "purpose", "issuedAt", "expiresAt", "issuer", "provenanceDigest"],
+  "properties": {
+    "tokenId": {"type": "string", "minLength": 1},
+    "subject": {"type": "string", "minLength": 1},
+    "capabilities": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "purpose": {"type": "string", "minLength": 1},
+    "resourcePatterns": {"type": "array", "items": {"type": "string"}},
+    "issuedAt": {"type": "string", "format": "date-time"},
+    "expiresAt": {"type": "string", "format": "date-time"},
+    "issuer": {"type": "string", "minLength": 1},
+    "parentTokenId": {"type": ["string", "null"]},
+    "maxDelegationDepth": {"type": "integer", "minimum": 0},
+    "revocationId": {"type": ["string", "null"]},
+    "provenanceDigest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+  }
+}

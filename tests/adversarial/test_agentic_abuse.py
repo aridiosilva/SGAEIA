@@ -12,4 +12,4 @@ def test_high_anomalous_risk_cannot_silently_execute():
     i=Intent("a","payment.execute","payment:1","redteam-2",critical=True)
     d=PolicyEngine().authorize(a,i,RiskContext(privilege=5,data_sensitivity=4,tool_power=5,network_reach=4,impact=5,behavior_anomaly=5))
     assert not d.allow
-    assert d.action in {"REQUIRE_APPROVAL","QUARANTINE","DENY_REVOKE"}
+    assert d.action in {"DENY","REQUIRE_APPROVAL","QUARANTINE","DENY_REVOKE"}

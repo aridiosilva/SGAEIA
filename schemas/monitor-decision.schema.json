@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sgaeia.dev/schemas/monitor-decision.schema.json",
+  "title": "SGAEIA Independent Monitor Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["monitorId", "subjectAgentId", "traceId", "allow", "valid", "policyVersion"],
+  "properties": {
+    "monitorId": {"type": "string", "minLength": 1},
+    "subjectAgentId": {"type": "string", "minLength": 1},
+    "traceId": {"type": "string", "minLength": 1},
+    "allow": {"type": "boolean"},
+    "valid": {"type": "boolean"},
+    "policyVersion": {"type": "string", "minLength": 1},
+    "observedEffect": {"type": "string"},
+    "divergenceDetected": {"type": "boolean"}
+  }
+}
