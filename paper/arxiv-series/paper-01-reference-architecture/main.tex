@@ -1,138 +1,273 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{microtype,booktabs,longtable,array,amsmath,amssymb,url,graphicx}
+\usepackage{microtype,booktabs,array,tabularx,amsmath,amssymb,url,graphicx}
 \usepackage[hidelinks]{hyperref}
 \newcommand{\sgaeia}{\textsc{SGAEIA}}
 \newcommand{\repo}{\url{https://github.com/aridiosilva/SGAEIA}}
-\author{Aridio Silva\\\texttt{@aridiosilva}\\Independent Researcher\\\url{https://github.com/aridiosilva/SGAEIA}}
+\newcommand{\conceptdoi}{\href{https://doi.org/10.5281/zenodo.22557795}{10.5281/zenodo.22557795}}
+\newcommand{\versiondoi}{\href{https://doi.org/10.5281/zenodo.22557796}{10.5281/zenodo.22557796}}
+
+\title{From Edge AI to Governed Autonomous Edge Intelligence:\\
+SGAEIA, a Security-by-Design Reference Architecture for Distributed Multi-Agent Systems}
+\author{Aridio Silva\\
+Independent Researcher, Brazil\\
+ORCID: \href{https://orcid.org/0009-0008-2411-6995}{0009-0008-2411-6995}}
 \date{September 2026}
-\title{From Edge AI to Governed Autonomous Edge Intelligence: SGAEIA, a Security-by-Design Reference Architecture for Distributed Multi-Agent Systems}
-\begin{document}\maketitle
+
+\begin{document}
+\maketitle
+
 \begin{abstract}
-Edge computing moved computation toward data sources; Edge AI moved inference and learning toward the network edge; generative and agentic AI now move planning, tool use, delegation, memory, and action toward the edge. This paper argues that the resulting transition is not merely from centralized to distributed intelligence, but from distributed intelligence to distributed agency and authority. We present SGAEIA (Secure Governed Autonomous Edge Intelligence Architecture), an open, vendor-neutral reference architecture and Spec-Driven Development framework for bounded, revocable, observable, and continuously governed multi-agent Edge AI. SGAEIA combines workload identity, capability and delegation graphs, Agent Trust Zones, risk-adaptive autonomy, policy decision/enforcement separation, continuous GRC, evidence-as-code, formal security invariants, replaceable integration ports, and adapter conformance. The accompanying reference implementation provides executable specifications and tests. We explicitly distinguish designed properties, formally specified properties, locally tested properties, and properties requiring future live-system evaluation.
+Edge computing moved computation toward data sources, and Edge AI moved inference and learning toward devices and edge infrastructure. Generative and agentic AI extend this trajectory by moving planning, memory, tool use, delegation, and action toward the edge. The resulting transition is not only from centralized to distributed intelligence; it creates distributed authority-bearing software actors operating across heterogeneous trust domains, intermittent connectivity, and potentially cyber-physical environments. This paper presents \sgaeia{} (Secure Governed Autonomous Edge Intelligence Architecture), an open and vendor-neutral reference architecture and Spec-Driven Development framework for bounded, revocable, observable, and policy-mediated multi-agent Edge AI. The architecture combines non-human workload identity, capabilities and constrained delegation, criticality and autonomy classes, Agent Trust Zones, risk-adaptive authorization, external policy decision and enforcement, continuous governance-risk-compliance (GRC), evidence-as-code, formal security invariants, and security-preserving technology substitution through integration-port and adapter-conformance contracts. We position these mechanisms against recent work on authenticated delegation, runtime governance, governance-first agent architectures, and emerging NIST and OWASP agent-control initiatives. The paper explicitly distinguishes designed properties, formally specified properties, locally executable evidence, and claims requiring independent or live-system validation. The accompanying public artifact provides specifications, reference code, tests, formal models, and adapter profiles; it is a research reference artifact rather than a production or safety certification.
 \end{abstract}
-\noindent\textbf{Project:} SGAEIA --- Secure Governed Autonomous Edge Intelligence Architecture.\\
+
+\noindent\textbf{Keywords:} Edge AI; Agentic AI; Multi-Agent Systems; Zero Trust; AI Governance; Runtime Authorization; Security-by-Design; Continuous GRC; Evidence-as-Code.
 
 \section{Introduction}
-Edge computing emerged to address latency, bandwidth, locality, privacy, and resilience constraints that cloud-only architectures cannot always satisfy \cite{shi2016edge}. Edge intelligence extended this paradigm by moving AI inference and training toward devices and edge infrastructure \cite{zhou2019edge,li2018}. ETSI MEC reflects the continuing operational maturation of edge infrastructure \cite{etsi}.
+Edge computing emerged to reduce latency, bandwidth consumption, centralization pressure, and dependence on remote cloud connectivity \cite{shi2016edge}. Edge intelligence extended this paradigm by moving inference and training toward devices and edge infrastructure \cite{zhou2019edge,li2018edge}. Recent work further studies trustworthy Edge Intelligence, edge-efficient large language models (LLMs), federated and edge learning for LLMs, and generative AI deployment at the edge \cite{wang2025trustworthyedge,wang2025edgeefficientllm,piccialli2025federatededge,navardi2025genaiedge}.
 
-Agentic AI introduces a qualitatively different transition. Agents may plan, use memory and retrieval, invoke tools, collaborate, delegate, and affect digital or physical systems. Multi-agent research already demonstrates diverse collaboration structures and protocols \cite{tran2025}. The security boundary therefore expands from distributed computation to distributed authority.
-
-We summarize the evolution as:
+Agentic AI changes the security problem considered here by introducing persistent, tool-using, authority-bearing actors. An agent may hold credentials, maintain state and memory, invoke tools, communicate with other agents, create sub-tasks, delegate authority, and affect systems of record or cyber-physical processes. Multi-agent collaboration expands the number of principals and interaction paths that must be governed \cite{tran2025multagent,hammond2025multiagentrisk}. The resulting transition can be summarized as
 \[
-Cloud\ Computing \rightarrow Edge\ Computing \rightarrow Edge\ Intelligence \rightarrow Distributed\ Autonomous\ Agency.
+Cloud\ Computing \rightarrow Edge\ Computing \rightarrow Edge\ AI \rightarrow Agentic\ Edge\ AI \rightarrow Distributed\ Authority.
 \]
-The research question is: \emph{how can heterogeneous, distributed, intermittently connected multi-agent Edge AI support useful autonomy without allowing authority, delegation, trust, and evidence to become implicit or unbounded?}
-
-SGAEIA's central thesis is that distributed intelligence does not require distributed implicit trust. Autonomy can be decentralized while authority remains explicit, bounded, auditable, and revocable.
-
-\section{From Edge AI to Distributed Authority}
-Traditional Edge AI commonly centers on placement and optimization of prediction or learning workloads \cite{zhou2019edge}. Agentic Edge AI changes the unit of control from a model invocation to an authority-bearing actor. A useful abstraction is
+The central security distinction is therefore
 \[
-Agent=Model+State+Memory+Tools+PolicyContext+Identity.
+Distributed\ Intelligence \neq Implicitly\ Distributed\ Trust \neq Unbounded\ Authority.
 \]
-An agent may read or modify data, call APIs, execute tools, create or delegate tasks, and interact with cyber-physical systems. Hence:
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1-edge-to-governed-authority.pdf}
+\caption{Conceptual evolution from centralized cloud computing to governed autonomous Edge intelligence. The security problem changes as computation evolves into distributed inference and then into authority-bearing agents capable of planning, delegation, tool use, and action. SGAEIA targets the final transition by keeping distributed authority explicitly bounded and governed.}
+\label{fig:evolution-authority}
+\end{figure}
+
+This transition is already relevant beyond conceptual architecture. Capgemini's 2026 research brief reports a survey of 1,505 executives at large organizations across 15 countries and states that 34\% of respondent organizations had scaled Edge AI use cases, with additional respondents reporting limited deployments, pilots, or exploration \cite{capgemini2026ai}. The statistic is used here only as contextual industry evidence: the sample covers large organizations already using AI and is not treated as a population-wide estimate of global Edge AI adoption. Separately, Deloitte's 2026 survey of 3,235 business and IT leaders across 24 countries reports that 21\% of respondents described their organizations as having a mature governance model for agentic AI \cite{deloitte2026stateai}. This result is likewise used as contextual organizational evidence rather than a universal prevalence estimate. Together, the surveys motivate, but do not establish, the architectural need for runtime governance.
+
+Recent research already addresses important parts of this problem: authenticated delegation \cite{south2025authenticateddelegation}, execution-path governance \cite{kaptein2026policiespaths}, composite principals and capability attenuation \cite{tallam2026fiveplane}, governance-first action gating \cite{calboreanu2026lattice}, runtime policy enforcement for tool protocols \cite{wang2026runtimepep}, and adversarial evaluation of delegated authorization \cite{dantuluri2026delegationwithouttrust}. NIST has also launched an AI Agent Standards Initiative that explicitly includes agent authentication and identity infrastructure, while OWASP's Agent Control Standard (ACS) defines runtime control hooks across agent frameworks \cite{nist2026agentinitiative,nist2026agentidentity,owasp2026acs}.
+
+Accordingly, \sgaeia{} does not claim priority for identity, delegation, runtime authorization, policy-as-code, or audit as isolated mechanisms. This paper contributes their composition into a vendor-neutral architecture for distributed Edge, IoT, OT, and cyber-physical agent systems, together with explicit assurance boundaries and a security-preserving technology-substitution model.
+
+\subsection{Research Questions}
+This paper is organized around five research questions:
+
+\begin{description}
+\item[RQ1.] What additional security and governance primitives become necessary when Edge AI evolves from distributed inference and learning into distributed, tool-using, authority-bearing multi-agent systems?
+\item[RQ2.] How can agent identity, capabilities, delegation, trust, risk, and operational criticality be composed so that effective autonomy remains explicitly bounded and revocable at runtime?
+\item[RQ3.] How can governance requirements be transformed into externally enforced runtime controls and reconstructable evidence without making the language model itself the security authority?
+\item[RQ4.] How can a vendor-neutral Edge AI architecture allow implementation technologies to be replaced without silently weakening security, audit, failure, and revocation semantics?
+\item[RQ5.] Which \sgaeia{} properties can be established by design, formal specification, and local executable tests, and which require independent model checking, representative infrastructure, domain-specific safety validation, or live-system experiments?
+\end{description}
+
+\subsection{Contributions}
+The paper makes five contributions. First, it formulates an authority-centric threat and trust model for agentic Edge systems in which agents are non-human principals rather than merely model endpoints. Second, it presents a governed-autonomy model that composes criticality, autonomy level, trust zone, risk, policy, and context. Third, it defines an executable governance chain from requirements and risk to policy enforcement and evidence. Fourth, it defines security-preserving vendor neutrality through Integration Port Specifications and Adapter Conformance, where API compatibility alone is insufficient. Fifth, it provides an open reference artifact with explicit assurance levels that separate design claims, formal specification, local test evidence, and independent/live validation.
+
+\section{Background: From Edge Intelligence to Agentic Edge AI}
+Classical Edge AI focuses primarily on where models execute, how training or inference is partitioned, and how computation, communication, energy, and privacy trade-offs are optimized \cite{zhou2019edge,wang2025trustworthyedge}. Generative AI at the edge adds large-model inference, model compression, device--edge cooperation, and distributed/federated adaptation \cite{navardi2025genaiedge,wang2025edgeefficientllm,piccialli2025federatededge}. Agentic AI adds a qualitatively different element: persistent actors that transform observations into plans and externally consequential actions.
+
+A useful abstraction is
 \[
-Distributed\ Intelligence \neq Distributed\ Trust \neq Unbounded\ Authority.
+Agent = Model + State + Memory + Tools + PolicyContext + Identity.
 \]
-This distinction motivates explicit governance of non-human identities, capabilities, delegation, and action.
+When such agents are distributed across cloud, MEC, edge, IoT, and OT environments, authority itself becomes distributed. The challenge is not to prevent distributed intelligence, but to prevent authority from becoming implicit, ambient, or self-escalating. Work connecting agentic AI with emerging 6G and edge environments reinforces that multi-agent coordination and edge placement are converging research directions \cite{ale2025agentic6g}.
 
-\section{Threat Model}
-The model assumes untrusted external input, prompt/tool injection, compromised agents, poisoned retrieval or memory, malicious or over-privileged tools, identity theft, policy bypass, delegation escalation, autonomous lateral movement, evidence suppression, network partition, supply-chain compromise, and unsafe actuation. Agentic-security literature emphasizes that tool use, memory, autonomy, and long-horizon action create risks beyond conventional model inference \cite{datta2025}. MITRE ATLAS and OWASP agentic guidance provide complementary threat taxonomies \cite{mitreatlas,owasp}.
+\section{Related Work and Research Gap}
+\subsection{Authenticated identity and delegation}
+South et al. argue that agents require authenticated and auditable delegation and show how established web identity and authorization mechanisms may be extended to agent-specific credentials and scoped authority \cite{south2025authenticateddelegation}. In a concurrent 2026 preprint, Dantuluri and Sundi evaluate delegation under an untrusted-model assumption and demonstrate how compromised agents can exceed authority in common patterns unless authorization is externally confined \cite{dantuluri2026delegationwithouttrust}. \sgaeia{} adopts the same general direction---identity and delegated authority must be externally verifiable---but embeds it in an Edge-oriented architecture that also combines criticality, autonomy, trust zones, degraded-connectivity behavior, evidence, and replaceable infrastructure adapters.
 
-\section{Formal System Model}
+\subsection{Runtime governance and enforcement}
+In a 2026 preprint, Kaptein et al. model runtime governance as deterministic policy evaluation over partial execution paths, highlighting limitations of prompt-level controls and static authorization \cite{kaptein2026policiespaths}. A concurrent 2026 preprint by Tallam proposes a five-plane architecture that combines runtime mediation, composite principals, capability attenuation, and structured audit evidence \cite{tallam2026fiveplane}. Wang et al. study runtime policy enforcement specifically for MCP-based LLM agents \cite{wang2026runtimepep}, while Zwerdling et al. study company-policy adherence in agentic workflows \cite{zwerdling2025policyadherence}. These works strongly support externalized policy evaluation and mediation. \sgaeia{} extends this line toward heterogeneous Edge/OT deployments and treats policy enforcement as one element of a larger requirement-to-evidence governance chain.
+
+\subsection{Governance-first architectures}
+LATTICE separates planning, execution, and governance, uses deterministic policy-as-code gates, human escalation, and cryptographic audit, and reports empirical evaluation of its reference implementation \cite{calboreanu2026lattice}. This is one of the closest architectural precedents to \sgaeia{}. Salient distinctions in the scope reviewed here include scope and assurance model: \sgaeia{} targets distributed Edge/MEC/IoT/OT and cyber-physical deployments; composes autonomy with criticality, trust, risk, and connectivity state; introduces Agent Trust Zones; and makes security-preserving component replacement an explicit architectural property. \sgaeia{} currently provides less live empirical evidence than LATTICE, a limitation made explicit in Section~\ref{sec:assurance}.
+
+\subsection{Standards and emerging control frameworks}
+NIST's AI Agent Standards Initiative identifies secure agent interactions, authentication, and identity infrastructure as active standardization and research priorities \cite{nist2026agentinitiative,nist2026agentidentity}. OWASP ACS specifies portable runtime-control hooks and emphasizes inspectability, traceability, instrumentation, and runtime behavior control across frameworks \cite{owasp2026acs}. These initiatives reinforce the relevance of external controls but do not, by themselves, define the full \sgaeia{} architecture. In particular, \sgaeia{} distinguishes portability of control hooks from semantic conformance of replacement technologies.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Author-coded qualitative comparison of representative sources inspected as of September 2026. ``Partial'' means the property is present only in part or under a narrower scope; ``N/E'' means not explicit in the inspected source and is not a claim of absence. This table is not a systematic-review claim.}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}Xccccc}
+\toprule
+Property & South & Kaptein & Tallam & LATTICE & SGAEIA \\
+\midrule
+Authenticated/delegated authority & Yes & Partial & Yes & Partial & Yes \\
+Runtime external enforcement & Partial & Yes & Yes & Yes & Yes \\
+Path/context-sensitive governance & N/E & Yes & Yes & Partial & Yes \\
+Edge/OT/cyber-physical scope & N/E & N/E & N/E & Partial & Yes \\
+Criticality $\times$ autonomy model & N/E & N/E & N/E & Partial & Yes \\
+Degraded/offline authority rule & N/E & N/E & N/E & N/E & Yes \\
+Evidence/audit substrate & Yes & Partial & Yes & Yes & Yes \\
+Formal security invariants & N/E & Partial & Yes & Yes & Yes \\
+Security-preserving adapter substitution & N/E & N/E & N/E & N/E & Yes \\
+Explicit assurance-level boundaries & N/E & N/E & Partial & Yes & Yes \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Threat and Trust Model}
+The threat model includes untrusted external input, direct and indirect prompt injection, poisoned memory or retrieval, malicious or over-privileged tools, agent impersonation, credential theft and replay, delegation escalation, compromised sub-agents, autonomous lateral movement, evidence suppression, supply-chain compromise, sensor manipulation, unsafe actuation, and network/control-plane partition. Contemporary agent-security surveys and OWASP/MITRE taxonomies reinforce the importance of these classes \cite{chhabra2026agenticsecurity,tang2026agentsecurity,mitreatlas,owasp2026agentictop10}.
+
+The architecture assumes that the probabilistic model can be wrong, manipulated, or compromised. Consequently, a model-generated decision is never sufficient evidence of authorization. The core trust rule is:
+\[
+Agent\ proposes;\ architecture\ authorizes\ or\ denies.
+\]
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2-runtime-authorization-path.pdf}
+\caption{SGAEIA runtime authorization and evidence path. Agent intent is mediated by identity, capability, delegation, risk, policy-decision, and policy-enforcement controls before execution; human approval is inserted when policy requires it. Telemetry, evidence, and trace data support reconstructability and governance without making the model the security authority.}
+\label{fig:runtime-path}
+\end{figure}
+
+\section{Formal System and Authority Model}
 A governed deployment is modeled as
 \[
 S=(V,E,Z,P,I,C,R,T,L),
 \]
-where $V$ denotes entities, $E$ relations, $Z$ trust zones, $P$ policies, $I$ identities, $C$ capabilities, $R$ risks, $T$ telemetry/evidence, and $L$ lifecycle state. A governed agent satisfies
+where $V$ is the set of entities, $E$ their relations, $Z$ trust zones, $P$ policies, $I$ identities, $C$ capabilities, $R$ risk state, $T$ telemetry/evidence, and $L$ lifecycle state. Entity classes may include humans, agents, models, devices, workloads, functions, network services, and external systems.
+
+A governed agent satisfies
 \[
-Governed(A)=Identity\land Owner\land Purpose\land Capabilities\land Policy\land Risk\land Observability\land Auditability\land Revocability.
+\begin{aligned}
+Governed(A)={}&Identity\land Owner\land Purpose\land Capabilities\land Policy\land Risk\\
+&\land Observability\land Auditability\land Revocability.
+\end{aligned}
 \]
 
+We propose an effective authority envelope for agent $i$ at time $t$ as
+\[
+\mathcal{A}_i(t)=f(I_i,C_i,D_i,Z_i,R_i,T_i,P_i,L_i,t),
+\]
+where $D_i$ captures delegated authority and the remaining terms capture identity, capability, trust-zone placement, risk, trust/context signals, policy, lifecycle/criticality, and time. This is an architectural abstraction rather than a fitted statistical model. A proposed \sgaeia{} design invariant is monotonic authority restriction:
+\[
+Risk\uparrow \lor Trust\downarrow \lor Connectivity\downarrow
+\Rightarrow Authority_{effective}\not\uparrow.
+\]
+Thus, as a normative architecture requirement rather than an empirical causal law, degraded information or connectivity must not, by itself, increase authority.
+
 \section{Governed Autonomy}
-SGAEIA separates criticality classes L0--L4 from autonomy levels A0--A5. L4 denotes cyber-physical/safety-critical contexts; A5 denotes autonomous orchestration/delegation. The reference profile prohibits L4+A5. Effective autonomy is
+\sgaeia{} separates operational criticality L0--L4 from autonomy A0--A5. L0--L4, A0--A5, ATZ-0--ATZ-5, and the min-based effective-autonomy operator used below are \sgaeia{} reference-policy constructs rather than empirically calibrated universal scales. L4 denotes cyber-physical or safety-critical contexts. A5 denotes autonomous orchestration and delegation. The reference policy prohibits L4+A5. Effective autonomy is bounded by multiple constraints:
 \[
 A_{effective}=\min(A_{configured},A_{risk},A_{context},A_{trust},A_{policy}).
 \]
-Agent Trust Zones range from ATZ-0 (external/unknown) through ATZ-5 (cyber-physical critical). ATZ-5 means maximum control requirement, not implicit trust.
+
+Agent Trust Zones (ATZ-0--ATZ-5) classify operational control requirements rather than intrinsic trustworthiness. ATZ-0 represents external or unknown principals, while ATZ-5 represents cyber-physical critical environments requiring the strongest controls. ATZ-5 therefore means maximum governance requirement, not ``fully trusted.''
 
 \section{Identity, Capability, and Delegation}
-Each governed agent is treated as a non-human identity. SPIFFE illustrates portable workload-bound cryptographic identity through SPIFFE IDs, SVIDs, and a Workload API \cite{spiffe}. Authorization requires more than identity:
+Each governed agent is represented as a non-human identity. Workload-identity systems such as SPIFFE illustrate portable cryptographic identity mechanisms suitable for dynamic workloads \cite{spiffe}. Identity, however, is not authorization. A simplified authorization predicate is
 \[
-Authorize=IdentityValid\land CapabilityValid\land PolicyAllows\land Risk<MaxRisk\land Trust>MinTrust.
+Authorize(a,r,o,c,t)=IdentityValid(a)\land CapabilityValid(a,o)\land PolicyAllows(a,r,o,c)
 \]
-Delegation is bounded by capability subset, maximum depth, expiry, resource, purpose, and context constraints.
+\[
+\land\ Risk(a,r,o,c,t)<MaxRisk\land Trust(a,t)>MinTrust.
+\]
+Delegation is bounded by capability subset, depth, expiry, purpose, resource, context, and revocation semantics. A child principal cannot acquire capability outside the authority delegated by its parent.
 
-\section{Zero-Trust Policy Enforcement}
-The runtime control path is:
+\section{Zero-Trust Runtime Enforcement}
+The runtime path is
 \[
-Intent\rightarrow Identity\rightarrow Capability\rightarrow Delegation\rightarrow Risk\rightarrow PDP\rightarrow PEP\rightarrow Approval\rightarrow Execution\rightarrow Evidence.
+\begin{aligned}
+Intent&\rightarrow Identity\rightarrow Capability\rightarrow Delegation\rightarrow Risk\rightarrow PDP\rightarrow PEP\\
+&\rightarrow Approval\rightarrow Execution\rightarrow Evidence.
+\end{aligned}
 \]
-The model is not the security authority. The agent proposes; an external policy architecture authorizes or denies. This is consistent with zero-trust principles that reject implicit trust based on network location \cite{nist207,nist207a}.
+Policy Decision Points (PDPs) decide; Policy Enforcement Points (PEPs) mediate action. Human approval is inserted where risk, criticality, or policy requires it. This is consistent with zero-trust principles that reject implicit trust based on network location and emphasize dynamic, context-aware authorization and least-privilege access \cite{nist207,nist207a}.
+
+The architecture is intentionally compatible with emerging agent-control work such as OWASP ACS, but does not require a specific agent framework. An implementation may expose framework-level control hooks while still needing independent identity, policy, risk, revocation, and evidence services.
 
 \section{Continuous GRC and Evidence-as-Code}
-NIST AI RMF and the GenAI Profile provide lifecycle risk-management foundations \cite{nistrmf,nistgenai}. SGAEIA connects governance to runtime through
+NIST AI RMF and the Generative AI Profile provide lifecycle risk-management foundations \cite{nistrmf,nistgenai}. \sgaeia{} connects governance requirements to runtime controls through
 \[
 Regulation\rightarrow Requirement\rightarrow Risk\rightarrow Control\rightarrow Policy\rightarrow Enforcement\rightarrow Evidence.
 \]
-Critical actions produce correlated provenance containing identity, intent, policy decision, risk score, delegation chain, tool call, approval, outcome, timestamp, and integrity metadata.
+Critical actions generate correlated evidence that can include principal identity, intent, policy decision, risk score, delegation chain, tool invocation, approval, execution outcome, timestamp, and integrity metadata. Evidence-as-code does not mean that compliance is automatically established; it means that control execution produces machine-correlatable artifacts suitable for later assurance, audit, or compliance assessment.
 
-\section{Security-by-Design and SDD}
-Security is specified before implementation:
+\section{Security-by-Design and Spec-Driven Development}
+The development chain is
 \[
 Requirement\rightarrow Threat/Risk\rightarrow Control\rightarrow Policy\rightarrow Implementation\rightarrow Test\rightarrow Evidence.
 \]
-This makes Security-by-Design, Security-First, and Shift-Left/Right/Everywhere concrete rather than aspirational. NIST secure-development guidance for generative AI informs this lifecycle \cite{nistssdf}.
+Within \sgaeia{}, this chain is intended to operationalize Security-by-Design, Security-First, and Shift-Left/Right/Everywhere by requiring security behavior to be specified before implementation and re-evaluated at runtime. NIST secure-development guidance for generative AI provides complementary lifecycle practices \cite{nistssdfai}.
 
-\section{Integration Ports and Adapter Conformance}
-Vendor neutrality is semantic. A replacement technology is conformant only if it preserves
+\section{Integration Ports and Security-Preserving Substitution}
+A central design goal is vendor neutrality without semantic erosion. \sgaeia{} therefore separates implementation technology from required port semantics. We propose the following conformance criterion as a design requirement: a replacement is conformant only when
 \[
-Functional\land Security\land Audit\land Failure\land Revocation.
+ConformantReplacement = FunctionalPass\land SecurityPass\land AuditPass
 \]
-Ports cover identity, PDP, PEP, risk, registry, evidence, kill switch, observability, event bus, mesh, state, and edge orchestration. OpenAPI and AsyncAPI are used where appropriate \cite{openapi,asyncapi}. The Adapter Conformance Framework separates local contract compatibility from representative/live assurance.
+\[
+\land FailurePass\land RevocationPass\land NoSecurityInvariantViolation.
+\]
 
-\section{Formal Invariants}
-Representative invariants include:
+Integration ports cover identity, PDP, PEP, risk, registry, evidence, kill switch, observability, event bus, mesh, state, and edge orchestration. OpenAPI and AsyncAPI can express synchronous and asynchronous interface contracts \cite{openapi32,asyncapi31}. However, schema compatibility is only the functional layer. Security behavior under failure, revocation propagation, evidence production, and invariant preservation are separate conformance obligations.
+
+This distinction is important in an ecosystem moving toward portable agent-control hooks \cite{owasp2026acs}: portability answers whether a control can be attached; semantic conformance asks whether replacing a component preserves the required authorization, audit, failure, and revocation behavior.
+
+\section{Formalized Security Invariants}
+Representative invariants include
 \begin{align*}
-AgentWithoutIdentity&\Rightarrow DENY\\
-UnknownAgent&\Rightarrow DENY\\
-L4\land A5&\Rightarrow DENY\\
-DelegationDepth>MaxDepth&\Rightarrow DENY\\
-ChildCapabilities\nsubseteq ParentDelegatedCapabilities&\Rightarrow DENY\\
-OfflineMode&\Rightarrow ReducedOrEqualAuthority.
+AgentWithoutIdentity &\Rightarrow DENY,\\
+UnknownAgent &\Rightarrow DENY,\\
+L4\land A5 &\Rightarrow DENY,\\
+DelegationDepth>MaxDepth &\Rightarrow DENY,\\
+ChildCapabilities\nsubseteq ParentDelegatedCapabilities &\Rightarrow DENY,\\
+PaymentCreator=PaymentApprover &\Rightarrow DENY,\\
+AttestationFailed\land CriticalAgent &\Rightarrow STOP/QUARANTINE,\\
+OfflineMode &\Rightarrow ReducedOrEqualAuthority.
 \end{align*}
-The repository includes TLA+ and Alloy specifications, but this paper does not claim that external TLA+/Alloy model checkers have been executed. Equivalent selected finite-state properties are exercised by Python tests.
+Additional design invariants prohibit self-elevation of autonomy, self-authorization by the model, and trust-boundary crossing solely on the basis of an LLM semantic decision.
 
-\section{Reference Implementation and Evidence}
-The public Python reference implementation includes manifests, registries, risk scoring, delegation checks, kill-switch behavior, evidence generation, policies, OpenAPI/AsyncAPI contracts, formal specifications, and adapter profiles. At manuscript preparation time, local validation reported 31 passing tests and nine adapter profiles in the contract harness. These are repository-level results only; they do not establish production security, performance, or safety.
+The repository includes TLA+ and Alloy specifications. The properties in this section are specification-level properties: their encoding in formal-language artifacts does not by itself establish successful parsing, type checking, satisfiability analysis, or model-checker verification. This paper does \emph{not} claim that external TLA+ or Alloy model checkers have been executed. Selected equivalent finite-state properties are exercised by Python tests; external model-checker execution is future assurance work.
+
+\section{Reference Implementation}
+The public reference artifact includes Python services and models for registry, risk scoring, delegation, kill-switch behavior, evidence generation, policy decisions, service interfaces, and API exposure. It also includes OpenAPI/AsyncAPI contracts, formal specifications, deployment manifests, and adapter profiles. The architecture is intentionally replaceable: reference technologies demonstrate contracts rather than define mandatory products.
+
+In the immutable SGAEIA v0.3.4 artifact cited in the Artifact Availability section, repository-level local validation records 31 passing tests and nine adapter profiles in the shared conformance harness. These counts describe repository-local evidence for that archived baseline and are subject to the reproducibility qualification stated below. They do not establish production security, upstream-product certification, operational resilience, safety certification, or regulatory compliance.
+
+For pre-submission reproducibility, the executable baseline was independently re-executed from a clean extraction: specification validation passed, the test suite reported 31 passing tests, and the adapter-conformance harness reported nine passing profiles. GitHub's comparison from v0.3.2 to v0.3.4 reports only three changed files across citation and Zenodo-metadata commits, with no executable/test change indicated; the reproduced executable baseline is therefore unchanged for the v0.3.4 release. This reproduction does not constitute production, safety, or independent security certification.
+
+\section{Assurance Model and Current Evidence}\label{sec:assurance}
+To prevent overclaiming, \sgaeia{} uses four assurance levels:
+\begin{description}
+\item[A0 --- Designed.] The property is stated as an architectural requirement or design rule.
+\item[A1 --- Formally Specified.] The property is encoded in a formal-language or machine-readable specification. This level does not imply successful parsing, type checking, satisfiability analysis, or model-checker verification unless separately evidenced.
+\item[A2 --- Locally Executable/Tested.] The property is exercised by repository-local tests, contract harnesses, or executable reference logic.
+\item[A3 --- Independently/Live Validated.] The property has evidence from representative/live infrastructure, independent reproduction, external model checking, domain-specific safety validation, or equivalent independent assurance.
+\end{description}
+
+The current public artifact primarily supports A0--A2 claims. TLA+ and Alloy artifacts support specification-level claims (A1); the Python finite-state tests and adapter harness support local executable claims (A2). A3 is not claimed for the architecture as a whole. This differs from work such as LATTICE, which already reports live and adversarial empirical evaluation of its reference implementation \cite{calboreanu2026lattice}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.94\textwidth]{figures/fig3-assurance-levels.pdf}
+\caption{SGAEIA evidence and assurance levels. A0 records designed properties; A1 records formally or machine-checkably specified properties; A2 records repository-local executable or tested evidence; and A3 is reserved for independent or representative live validation. The current Paper~01 claims are primarily A0--A2.}
+\label{fig:assurance-levels}
+\end{figure}
 
 \section{Evaluation Agenda}
-Future evaluation should measure unauthorized-action prevention, behavior during network/control-plane partition, revocation propagation latency, policy and telemetry overhead, evidence completeness, semantic equivalence under adapter replacement, and independent reproducibility. A cyber-range protocol is provided as a separate SGAEIA technical manuscript.
+A full evaluation program should test at least: unauthorized-action prevention; confused-deputy and delegated-privilege escalation; token theft/replay; compromised sub-agents; policy-bypass attempts; prompt/tool injection; network and control-plane partition; degraded/offline operation; revocation propagation latency; policy evaluation overhead; evidence completeness; tamper resistance; adapter replacement under failure and revocation; sensor manipulation and unsafe actuation; and independent reproduction.
 
-\section{Limitations}
-SGAEIA is a reference architecture, not a certified product. Risk thresholds are illustrative; safety-critical deployment requires domain-specific hazard analysis and independent safety mechanisms. Local adapter tests do not certify upstream products. Formal abstractions do not prove completeness of the threat model.
+Representative quantitative measures include false-allow and false-deny rates for policy enforcement, revocation propagation latency, policy-decision latency, end-to-end action overhead, evidence completeness, conformance-test coverage, and recovery behavior after partition. Cyber-physical deployments additionally require domain-specific hazard analysis and independent safety mechanisms outside the LLM decision loop.
+
+\section{Discussion}
+The representative literature reviewed here shows a recurring design direction around a principle that is central to \sgaeia{}: security-critical authorization should not depend solely on probabilistic model behavior. Authenticated delegation, runtime mediation, path-aware policy, external PEPs, and governance-first execution gates all move authority decisions outside the model \cite{south2025authenticateddelegation,kaptein2026policiespaths,tallam2026fiveplane,calboreanu2026lattice,wang2026runtimepep}.
+
+The research gap addressed here is therefore architectural composition. In the representative literature reviewed here, Edge and cyber-physical systems introduce properties that enterprise cloud-agent governance does not always foreground: intermittent connectivity, local autonomy under partition, device/workload attestation, sensor/actuator exposure, heterogeneous orchestrators, constrained infrastructure, and safety-critical actuation. Conversely, in the representative Edge AI literature reviewed here, work often focuses on placement, learning, inference, efficiency, trustworthiness, and privacy without consistently treating autonomous agents as authority-bearing principals. \sgaeia{} joins these two problem spaces.
+
+A distinctive design emphasis of \sgaeia{} is not another policy engine, but the requirement that distributed authority remain bounded across both runtime behavior and technology substitution. A component that preserves API shape but weakens revocation, failure mode, evidence, or invariant enforcement is not a conformant replacement even if functionality appears equivalent.
+
+\section{Limitations and Threats to Validity}
+\sgaeia{} is a research reference architecture, not a certified product. Several limitations follow. First, risk thresholds and autonomy mappings are reference policies rather than empirically optimized universal constants. Second, the architecture's threat model may be incomplete as agent protocols and attack techniques evolve. Third, formal specifications do not establish correctness unless the relevant tools and assumptions are actually exercised and reviewed. Fourth, local tests do not reproduce the complexity of production multi-agent, network, hardware, or OT environments. Fifth, the related-work comparison is scoped to representative sources and uses ``not explicit'' rather than inferred absence; it is not a systematic-review claim. Sixth, adoption statistics are drawn from industry surveys with non-random organizational sampling and are used only as contextual motivation. Finally, safety-critical use requires domain-specific safety engineering, independent interlocks, hazard analysis, and certification processes beyond this architecture.
 
 \section{Conclusion}
-Edge computing created distributed computation; Edge AI created distributed intelligence; agentic Edge AI introduces distributed agency and authority. SGAEIA addresses the resulting need for autonomy that is bounded, revocable, observable, policy-mediated, and continuously governed. Intelligence may be distributed; authority must remain explicitly governed.
-\section*{Availability}
-Open reference implementation and specifications: \repo.
-\begin{thebibliography}{99}
-\bibitem{shi2016edge} W. Shi et al., ``Edge Computing: Vision and Challenges,'' IEEE Internet of Things Journal, 3(5), 637--646, 2016. doi:10.1109/JIOT.2016.2579198.
-\bibitem{zhou2019edge} Z. Zhou et al., ``Edge Intelligence: Paving the Last Mile of Artificial Intelligence With Edge Computing,'' Proceedings of the IEEE, 107(8), 1738--1762, 2019. doi:10.1109/JPROC.2019.2918951.
-\bibitem{li2018} E. Li, Z. Zhou, X. Chen, ``Edge Intelligence: On-Demand Deep Learning Model Co-Inference with Device-Edge Synergy,'' MECOMM, 2018. doi:10.1145/3229556.3229562.
-\bibitem{nist207} NIST, Zero Trust Architecture, SP 800-207, 2020. doi:10.6028/NIST.SP.800-207.
-\bibitem{nist207a} NIST, A Zero Trust Architecture Model for Access Control in Cloud-Native Applications in Multi-Cloud Environments, SP 800-207A, 2023. doi:10.6028/NIST.SP.800-207A.
-\bibitem{nistrmf} NIST, Artificial Intelligence Risk Management Framework (AI RMF 1.0), AI 100-1, 2023. doi:10.6028/NIST.AI.100-1.
-\bibitem{nistgenai} C. Autio et al., Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, NIST AI 600-1, 2024. doi:10.6028/NIST.AI.600-1.
-\bibitem{nistssdf} NIST, Secure Software Development Practices for Generative AI and Dual-Use Foundation Models, SP 800-218A, 2024.
-\bibitem{mitreatlas} MITRE, ATLAS: Adversarial Threat Landscape for Artificial-Intelligence Systems, \url{https://atlas.mitre.org/}, accessed Sep. 2026.
-\bibitem{owasp} OWASP GenAI Security Project, Agentic Security Initiative and Agent Control Standard, \url{https://genai.owasp.org/}, accessed Sep. 2026.
-\bibitem{spiffe} SPIFFE Project, The SPIFFE Standard, \url{https://spiffe.io/docs/latest/spiffe-specs/}, accessed Sep. 2026.
-\bibitem{etsi} ETSI, Multi-access Edge Computing (MEC), \url{https://www.etsi.org/technical-groups/mec/}, accessed Sep. 2026.
-\bibitem{openapi} OpenAPI Initiative, OpenAPI Specification 3.2.0, 2025.
-\bibitem{asyncapi} AsyncAPI Initiative, AsyncAPI Specification 3.1.0, 2026.
-\bibitem{tran2025} K.-T. Tran et al., ``Multi-Agent Collaboration Mechanisms: A Survey of LLMs,'' arXiv:2501.06322, 2025.
-\bibitem{datta2025} S. Datta et al., ``Agentic AI Security: Threats, Defenses, Evaluation, and Open Challenges,'' arXiv:2510.23883, 2025.
-\end{thebibliography}
+Edge computing created distributed computation, Edge AI created distributed intelligence, and agentic Edge AI introduces distributed agency and authority. Recent research and emerging standards increasingly emphasize authenticated delegation, runtime mediation, external policy enforcement, and agent identity as important controls. \sgaeia{} builds on this direction and contributes an integrated reference architecture for distributed Edge/MEC/IoT/OT settings in which autonomy is bounded by identity, capability, delegation, trust, risk, policy, criticality, and context; governance produces reconstructable evidence; and technology substitution is permitted only when security semantics are preserved.
+
+The central design principle is simple: intelligence may be distributed; authority must remain explicitly governed.
+
+\section*{Artifact Availability}
+The canonical living source is available at \repo. The SGAEIA project Concept DOI is \conceptdoi. The immutable SGAEIA v0.3.4 research artifact used as the current citation baseline is archived at Zenodo under Version DOI \versiondoi. The repository is licensed under Apache-2.0. The artifact is provided as a research reference architecture and demonstrative implementation, not as production, safety, security, or regulatory certification.
+
+\bibliographystyle{plain}
+\bibliography{references}
 \end{document}

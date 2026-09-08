@@ -1,0 +1,208 @@
+\begin{thebibliography}{10}
+
+\bibitem{ale2025agentic6g}
+Laha Ale, Scott~A. King, Ning Zhang, and Huanlai Xing.
+\newblock Enhancing generative {AI} reliability via agentic {AI} in
+  {6G}-enabled edge computing.
+\newblock {\em Nature Reviews Electrical Engineering}, 2:441--443, 2025.
+\newblock Comment; published 14 April 2025.
+
+\bibitem{asyncapi31}
+{AsyncAPI Initiative}.
+\newblock Asyncapi specification version 3.1.0, January 2026.
+
+\bibitem{nistgenai}
+Chloe Autio, Reva Schwartz, Jesse Dunietz, Shomik Jain, Martin Stanley, Elham
+  Tabassi, Patrick Hall, and Kamie Roberts.
+\newblock Artificial intelligence risk management framework: Generative
+  artificial intelligence profile.
+\newblock Technical Report AI 600-1, National Institute of Standards and
+  Technology, 2024.
+
+\bibitem{nist2026agentidentity}
+Harold Booth, William Fisher, Ryan Galluzzo, and Joshua Roberts.
+\newblock Accelerating the adoption of software and artificial intelligence
+  agent identity and authorization.
+\newblock NIST NCCoE Concept Paper, Initial Public Draft, 2026.
+
+\bibitem{nistssdfai}
+Harold Booth, Murugiah Souppaya, Apostol Vassilev, Michael Ogata, Martin
+  Stanley, and Karen Scarfone.
+\newblock Secure software development practices for generative {AI} and
+  dual-use foundation models: An {SSDF} community profile.
+\newblock Technical Report SP 800-218A, National Institute of Standards and
+  Technology, 2024.
+
+\bibitem{calboreanu2026lattice}
+Elias Calboreanu.
+\newblock {LATTICE}: a governance-first architecture for authorized autonomous
+  {AI} operations.
+\newblock {\em Frontiers in Artificial Intelligence}, 9:1800407, 2026.
+
+\bibitem{capgemini2026ai}
+{Capgemini Research Institute}.
+\newblock The multi-year ai advantage: Building the enterprise of tomorrow.
+\newblock Technical report, Capgemini Research Institute, 2026.
+\newblock Survey of 1,505 executives at organizations with more than USD 1
+  billion in annual revenue across 15 countries; fieldwork November 2025.
+
+\bibitem{nist207a}
+Ramaswamy Chandramouli and Zack Butcher.
+\newblock A zero trust architecture model for access control in cloud-native
+  applications in multi-cloud environments.
+\newblock Technical Report SP 800-207A, National Institute of Standards and
+  Technology, 2023.
+
+\bibitem{chhabra2026agenticsecurity}
+Anshuman Chhabra, Shrestha Datta, Shahriar~Kabir Nahin, and Prasant Mohapatra.
+\newblock Agentic {AI} security: Threats, defenses, evaluation, and open
+  challenges.
+\newblock {\em IEEE Access}, 14:49455--49482, 2026.
+\newblock Version of record published March 2026; preprint: arXiv:2510.23883.
+
+\bibitem{dantuluri2026delegationwithouttrust}
+Panduranga Sai~Varma Dantuluri and Jyotirmoy Sundi.
+\newblock Delegation without trust: An empirical gap analysis of identity,
+  authorization, and runtime governance in multi-agent {LLM} systems, 2026.
+\newblock Concurrent preprint; submitted 31 August 2026.
+
+\bibitem{deloitte2026stateai}
+{Deloitte AI Institute}.
+\newblock The state of ai in the enterprise.
+\newblock Technical report, Deloitte, 2026.
+\newblock Survey of 3,235 business and IT leaders across 24 countries;
+  fieldwork August--September 2025.
+
+\bibitem{hammond2025multiagentrisk}
+Lewis Hammond, Alan Chan, Jesse Clifton, Jason Hoelscher-Obermaier, Akbir Khan,
+  Euan McLean, Chandler Smith, Wolfram Barfuss, Jakob Foerster, et~al.
+\newblock Multi-agent risks from advanced {AI}, 2025.
+
+\bibitem{kaptein2026policiespaths}
+Maurits Kaptein, Vassilis-Javed Khan, and Andriy Podstavnychy.
+\newblock Runtime governance for {AI} agents: Policies on paths, 2026.
+
+\bibitem{li2018edge}
+En~Li, Zhi Zhou, and Xu~Chen.
+\newblock Edge intelligence: On-demand deep learning model co-inference with
+  device-edge synergy.
+\newblock In {\em Proceedings of the 2018 Workshop on Mobile Edge
+  Communications}, pages 31--36, 2018.
+
+\bibitem{mitreatlas}
+{MITRE}.
+\newblock {ATLAS}: Adversarial threat landscape for artificial-intelligence
+  systems, 2026.
+\newblock Accessed September 2026.
+
+\bibitem{nist2026agentinitiative}
+{National Institute of Standards and Technology}.
+\newblock {AI} agent standards initiative.
+\newblock NIST, 2026.
+\newblock Created 17 February 2026; updated 14 August 2026.
+
+\bibitem{navardi2025genaiedge}
+Mozhgan Navardi, Romina Aalishah, Yuzhe Fu, Yueqian Lin, Hai Li, Yiran Chen,
+  and Tinoosh Mohsenin.
+\newblock {GenAI} at the edge: Comprehensive survey on empowering edge devices.
+\newblock {\em Proceedings of the AAAI Symposium Series}, 5(1):180--187, 2025.
+
+\bibitem{openapi32}
+{OpenAPI Initiative}.
+\newblock Openapi specification version 3.2.0, September 2025.
+
+\bibitem{owasp2026agentictop10}
+{OWASP GenAI Security Project}.
+\newblock {OWASP} top 10 for agentic applications for 2026, December 2025.
+\newblock Publication title refers to the 2026 edition; published 9 December
+  2025.
+
+\bibitem{owasp2026acs}
+{OWASP GenAI Security Project}.
+\newblock Agent control standard ({ACS}), September 2026.
+
+\bibitem{piccialli2025federatededge}
+Francesco Piccialli, Diletta Chiaro, Pian Qi, Valerio Bellandi, and Ernesto
+  Damiani.
+\newblock Federated and edge learning for large language models.
+\newblock {\em Information Fusion}, 117:102840, 2025.
+
+\bibitem{nist207}
+Scott Rose, Oliver Borchert, Stu Mitchell, and Sean Connelly.
+\newblock Zero trust architecture.
+\newblock Technical Report SP 800-207, National Institute of Standards and
+  Technology, 2020.
+
+\bibitem{shi2016edge}
+Weisong Shi, Jie Cao, Quan Zhang, Youhuizi Li, and Lanyu Xu.
+\newblock Edge computing: Vision and challenges.
+\newblock {\em IEEE Internet of Things Journal}, 3(5):637--646, 2016.
+
+\bibitem{south2025authenticateddelegation}
+Tobin South, Samuele Marro, Thomas Hardjono, Robert Mahari, Cedric~Deslandes
+  Whitney, Alan Chan, and Alex Pentland.
+\newblock Position: {AI} agents need authenticated delegation.
+\newblock In {\em Proceedings of the 42nd International Conference on Machine
+  Learning}, volume 267 of {\em Proceedings of Machine Learning Research},
+  pages 82211--82231. PMLR, 2025.
+
+\bibitem{spiffe}
+{SPIFFE Project}.
+\newblock The {SPIFFE} standard, 2026.
+\newblock Accessed September 2026.
+
+\bibitem{nistrmf}
+Elham Tabassi.
+\newblock Artificial intelligence risk management framework ({AI RMF} 1.0).
+\newblock Technical Report AI 100-1, National Institute of Standards and
+  Technology, 2023.
+
+\bibitem{tallam2026fiveplane}
+Krti Tallam.
+\newblock A five-plane reference architecture for runtime governance of
+  production {AI} agents, 2026.
+
+\bibitem{tang2026agentsecurity}
+Yaxin Tang, Yijia Liu, Jiahe Lan, Zheng Yan, and Erol Gelenbe.
+\newblock Security of {LLM}-based agents regarding attacks, defenses, and
+  applications: A comprehensive survey.
+\newblock {\em Information Fusion}, 127:103941, 2026.
+
+\bibitem{tran2025multagent}
+Khanh-Tung Tran, Dung Dao, Minh-Duong Nguyen, Quoc-Viet Pham, Barry O'Sullivan,
+  and Hoang~D. Nguyen.
+\newblock Multi-agent collaboration mechanisms: A survey of {LLMs}, 2025.
+
+\bibitem{wang2025edgeefficientllm}
+Rui Wang, Zhiyong Gao, Liuyang Zhang, Shuaibing Yue, and Ziyi Gao.
+\newblock Empowering large language models to edge intelligence: A survey of
+  edge efficient {LLMs} and techniques.
+\newblock {\em Computer Science Review}, 57:100755, 2025.
+
+\bibitem{wang2026runtimepep}
+Shanshan Wang, Sizheng Zhu, and Rende Li.
+\newblock Runtime policy enforcement for {MCP}-based {LLM} agents.
+\newblock {\em Electronics}, 15(13):2829, 2026.
+
+\bibitem{wang2025trustworthyedge}
+Xiaojie Wang, Beibei Wang, Yu~Wu, Zhaolong Ning, Song Guo, and Fei~Richard Yu.
+\newblock A survey on trustworthy edge intelligence: From security and
+  reliability to transparency and sustainability.
+\newblock {\em IEEE Communications Surveys \& Tutorials}, 27(3):1729--1757,
+  2025.
+
+\bibitem{zhou2019edge}
+Zhi Zhou, Xu~Chen, En~Li, Liekang Zeng, Ke~Luo, and Junshan Zhang.
+\newblock Edge intelligence: Paving the last mile of artificial intelligence
+  with edge computing.
+\newblock {\em Proceedings of the IEEE}, 107(8):1738--1762, 2019.
+
+\bibitem{zwerdling2025policyadherence}
+Naama Zwerdling, David Boaz, Ella Rabinovich, Guy Uziel, David Amid, and Ateret
+  Anaby-Tavor.
+\newblock Towards enforcing company policy adherence in agentic workflows.
+\newblock In {\em Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing: Industry Track}, pages 595--606. Association for
+  Computational Linguistics, 2025.
+
+\end{thebibliography}
