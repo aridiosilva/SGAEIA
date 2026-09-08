@@ -41,3 +41,21 @@ Given a local contract-harness result, the project MUST identify it as harness-l
 
 ## AC-014 Adapter fail-safe
 Given loss of a critical adapter dependency, the resulting behavior MUST NOT increase authority, bypass policy or silently discard required critical evidence.
+
+## AC-015 Untrusted reasoning
+Given an otherwise permitted operation relying only on model reasoning or explanation for authorization, the operation MUST be denied.
+
+## AC-016 Independent monitoring
+Given a critical action, authorization MUST require a valid monitor decision whose identity differs from the controlled agent.
+
+## AC-017 Capability-gated autonomy
+Given an autonomy level above monitoring, containment or recovery assurance, authorization MUST fail closed or reduce autonomy before execution.
+
+## AC-018 Protected control plane
+Given ordinary agent authority, attempts to modify policy, monitoring, evidence, identity or kill-switch controls MUST be denied.
+
+## AC-019 Collective authority
+Given a set of individually permissible agent contributions whose combined capabilities form a prohibited set, the collective action MUST be denied.
+
+## AC-020 Bounded execution
+Given runtime, tool-call or network-reach consumption above an agent budget, the action MUST be denied or quarantined.

@@ -212,3 +212,52 @@ controls:
   verification: automated
   evidence:
   - adapter_evidence_record
+- id: CTL-AAS-001
+  name: Untrusted reasoning boundary
+  family: AAS
+  requirement: Model reasoning and explanations MUST NOT independently authorize action.
+  threats: [THR-AI-007]
+  verification: automated
+  evidence: [policy_denial_record]
+- id: CTL-AAS-002
+  name: Independent critical-action monitor
+  family: AAS
+  requirement: Critical action MUST have a valid monitor decision from a different identity.
+  threats: [THR-AI-008]
+  verification: automated
+  evidence: [monitor_decision_record]
+- id: CTL-AAS-003
+  name: Action-effect divergence gate
+  family: AAS
+  requirement: Detected divergence between proposed action and observed effect MUST fail closed.
+  threats: [THR-AI-009]
+  verification: automated
+  evidence: [action_effect_divergence_record]
+- id: CTL-AAS-004
+  name: Capability-gated autonomy
+  family: AAS
+  requirement: Effective autonomy MUST NOT exceed the minimum validated assurance ceiling.
+  threats: [THR-AI-010]
+  verification: automated
+  evidence: [assurance_ceiling_decision]
+- id: CTL-AAS-005
+  name: Bounded execution budgets
+  family: AAS
+  requirement: Runtime, tool-call and network-reach budgets MUST fail closed.
+  threats: [THR-AI-011]
+  verification: automated
+  evidence: [budget_enforcement_record]
+- id: CTL-AAS-006
+  name: Collective authority evaluation
+  family: AAS
+  requirement: Task-graph authorization MUST deny prohibited privilege aggregation and aggregate impact.
+  threats: [THR-AI-012]
+  verification: automated
+  evidence: [collective_authorization_record]
+- id: CTL-AAS-007
+  name: Protected control plane
+  family: AAS
+  requirement: Ordinary agent authority MUST NOT modify policy, monitoring, evidence, identity or kill-switch controls.
+  threats: [THR-AI-013]
+  verification: automated
+  evidence: [protected_control_denial]

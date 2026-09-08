@@ -2,6 +2,23 @@
 
 All notable project changes are recorded here. The project follows semantic versioning as a repository convention.
 
+## [Unreleased — RC2 working candidate] - 2026-09-08
+
+### Added
+- Alien Cognition and Architectural Assurance normative premise.
+- Untrusted-reasoning denial and independent monitor gate for critical actions.
+- Capability-gated autonomy and bounded runtime/tool/network enforcement.
+- Protected control-plane and self-affecting change restrictions.
+- Collective privilege-aggregation reference evaluator.
+- Capability-token and monitor-decision schemas.
+- SR-025--SR-035, INV-011--INV-018, STRIDE extensions and traceability rows.
+- Adversarial/security scenarios for new RC2 controls.
+
+### Validation
+- 38 pytest tests pass locally.
+- Specification, release and nine-profile adapter validators pass.
+- No production certification, cyber-range result or live-system assurance is claimed.
+
 ## [0.3.2] - 2026-09-06
 
 ### Added
