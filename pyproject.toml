@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sgaeia-reference"
-version = "0.3.2"
+version = "0.4.0rc1"
 description = "Secure Governed Autonomous Edge Intelligence Architecture reference implementation"
 requires-python = ">=3.11"
 dependencies = [
@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0"]
+dev = ["pytest>=8.0", "httpx>=0.27"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

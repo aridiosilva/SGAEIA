@@ -24,3 +24,14 @@
 - **SR-022** A contract-harness result SHALL NOT be represented as live-product or production certification; IPS-C2/C3 require representative/live-environment evidence according to the qualification procedure.
 - **SR-023** Critical adapters SHALL preserve the port failure invariant under timeout, dependency loss, stale configuration and network partition.
 - **SR-024** Adapter runtime evidence SHALL identify adapter id, implementation/version, port, subject, operation, trace and outcome.
+- **SR-025** Advanced models SHALL be treated as partially opaque and non-deterministic components whose strategies may not be anticipated by designers.
+- **SR-026** Model-generated reasoning, explanations, confidence statements and plans SHALL NOT independently authorize an action or constitute authoritative safety evidence.
+- **SR-027** Critical actions SHALL require a valid decision from a monitor independent of the controlled agent.
+- **SR-028** Critical evidence SHALL correlate declared intent, requested tool operation, enforced decision, observed effect and divergence.
+- **SR-029** Permitted autonomy SHALL NOT exceed validated model-capability, monitoring, containment or recovery assurance.
+- **SR-030** Agents SHALL have enforceable tool, runtime, call-count, network, delegation and self-modification limits.
+- **SR-031** An agent SHALL NOT be the sole proposer, evaluator, approver and deployer of a self-affecting change.
+- **SR-032** Multi-agent authorization SHALL detect privilege aggregation, cycles and aggregate impact across a task graph.
+- **SR-033** Critical human approval SHALL be attributable, informed and independent from the proposing identity.
+- **SR-034** Policy, monitoring, evidence, identity and kill-switch services SHALL be protected from ordinary agent modification.
+- **SR-035** Agent/model/control changes SHALL support staged deployment, quarantine, rollback and evidence-preserving recovery.

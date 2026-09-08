@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sgaeia.dev/schemas/human-approval.schema.json",
+  "title": "SGAEIA Human Approval",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["approver_id", "subject_agent_id", "trace_id", "operation", "resource", "informed", "valid", "revocable_before_effect", "issued_at", "expires_at", "signature_valid"],
+  "properties": {
+    "approver_id": {"type": "string", "minLength": 1},
+    "subject_agent_id": {"type": "string", "minLength": 1},
+    "trace_id": {"type": "string", "minLength": 1},
+    "operation": {"type": "string", "minLength": 1},
+    "resource": {"type": "string", "minLength": 1},
+    "informed": {"const": true},
+    "valid": {"const": true},
+    "revocable_before_effect": {"const": true},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "signature_valid": {"const": true}
+  }
+}

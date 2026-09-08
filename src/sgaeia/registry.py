@@ -1,7 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 import yaml
-from .models import Agent
+from .models import Agent, AUTONOMY_LEVEL, CLASS_LEVEL
 
 class AgentRegistry:
     def __init__(self):
@@ -14,6 +14,12 @@ class AgentRegistry:
             raise ValueError("workload identity must be a SPIFFE-style URI in this reference")
         if not agent.kill_switch_required:
             raise ValueError("kill switch is mandatory")
+        if agent.klass not in CLASS_LEVEL or agent.autonomy not in AUTONOMY_LEVEL:
+            raise ValueError("unknown class or autonomy level")
+        if not 0 <= agent.capability_assurance_level <= 5:
+            raise ValueError("capability assurance must be 0..5")
+        if min(agent.max_runtime_seconds,agent.max_tool_calls,agent.max_network_reach) < 0:
+            raise ValueError("execution budgets cannot be negative")
         self._agents[agent.id] = agent
 
     def get(self, agent_id: str) -> Agent | None:
@@ -35,5 +41,9 @@ class AgentRegistry:
                 delegation_allowed=spec["delegation"]["allowed"],
                 max_delegation_depth=spec["delegation"]["maxDepth"],
                 kill_switch_required=spec["killSwitch"]["required"],
+                max_runtime_seconds=spec.get("executionBudgets",{}).get("runtimeSeconds",0),
+                max_tool_calls=spec.get("executionBudgets",{}).get("toolCalls",0),
+                max_network_reach=spec.get("executionBudgets",{}).get("networkReach",0),
+                capability_assurance_level=spec.get("capabilityAssuranceLevel",0),
             ))
         return reg

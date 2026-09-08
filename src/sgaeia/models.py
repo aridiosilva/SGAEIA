@@ -21,6 +21,10 @@ class Agent:
     enabled: bool = True
     identity_valid: bool = True
     attested: bool = True
+    max_runtime_seconds: int = 900
+    max_tool_calls: int = 50
+    max_network_reach: int = 2
+    capability_assurance_level: int = 0
 
 @dataclass(frozen=True)
 class Intent:
@@ -35,6 +39,13 @@ class Intent:
     human_approvals: int = 0
     creator_id: str | None = None
     approver_id: str | None = None
+    target_kind: str = "resource"
+    self_affecting_change: bool = False
+    reasoning_only_authorization: bool = False
+    observed_runtime_seconds: int = 0
+    observed_tool_calls: int = 0
+    observed_network_reach: int = 0
+    delegation_chain: tuple[str, ...] = ()
 
 @dataclass(frozen=True)
 class RiskContext:
@@ -45,3 +56,47 @@ class RiskContext:
     delegation: int = 0
     impact: int = 0
     behavior_anomaly: int = 0
+    monitor_assurance: int = 0
+    containment_assurance: int = 0
+    recovery_assurance: int = 0
+    aggregate_impact: int = 0
+
+@dataclass(frozen=True)
+class MonitorDecision:
+    monitor_id: str
+    subject_agent_id: str
+    trace_id: str
+    operation: str
+    resource: str
+    allow: bool
+    valid: bool = False
+    policy_version: str = "unknown"
+    issued_at: str = ""
+    expires_at: str = ""
+    signature_valid: bool = False
+    trust_domain: str = ""
+
+@dataclass(frozen=True)
+class HumanApproval:
+    approver_id: str
+    subject_agent_id: str
+    trace_id: str
+    operation: str
+    resource: str
+    informed: bool = False
+    valid: bool = False
+    revocable_before_effect: bool = False
+    issued_at: str = ""
+    expires_at: str = ""
+    signature_valid: bool = False
+
+@dataclass(frozen=True)
+class ObservedEffect:
+    observer_id: str
+    subject_agent_id: str
+    trace_id: str
+    operation: str
+    resource: str
+    expected_effect: str
+    observed_effect: str
+    signature_valid: bool = False

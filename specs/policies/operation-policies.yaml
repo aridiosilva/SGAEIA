@@ -1,0 +1,27 @@
+apiVersion: sgaeia.io/v1
+kind: OperationPolicySet
+operations:
+  invoices.read:
+    assurance: {monitor: 2, containment: 2, recovery: 2}
+    risk: {data_sensitivity: 1, tool_power: 1}
+    expectedEffect: read_only
+  vendors.read:
+    assurance: {monitor: 2, containment: 2, recovery: 2}
+    risk: {data_sensitivity: 1, tool_power: 1}
+    expectedEffect: read_only
+  erp.query:
+    assurance: {monitor: 2, containment: 2, recovery: 2}
+    risk: {data_sensitivity: 2, tool_power: 2, network_reach: 1}
+    expectedEffect: read_only
+  ocr.invoke:
+    assurance: {monitor: 2, containment: 2, recovery: 2}
+    risk: {data_sensitivity: 1, tool_power: 2}
+    expectedEffect: bounded_inference
+  telemetry.read:
+    assurance: {monitor: 1, containment: 1, recovery: 1}
+    risk: {data_sensitivity: 1, tool_power: 1}
+    expectedEffect: read_only
+  safety.recommend:
+    assurance: {monitor: 1, containment: 1, recovery: 1}
+    risk: {data_sensitivity: 1, tool_power: 1, impact: 2}
+    expectedEffect: recommendation_only

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sgaeia.dev/schemas/capability-token.schema.json",
+  "title": "SGAEIA Delegated Capability Token",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["grant_id", "parent_agent_id", "child_agent_id", "capabilities", "purpose", "expires_at", "issued_at", "issuer", "signature_valid"],
+  "properties": {
+    "grant_id": {"type": "string", "minLength": 1},
+    "parent_agent_id": {"type": "string", "minLength": 1},
+    "child_agent_id": {"type": "string", "minLength": 1},
+    "capabilities": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "purpose": {"type": "string", "minLength": 1},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "parent_grant_id": {"type": ["string", "null"]},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "issuer": {"type": "string", "minLength": 1},
+    "signature_valid": {"const": true}
+  }
+}

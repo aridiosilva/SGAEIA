@@ -2,35 +2,31 @@
   "openapi": "3.1.0",
   "info": {
     "title": "SGAEIA Control API",
-    "version": "0.1.0"
+    "version": "0.4.0-rc.1"
   },
   "paths": {
     "/health": {
       "get": {
         "responses": {
-          "200": {
-            "description": "healthy"
-          }
+          "200": {"description": "healthy"}
         }
       }
     },
     "/v1/authorize": {
       "post": {
-        "summary": "Evaluate an agent intent before execution",
+        "summary": "Evaluate an agent intent using server-resolved assurance context",
+        "description": "Security-relevant classification, risk, monitoring, approvals and runtime counters are resolved by the trusted control plane and are not accepted from the requesting agent.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AuthorizationRequest"
-              }
+              "schema": {"$ref": "#/components/schemas/AuthorizationRequest"}
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Policy decision and evidence"
-          }
+          "200": {"description": "Policy decision and evidence"},
+          "422": {"description": "Untrusted or unknown request fields"}
         }
       }
     }
@@ -39,37 +35,17 @@
     "schemas": {
       "AuthorizationRequest": {
         "type": "object",
-        "required": [
-          "agent_id",
-          "operation",
-          "resource",
-          "trace_id"
-        ],
+        "additionalProperties": false,
+        "required": ["agent_id", "operation", "resource", "trace_id"],
         "properties": {
-          "agent_id": {
-            "type": "string"
-          },
-          "operation": {
-            "type": "string"
-          },
-          "resource": {
-            "type": "string"
-          },
-          "trace_id": {
-            "type": "string"
-          },
-          "offline": {
-            "type": "boolean"
-          },
-          "critical": {
-            "type": "boolean"
-          },
-          "physical_actuation": {
-            "type": "boolean"
-          },
-          "human_approvals": {
-            "type": "integer",
-            "minimum": 0
+          "agent_id": {"type": "string", "minLength": 1},
+          "operation": {"type": "string", "minLength": 1},
+          "resource": {"type": "string", "minLength": 1},
+          "trace_id": {"type": "string", "minLength": 1},
+          "delegation_chain": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "default": []
           }
         }
       }

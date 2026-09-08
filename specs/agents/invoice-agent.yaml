@@ -25,5 +25,10 @@ spec:
   delegation:
     allowed: true
     maxDepth: 1
+  capabilityAssuranceLevel: 2
+  executionBudgets:
+    runtimeSeconds: 300
+    toolCalls: 25
+    networkReach: 1
   killSwitch:
     required: true
