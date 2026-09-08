@@ -15,7 +15,7 @@ All notable project changes are recorded here. The project follows semantic vers
 - Adversarial/security scenarios for new RC2 controls.
 
 ### Validation
-- 38 pytest tests pass locally.
+- 51 pytest tests pass locally, including API trust-boundary, task-graph, evidence-chain and post-effect scenarios.
 - Specification, release and nine-profile adapter validators pass.
 - No production certification, cyber-range result or live-system assurance is claimed.
 
