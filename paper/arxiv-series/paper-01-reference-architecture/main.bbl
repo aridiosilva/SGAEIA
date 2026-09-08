@@ -19,6 +19,12 @@ Chloe Autio, Reva Schwartz, Jesse Dunietz, Shomik Jain, Martin Stanley, Elham
 \newblock Technical Report AI 600-1, National Institute of Standards and
   Technology, 2024.
 
+\bibitem{baker2025monitoring}
+Bowen Baker, Joost Huizinga, Leo Gao, Zehao Dou, Melody~Y. Guan, Aleksander
+  Madry, Wojciech Zaremba, Jakub Pachocki, and David Farhi.
+\newblock Monitoring reasoning models for misbehavior and the risks of
+  promoting obfuscation, 2025.
+
 \bibitem{nist2026agentidentity}
 Harold Booth, William Fisher, Ryan Galluzzo, and Joshua Roberts.
 \newblock Accelerating the adoption of software and artificial intelligence
@@ -120,6 +126,11 @@ Mozhgan Navardi, Romina Aalishah, Yuzhe Fu, Yueqian Lin, Hai Li, Yiran Chen,
 \bibitem{owasp2026acs}
 {OWASP GenAI Security Project}.
 \newblock Agent control standard ({ACS}), September 2026.
+
+\bibitem{pachocki2026alien}
+Jakub Pachocki.
+\newblock An alien mind, September 2026.
+\newblock Technical-institutional essay; accessed September 8, 2026.
 
 \bibitem{piccialli2025federatededge}
 Francesco Piccialli, Diletta Chiaro, Pian Qi, Valerio Bellandi, and Ernesto
