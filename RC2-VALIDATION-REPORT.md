@@ -11,7 +11,7 @@
 | `python -m pytest -q` | PASS — 51 tests |
 | Specification validator | PASS |
 | Integration Port validator | PASS |
-| Public-release structural validator | PASS against inherited v0.3.2 code baseline |
+| Release/candidate identity validator | PASS — public baseline `v0.3.4`; development candidate `v0.4.0-rc.1` |
 | Adapter conformance harness | PASS — 9 profiles |
 | Python compilation | PASS |
 | Control API trust-boundary tests | PASS — client security claims rejected |
@@ -28,10 +28,12 @@ or proof of safety. TLA+ and Alloy model-checker execution is not claimed.
 
 The implementation increment originated from the historical v0.3.2 RC1 package.
 Before publication, the changed paths were compared with the current canonical
-repository, applied to the current `main` commit and validated again. The public
-citation baseline remains v0.3.4; this RC2 branch is an unreleased candidate.
+repository, applied to the current `main` commit and validated again. Package,
+OpenAPI and master-spec metadata now identify the unreleased candidate as
+`v0.4.0-rc.1`; the public citation baseline remains the immutable `v0.3.4`.
 
-Paper integration is outside this software RC2 validation increment. The
-authoritative 13-page Paper 01 v3 source is synchronized separately and remains
-the baseline for a future, explicitly reviewed Alien Cognition manuscript
-revision.
+Paper 01 v4 is integrated in this branch as the reviewed manuscript candidate
+for the first public arXiv submission (`v1` on arXiv). Its source package was
+validated at 15 pages, 3 figures and 36 references. These checks establish
+repository/package integrity only: the manuscript has not been submitted or
+published on arXiv, and no endorsement is claimed.

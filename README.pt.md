@@ -13,6 +13,9 @@
 **Version DOI (v0.3.4):** `10.5281/zenodo.22557796`  
 **License:** Apache-2.0
 
+**Candidato não publicado:** `v0.4.0-rc.1 — Alien Cognition and Architectural Assurance` (PR #13, Draft)  
+O candidato não é uma release nem certificação; `v0.3.4` permanece como a linha de base pública imutável com DOI.
+
 Projeto de referência **Spec-Driven Development (SDD)** para arquiteturas **Edge-AI multiagente** com **Zero Trust, GRC distribuído, Security-by-Design, Security-First, Shift Left/Right/Everywhere e autonomia governada**.
 
 > **Status:** referência arquitetural e implementação mínima demonstrativa. Não é um produto pronto para produção e não substitui análise jurídica, safety engineering, threat modeling específico do domínio, validação regulatória, hardening operacional ou certificação independente.

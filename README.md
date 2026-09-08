@@ -13,6 +13,9 @@
 **Version DOI (v0.3.4):** `10.5281/zenodo.22557796`  
 **License:** Apache-2.0
 
+**Unreleased candidate:** `v0.4.0-rc.1 — Alien Cognition and Architectural Assurance` (PR #13, Draft)  
+The candidate is not a release or certification; `v0.3.4` remains the immutable public DOI baseline.
+
 A **Spec-Driven Development (SDD)** reference project for **multi-agent Edge AI** architectures with **Zero Trust, distributed GRC, Security-by-Design, Security-First, Shift Left/Right/Everywhere, and governed autonomy**.
 
 > **Status:** architectural reference and minimal demonstrative implementation. It is not a production-ready product and does not replace legal analysis, safety engineering, domain-specific threat modeling, regulatory validation, operational hardening, or independent certification.

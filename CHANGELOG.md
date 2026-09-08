@@ -2,7 +2,7 @@
 
 All notable project changes are recorded here. The project follows semantic versioning as a repository convention.
 
-## [Unreleased — RC2 working candidate] - 2026-09-08
+## [Unreleased — v0.4.0-rc.1 working candidate] - 2026-09-08
 
 ### Added
 - Alien Cognition and Architectural Assurance normative premise.
@@ -13,6 +13,11 @@ All notable project changes are recorded here. The project follows semantic vers
 - Capability-token and monitor-decision schemas.
 - SR-025--SR-035, INV-011--INV-018, STRIDE extensions and traceability rows.
 - Adversarial/security scenarios for new RC2 controls.
+
+### Changed
+- Candidate package metadata aligned to PEP 440 `0.4.0rc1`; human-facing and OpenAPI metadata use `v0.4.0-rc.1`.
+- Public citation and DOI metadata remain pinned to the immutable `v0.3.4` baseline.
+- Paper 01 v4 integrated as the reviewed manuscript candidate for the first arXiv submission; no arXiv publication is claimed.
 
 ### Validation
 - 51 pytest tests pass locally, including API trust-boundary, task-graph, evidence-chain and post-effect scenarios.

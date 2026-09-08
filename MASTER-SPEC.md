@@ -1,6 +1,6 @@
 # SGAEIA Master SDD Specification
 
-**Version:** 0.3.2  
+**Version:** 0.4.0-rc.1  
 **Author:** Aridio Silva — @aridiosilva  
 **Date:** September 2026
 
