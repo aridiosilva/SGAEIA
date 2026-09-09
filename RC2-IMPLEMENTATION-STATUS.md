@@ -26,4 +26,4 @@ repository-level evidence and does not establish production or live-system assur
 
 - Development candidate: `v0.4.0-rc.1` (`0.4.0rc1` in Python package metadata).
 - Immutable public software baseline: `v0.3.4`, preserved in `CITATION.cff` and its version DOI.
-- Paper 01 v4 is integrated in this branch as the reviewed candidate for a first public arXiv submission (`v1` on arXiv). It has not been submitted or published on arXiv.
+- Paper 01 v4 is integrated in `main` as the reviewed candidate for a first public arXiv submission (`v1` on arXiv). It has not been submitted or published on arXiv.

@@ -3,7 +3,7 @@
 **SGAEIA — Secure Governed Autonomous Edge Intelligence Architecture**  
 **Aridio Silva — @aridiosilva — Setembro de 2026**
 
-**Languages:** English | [Português](README.pt.md)
+**Idiomas:** [English](README.md) | Português
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22557795.svg)](https://doi.org/10.5281/zenodo.22557795)
 
@@ -13,7 +13,7 @@
 **Version DOI (v0.3.4):** `10.5281/zenodo.22557796`  
 **License:** Apache-2.0
 
-**Candidato não publicado:** `v0.4.0-rc.1 — Alien Cognition and Architectural Assurance` (PR #13, Draft)  
+**Candidato não publicado na `main`:** `v0.4.0-rc.1 — Alien Cognition and Architectural Assurance` (integrado pelo PR #13)  
 O candidato não é uma release nem certificação; `v0.3.4` permanece como a linha de base pública imutável com DOI.
 
 Projeto de referência **Spec-Driven Development (SDD)** para arquiteturas **Edge-AI multiagente** com **Zero Trust, GRC distribuído, Security-by-Design, Security-First, Shift Left/Right/Everywhere e autonomia governada**.
