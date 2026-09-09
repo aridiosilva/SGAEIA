@@ -7,7 +7,11 @@
 - `paper/arxiv-series/paper-01-reference-architecture/arxiv-source.zip`
 - `paper/arxiv-series/paper-01-reference-architecture/main.pdf`
 - `paper/arxiv-series/paper-01-reference-architecture/main.tex`
+- `paper/arxiv-series/paper-01-reference-architecture/main.bbl`
 - `paper/arxiv-series/paper-01-reference-architecture/references.bib`
+- `paper/arxiv-series/paper-01-reference-architecture/figures/fig1-edge-to-governed-authority.pdf`
+- `paper/arxiv-series/paper-01-reference-architecture/figures/fig2-runtime-authorization-path.pdf`
+- `paper/arxiv-series/paper-01-reference-architecture/figures/fig3-assurance-levels.pdf`
 - `paper/arxiv-series/paper-02-governed-autonomy-security/ARXIV-METADATA.md`
 - `paper/arxiv-series/paper-02-governed-autonomy-security/arxiv-source.zip`
 - `paper/arxiv-series/paper-02-governed-autonomy-security/main.pdf`
